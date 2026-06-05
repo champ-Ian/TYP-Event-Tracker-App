@@ -28,14 +28,22 @@ nav ul {
     list-style: none;
     align-items: center;
     width: 100vw;
-    margin-right: 15vw;
+    margin-right: 12vw;
 }
 
 #logo {
-    height: 5vh;
+    height: 4vh;
 }
 
 nav ul i {
     width: 6vh;
     color: #90EE90;
+}
+
+#acctInTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40vh;
+    padding: 1rem;
 }
