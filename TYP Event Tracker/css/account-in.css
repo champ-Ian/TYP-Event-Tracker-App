@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+
+:root {
+    --dark: #1d7543;
+    --light: #1d7543;
+    --pale: #eefaed;
+    --pitch: #053623;
+    --primary: #90EE90;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: 6.7vh;
+    background-color: var(--dark);
+    position: absolute;
+    bottom: 0;
+    width: 100vw
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    width: 100vw;
+    margin-right: 15vw;
+}
+
+#logo {
+    height: 5vh;
+}
+
+nav ul i {
+    width: 6vh;
+    color: #90EE90;
+}
