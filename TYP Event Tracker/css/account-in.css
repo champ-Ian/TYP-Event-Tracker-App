@@ -1,13 +1,14 @@
 * {
     margin: 0;
+    padding: 0;
 }
 
 :root {
     --dark: #1d7543;
-    --light: #1d7543;
+    --light: #99ed98;
     --pale: #eefaed;
     --pitch: #053623;
-    --primary: #90EE90;
+    --primary: #5cc465;
 }
 
 nav {
@@ -16,7 +17,7 @@ nav {
     list-style: none;
     height: 6.7vh;
     background-color: var(--dark);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100vw
 }
@@ -36,7 +37,7 @@ nav ul {
 }
 
 nav ul i {
-    width: 6vh;
+    width: 10vh;
     color: #90EE90;
 }
 
@@ -44,6 +45,91 @@ nav ul i {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 40vh;
+    height: 30vh;
     padding: 1rem;
+    background-color: var(--light);
+}
+
+.blockColumn {
+    display: block;
+    padding: 20px;
+    height: 20vh;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+#pfp {
+    height: 60px;
+    width: 60px;
+    border: solid;
+    border: var(--dark);
+    border-width: 4px;
+    padding-bottom: 20px;
+}
+
+.acctChangeButton {
+    width: 35vw;
+    height: 10vw;
+    border: solid;
+    border-width: 3px;
+    border-radius: 15px;
+    border-color: var(--dark);
+    background-color: var(--primary);
+    color: var(--pitch);
+}
+
+#acctNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 6.7vh;
+    align-items: stretch;
+    border-top: solid;
+    border-bottom: solid;
+    border-color: var(--dark);
+    background-color: var(--light);
+    color: var(--pitch);
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+#acctNav i {
+    flex-grow: 1;
+    align-items: center;
+    vertical-align: middle;
+    padding: 3.34vh;
+}
+
+#acctNav i:hover {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.myEventTracker {
+    height: fit-content;
+    min-height: 63.3vh;
+    background-color: var(--primary);
+}
+
+.eventList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.event {
+    padding: 20px;
+    background-color: var(--light);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
 }

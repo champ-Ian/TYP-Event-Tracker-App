@@ -23,7 +23,6 @@ nav {
     position: absolute;
     bottom: 0;
     width: 100vw;
-    margin-right: 12vw;
 }
 
 nav ul {
@@ -33,6 +32,7 @@ nav ul {
     list-style: none;
     align-items: center;
     width: 100vw;
+    margin-right: 12vw;
 
 }
 

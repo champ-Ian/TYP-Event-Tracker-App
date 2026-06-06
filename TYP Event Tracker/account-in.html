@@ -11,17 +11,56 @@
     <nav>
         <ul>
             <li><img id="logo" src="img/typ-logo.png" alt="Logo of TYP"></li>
-            <li><a href="index.html"><i class="fa-solid fa-house"></i></a></li>
-            <li><a href="create-event.html"><i class="fa-solid fa-circle-plus"></i></a></li>
-            <li><a href="account-in.html"><i class="fa-solid fa-user"></i></a></li>
+            <li><a href="index.html"><i class="fa-solid fa-house fa-lg" ></i></a></li>
+            <li><a href="create-event.html"><i class="fa-solid fa-circle-plus fa-lg"></i></a></li>
+            <li><a href="account-in.html"><i class="fa-solid fa-user fa-lg"></i></a></li>
         </ul>
     </nav>
     <section id="acctInTop">
-        <div id="mainAcctInfo">
-            <img id="pfp" src="" alt="pfp">
+        <div class="blockColumn">
+        <div class="flexRow">
+            <img id="pfp" src="img/anonymous pfp.webp" alt="pfp">
             <h2 id="username">username</h2>
         </div>
         <p id="acctBio">Bio</p>
+        </div>
+        <div class="flexRow">
+            <button id="editAcctInfo" class="acctChangeButton"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+            <button id="logOut" class="acctChangeButton"><i class="fa-solid fa-arrow-right-from-bracket" fa-lg></i></button>
+        </div>
     </section>
+    <section id="acctNav">
+            <i class="fa-solid fa-calendar fa-lg"></i>
+            <i class="fa-solid fa-clock-rotate-left fa-lg"></i>
+            <i class="fa-solid fa-id-card-clip fa-lg"></i>
+    </section>
+    <section id="myUpcomingEvents" class="myEventTracker">
+        <h1>Upcoming Events</h1>
+        <p>Events that you have signed up for will appear here.</p>
+        <div class="eventList">
+            <div class="event">
+                <h2>Event</h2>
+                <div class="eventBottom">
+                    <p>date:</p>
+                    <p>time:</p>
+                </div>
+            </div>
+            <div class="event">
+                <h2>Event</h2>
+                <div class="eventBottom">
+                    <p>date:</p>
+                    <p>time:</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section id="myEventHistory" class="myEventTracker">
+
+    </section>
+    <section id="myEvents" class="myEventTracker">
+
+    </section>
+    <script src="js/account-in.js" defer></script>
 </body>
 </html>
