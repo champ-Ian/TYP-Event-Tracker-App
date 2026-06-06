@@ -106,12 +106,8 @@ nav ul i {
     padding: 3.34vh;
 }
 
-#acctNav i:hover {
-    background-color: var(--dark);
-    color: var(--light);
-}
-
 .myEventTracker {
+    display: none;
     height: fit-content;
     min-height: 63.3vh;
     background-color: var(--primary);
