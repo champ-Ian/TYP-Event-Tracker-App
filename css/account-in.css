@@ -51,9 +51,11 @@ nav ul i {
 }
 
 .blockColumn {
-    display: block;
-    padding: 20px;
-    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    height: 30vh;
 }
 
 .flexRow {
@@ -69,17 +71,18 @@ nav ul i {
     border: solid;
     border: var(--dark);
     border-width: 4px;
-    padding-bottom: 20px;
+    margin-bottom: 1rem;
 }
 
 #acctBio {
     background-color: var(--pale);
-    height: 11vh;
+    height: 10vh;
     padding: 0.6rem;
     border: solid;
     border-color: var(--dark);
     border-radius: 1rem;
     border-width: 4px;
+    margin-bottom: 1rem;
 }
 
 .acctChangeButton {

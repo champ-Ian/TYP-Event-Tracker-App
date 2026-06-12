@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Sign Out</title>
+    <link rel="stylesheet" href="css/account-out.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!--Bottom nav bar-->
+    <nav>
+        <ul>
+            <li><img id="logo" src="img/typ-logo.png" alt="Logo of TYP"></li>
+            <li><a href="index.html"><i class="fa-solid fa-house fa-lg" ></i></a></li>
+            <li><a href="create-event.html"><i class="fa-solid fa-circle-plus fa-lg"></i></a></li>
+            <li><a id="profileButtonLink" href="account-in.html"><i id="profileButton" class="fa-solid fa-user fa-lg"></i></a></li>
+        </ul>
+    </nav>
+
+    <!--Log in inputs-->
+    <section id="login" class="accountInfoInput">
+        <h1>Log In</h1>
+        <div class="accountInput">
+            <p>Username:</p>
+            <input id=logInUsername type="text" >
+        </div>
+        <div class="accountInput">
+            <p>Password:</p>
+            <input id=logInPassword type="text" >
+        </div>
+        <input type="button" id="logInButton" value="Log In">
+
+    </section>
+
+    <h1>or</h1>
+
+    <!--Sign in inputs-->
+    <section id="signup" class="accountInfoInput">
+        <h1>Sign Up</h1>
+        <div class="accountInput">
+            <p>Username:</p>
+            <input type="text" >
+        </div>
+        <div class="accountInput">
+            <p>E-mail:</p>
+            <input type="text">
+        </div>
+        <div class="accountInput">
+            <p>Password:</p>
+            <input type="text" >
+        </div>
+        <div class="accountInput">
+            <p>Confirm Password:</p>
+            <input type="text">
+        </div>
+        <input type="button" id="signUpButton" value="Sign up">
+    </section>
+
+    <script src="js/account-out.js" defer></script>
+</body>

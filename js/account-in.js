@@ -45,15 +45,30 @@ myEventsButton.addEventListener('click', () => {
     myEventsButton.style.color = 'var(--light)'
 })
 
-const profileButton = document.querySelector("#profileButton")
-let logInBoolean = null
-const profileButtonLink = document.querySelector("#profileButtonLink")
 
-profileButton.addEventListener('click', () => {
-    logInBoolean = prompt("are you logged in?", "type true or false")
-    if (logInBoolean === "true") {
-        profileButtonLink.href = 'account-in.html'
+
+
+//when the account button in the navbar is clicked, which page to go to
+
+const profileButtonLink = document.querySelector("#profileButtonLink")
+const userLoggedIn = localStorage.getItem('loggedIn');
+console.log(userLoggedIn)
+
+profileButtonLink.addEventListener('click', () => {
+    if (userLoggedIn == true) {
+        window.location.href = 'account-in.html'
+        console.log("yay")
     } else {
-        profileButtonLink.href = 'account-out.html'
+        window.location.href = 'account-out.html'
     }
+})
+
+
+
+//When log out button is clicked, it logs out
+const logOutButton = document.querySelector("#logOut")
+
+logOutButton.addEventListener('click', () => {
+    localStorage.setItem('loggedIn', false);
+    window.location.href = 'account-out.html'
 })
