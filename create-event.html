@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Events</title>
+
+ 
+
+<link rel="stylesheet" href="style.css">
+
+<nav>
+    <ul>
+        <li><i class="fa-solid fa-house"></i></li>
+        <li><i class="fa-solid fa-calendar-days"></i></li>
+
+        <li>
+            <img
+                id="logo"
+                src="logo.png"
+                alt="Logo">
+        </li>
+
+        <li><i class="fa-solid fa-bell"></i></li>
+        <li><i class="fa-solid fa-user"></i></li>
+    </ul>
+</nav>
+    
+</head>
+<body>
+
+
+
+<div class="stats">
+    <div class="stat-card">
+        <h3 id="eventCount">0</h3>
+        <p>Events</p>
+    </div>
+
+
+
+<section class="create-event">
+    <h2>Create Event</h2>
+
+    <input type="text" id="title" placeholder="Event Name">
+
+    <input type="date" id="date">
+
+    <textarea
+    id="description"
+    placeholder="Describe your event"></textarea>
+
+    <input
+    type="file"
+    id="image"
+    accept="image/*">
+
+    <button onclick="createEvent()">
+        Create Event
+    </button>
+</section>
+
+<section class="events-section">
+    <h2>Upcoming Events</h2>
+
+    <div id="eventList" class="event-list"></div>
+</section>
+
+<nav>
+    <ul>
+        <li><i class="fas fa-house"></i></li>
+        <li><i class="fas fa-calendar"></i></li>
+        <li><i class="fas fa-plus-circle"></i></li>
+        <li><i class="fas fa-user"></i></li>
+    </ul>
+</nav>
+
+<script src="script.js"></script>
+
+</body>
+</html>
