@@ -32,6 +32,7 @@
             <p>Password:</p>
             <input id=logInPassword type="text" >
         </div>
+        <p id="passwordIncorrect">username or password incorrect</p>
         <input type="button" id="logInButton" value="Log In">
 
     </section>
@@ -43,19 +44,21 @@
         <h1>Sign Up</h1>
         <div class="accountInput">
             <p>Username:</p>
-            <input type="text" >
+            <input id="newUsername" type="text" >
         </div>
+        <p id="noUsername">username is not available</p>
         <div class="accountInput">
             <p>E-mail:</p>
-            <input type="text">
+            <input id="newEmail" type="text">
         </div>
+        <p id="noEmail">Email address is already in use</p>
         <div class="accountInput">
             <p>Password:</p>
-            <input type="text" >
+            <input id="newPassword" type="text" >
         </div>
         <div class="accountInput">
             <p>Confirm Password:</p>
-            <input type="text">
+            <input id="confirmPassword" type="text">
         </div>
         <input type="button" id="signUpButton" value="Sign up">
     </section>

@@ -24,6 +24,7 @@ console.log(accounts);
 const logInButton = document.querySelector("#logInButton")
 const usernameInput = document.querySelector("#logInUsername")
 const passwordInput = document.querySelector("#logInPassword")
+const passwordIncorrect = document.querySelector("#passwordIncorrect")
 
 logInButton.addEventListener('click', () => {
     let username = usernameInput.value;
@@ -33,16 +34,54 @@ logInButton.addEventListener('click', () => {
 
     for (let i = 0; i < accountNumber; i++)
         if (accounts[i][0] === username) {
-            console.log("correct");
             if (accounts[i][2] === password) {
                 console.log("password correct");
                 localStorage.setItem('loggedIn', true);
                 window.location.href = 'account-in.html'
             } else {
-                continue;
+                passwordIncorrect.style.display = 'block'
+                passwordIncorrect.style.color = 'red'
             }
         } else {
-            continue;
+                passwordIncorrect.style.display = 'block'
+                passwordIncorrect.style.color = 'red'
         }
+    console.log(accounts)
     
+})
+
+
+
+//adding a new user to the array when signing up
+
+const signUpButton = document.querySelector("#signUpButton")
+const newUsernameInput = document.querySelector("#newUsername")
+const newEmailInput = document.querySelector("#newEmail")
+const newPasswordInput = document.querySelector("#newPassword")
+const confirmPasswordInput = document.querySelector("#confirmPassword")
+const noUsername = document.querySelector("#noUsername")
+const noEmail = document.querySelector("#noEmail")
+
+signUpButton.addEventListener('click', () => {
+    let stop = 0
+    let newUsername = newUsernameInput.value
+    let newEmail = newEmailInput.value
+    let newPassword = newPasswordInput.value
+
+    for (let i=0; i < accountNumber; i++) {
+        if (accounts[i][0] === newUsername) {
+            noUsername.style.display = 'block'
+            noUsername.style.color = 'red'
+            stop = 1
+        }
+        if (accounts[i][1] === newEmail) {
+            noEmail.style.display = 'block'
+            noEmail.style.color = 'red'
+            stop = 1
+        }
+    }
+        let newUser = [newUsername, newEmail, newPassword, null, null]
+        accounts.push(newUser)
+        accountNumber++
+        console.log(accounts)
 })

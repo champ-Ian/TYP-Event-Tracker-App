@@ -86,3 +86,15 @@ nav ul i {
     border-width: 1px;
     height: 5vw;
 }
+
+#passwordIncorrect {
+    display: none;
+}
+
+#noUsername {
+    display: none;
+}
+
+#noEmail {
+    display: none;
+}
