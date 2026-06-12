@@ -1,13 +1,15 @@
-const profileButton = document.querySelector("#profileButton")
-let logInBoolean = null
-const profileButtonLink = document.querySelector("#profileButtonLink")
+//when the account button in the navbar is clicked, which page to go to
 
-profileButton.addEventListener('click', () => {
-    logInBoolean = prompt("are you logged in?", "type true or false")
-    if (logInBoolean === "true") {
-        profileButtonLink.href = 'account-in.html'
+const profileButtonLink = document.querySelector("#profileButtonLink")
+const userLoggedIn = localStorage.getItem('loggedIn');
+console.log(userLoggedIn)
+
+profileButtonLink.addEventListener('click', () => {
+    if (userLoggedIn == true) {
+        window.location.href = 'account-in.html'
+        console.log("yay")
     } else {
-        profileButtonLink.href = 'account-out.html'
+        window.location.href = 'account-out.html'
     }
 })
 

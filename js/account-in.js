@@ -54,10 +54,10 @@ const profileButtonLink = document.querySelector("#profileButtonLink")
 const userLoggedIn = localStorage.getItem('loggedIn');
 console.log(userLoggedIn)
 
-profileButtonLink.addEventListener('click', () => {
-    if (userLoggedIn == true) {
+profileButtonLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (userLoggedIn === "true") {
         window.location.href = 'account-in.html'
-        console.log("yay")
     } else {
         window.location.href = 'account-out.html'
     }
