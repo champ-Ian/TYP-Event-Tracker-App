@@ -6,7 +6,7 @@
 :root {
     --dark: #1d7543;
     --light: #99ed98;
-    --pale: #eefaed;
+    --pale: #daf8d6;
     --pitch: #053623;
     --primary: #5cc465;
 }
@@ -72,6 +72,16 @@ nav ul i {
     padding-bottom: 20px;
 }
 
+#acctBio {
+    background-color: var(--pale);
+    height: 11vh;
+    padding: 0.6rem;
+    border: solid;
+    border-color: var(--dark);
+    border-radius: 1rem;
+    border-width: 4px;
+}
+
 .acctChangeButton {
     width: 35vw;
     height: 10vw;
@@ -111,6 +121,7 @@ nav ul i {
     height: fit-content;
     min-height: 63.3vh;
     background-color: var(--primary);
+    padding: 0.7rem;
 }
 
 .eventList {
@@ -121,7 +132,7 @@ nav ul i {
 
 .event {
     padding: 20px;
-    background-color: var(--light);
+    background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
     border: solid;

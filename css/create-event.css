@@ -9,7 +9,7 @@
 :root{
     --dark:#1d7543;
     --light:#99ed98;
-    --pale:#eefaed;
+    --pale:#daf8d6;
     --pitch:#053623;
     --primary:#5cc465;
 }
@@ -183,15 +183,14 @@ button:hover{
     margin-bottom:.75rem;
 }
 
-nav{
+nav {
     display:flex;
     flex-direction:row;
     list-style:none;
     height:6.7vh;
     background-color:var(--dark);
-    position:fixed;
+    position: fixed;
     bottom:0;
-    left:0;
     width:100vw;
     border-radius:20px 20px 0 0;
     box-shadow:0 -4px 12px rgba(0,0,0,.15);
@@ -206,7 +205,7 @@ nav ul{
     align-items:center;
     width:100vw;
     margin-right:15vw;
-    padding:0 2rem;
+    padding: 2rem;
 }
 
 #logo{
