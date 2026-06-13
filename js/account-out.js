@@ -2,7 +2,7 @@
 
 
 //i is y dimension. each row is a new user
-//j is x dimension. column 1 = username, column 2 = email, column 3 = password, column 4 = pfp, column 5 = bio
+//j is x dimension. column 0 = username, column 1 = email, column 2 = password, column 3 = pfp, column 4 = bio
 let accountNumber = 3
 let accounts = [];
 
@@ -13,11 +13,15 @@ for (let i = 0; i < accountNumber; i++) {
   }
 }
 accounts[0][0] = "Cyrus";
-accounts[1][0] = "Ryan";
-accounts[2][0] = "Matthew";
 accounts[0][2] = "cyruspassword";
+accounts[0][4] = "My name is Cyrus and I'm very cool"
+accounts[1][0] = "Ryan";
 accounts[1][2] = "123456";
+accounts[1][4] = "Ryan is very cool"
+accounts[2][0] = "Matthew";
 accounts[2][2] = "654321";
+accounts[2][4] = "The individual who bears the name of Matthew is a highly intellectual being"
+
 
 console.log(accounts);
 
@@ -38,6 +42,7 @@ logInButton.addEventListener('click', () => {
                 console.log("password correct");
                 localStorage.setItem('loggedIn', true);
                 window.location.href = 'account-in.html'
+                localStorage.setItem('userInformation', JSON.stringify(accounts[i]))
             } else {
                 passwordIncorrect.style.display = 'block'
                 passwordIncorrect.style.color = 'red'

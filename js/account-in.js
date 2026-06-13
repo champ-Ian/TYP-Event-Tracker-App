@@ -1,3 +1,18 @@
+//updating the username, pfp, and bio depending on the user's information
+const username = document.querySelector("#username")
+const pfp = document.querySelector("#pfp")
+const bio = document.querySelector("#acctBio")
+
+const storedAccountInfo = localStorage.getItem('userInformation')
+const userInfo = storedAccountInfo ? JSON.parse(storedAccountInfo) : [];
+username.textContent = userInfo[0]
+console.log(userInfo)
+
+bio.textContent = userInfo[4]
+
+
+
+
 //When each icon in the Account navigation is clicked, it's associated page appears.
 
 const myUpcomingEvents = document.querySelector("#myUpcomingEvents");
@@ -50,9 +65,15 @@ myEventsButton.addEventListener('click', () => {
 
 
 //When log out button is clicked, it logs out
+
 const logOutButton = document.querySelector("#logOut")
 
 logOutButton.addEventListener('click', () => {
     localStorage.setItem('loggedIn', false);
     window.location.href = 'account-out.html'
 })
+
+
+
+//when edit button is clicked, the edit profile interface appears
+
