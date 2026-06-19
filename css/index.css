@@ -1,4 +1,4 @@
-* {
+** {
     margin: 0;
     padding: 0;
 }
@@ -18,21 +18,30 @@ nav {
     display: flex;
     flex-direction: row;
     list-style: none;
-    height: 6.7vh;
+    height: 9vh;
     background-color: var(--dark);
     position: sticky;
     bottom: 0;
     width: 100vw;
+    border-radius: 20px 20px 0 0;
 }
 
 nav ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style: none;
     align-items: center;
     width: 100vw;
+}
 
+#logo {
+    height: 4vh;
+}
+
+nav ul i {
+    width: 10vh;
+    color: #90EE90;
 }
 
 #logo {
