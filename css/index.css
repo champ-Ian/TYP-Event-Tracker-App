@@ -9,7 +9,7 @@ body {
 :root {
     --dark: #1d7543;
     --light: #99ed98;
-    --pale: #daf8d6;
+    --pale: #eefaed;
     --pitch: #053623;
     --primary: #90EE90;
 }
@@ -20,7 +20,7 @@ nav {
     list-style: none;
     height: 6.7vh;
     background-color: var(--dark);
-    position: absolute;
+    position: sticky;
     bottom: 0;
     width: 100vw;
 }
@@ -32,7 +32,6 @@ nav ul {
     list-style: none;
     align-items: center;
     width: 100vw;
-    margin-right: 12vw;
 
 }
 
@@ -43,35 +42,75 @@ nav ul {
 nav ul i {
     width: 6vh;
     color: #90EE90;
-
 }
 #event_1 {
-    background-color: #1d7543;
-    margin: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: var(--pale);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
 }
 #event_2 {
-    background-color: #1d7543;
-    margin: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: var(--pale);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
 }
 #event_3 {
-    background-color: #1d7543;
-    margin: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: var(--pale);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
 }
 #event_4 {
-    background-color: #1d7543;
-    margin: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: var(--pale);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
 }
 #pas_event_1 {
-    background-color: #1d7543;
-    margin: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: var(--pale);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
 }
 #pas_event_2 {
-    background-color: #1d7543;
-    margin: 10px;
-    padding: 5px;
+    padding: 20px;
+    background-color: var(--pale);
+    margin: 20px;
+    color: var(--pitch);
+    border: solid;
+    border-radius: 15px;
+    border-width: 4px;
+    border-color: var(--dark);
+}
+#pas {
+    size: 150%;
+    display: flex;
+    justify-content: center;
+}
+#cur {
+    size: 150%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px 0px;
 }
