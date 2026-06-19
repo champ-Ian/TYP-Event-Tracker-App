@@ -22,3 +22,13 @@ if (!sessionStorage.getItem('hasVisited')) {
 } else {
   console.log("Page has been reloaded or navigated to previously.");
 }
+
+function checkNavBar() {
+    const homeButton = document.querySelector("#homeButtonLink")
+    const createButton = document.querySelector("#createEventButtonLink")
+    const accountButton = document.querySelector("#profileButtonLink")
+    const currentPage = window.location.href;
+    if (currentPage === "account-in.html") {
+        
+    }
+}
