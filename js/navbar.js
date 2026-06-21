@@ -28,7 +28,17 @@ function checkNavBar() {
     const createButton = document.querySelector("#createEventButtonLink")
     const accountButton = document.querySelector("#profileButtonLink")
     const currentPage = window.location.href;
-    if (currentPage === "account-in.html") {
-        
+    if (currentPage === 'index.html') {
+        homeButton.className = "fa-regular fa-house fa-xl"
+        createButton.className = "fa-solid fa-circle-plus fa-xl"
+        accountButton.className = "fa-solid fa-user fa-xl"
+    } else if (currentPage === 'create-event.html') {
+        homeButton.className = "fa-solid fa-house fa-xl"
+        createButton.className = "fa-regular fa-circle-plus fa-xl"
+        accountButton.className = "fa-solid fa-user fa-xl"
+    } else if (currentPage === 'account-in.html') {
+        homeButton.className = "fa-solid fa-house fa-xl"
+        createButton.className = "fa-solid fa-circle-plus fa-xl"
+        accountButton.className = "fa-regular fa-user fa-xl"
     }
 }
