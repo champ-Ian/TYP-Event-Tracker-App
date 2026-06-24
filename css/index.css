@@ -20,7 +20,7 @@ nav {
     list-style: none;
     height: 9vh;
     background-color: var(--dark);
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100vw;
     border-radius: 20px 20px 0 0;
@@ -35,17 +35,9 @@ nav ul {
     width: 100vw;
 }
 
-#logo {
-    height: 4vh;
-}
-
 nav ul i {
     width: 10vh;
     color: #90EE90;
-}
-
-#logo {
-    height: 5vh;
 }
 
 #event_1 {

@@ -17,7 +17,6 @@
 body{
     background:var(--light);
     color:var(--pitch);
-    min-height:100vh;
     padding-bottom:90px;
 }
 
@@ -183,45 +182,31 @@ button:hover{
     margin-bottom:.75rem;
 }
 
+
 nav {
-    display:flex;
-    flex-direction:row;
-    list-style:none;
-    height:6.7vh;
-    background-color:var(--dark);
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: 9vh;
+    background-color: var(--dark);
     position: fixed;
-    bottom:0;
-    width:100vw;
-    border-radius:20px 20px 0 0;
-    box-shadow:0 -4px 12px rgba(0,0,0,.15);
-    z-index:1000;
+    bottom: 0;
+    width: 100vw;
+    border-radius: 20px 20px 0 0;
 }
 
-nav ul{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
-    list-style:none;
-    align-items:center;
-    width:100vw;
-    margin-right:15vw;
-    padding: 2rem;
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+    align-items: center;
+    width: 100vw;
 }
 
-#logo{
-    height:5vh;
-}
-
-nav ul i{
-    width:6vh;
-    color:#90EE90;
-    font-size:1.4rem;
-    cursor:pointer;
-    transition:.2s;
-}
-
-nav ul i:hover{
-    transform:scale(1.1);
+nav ul i {
+    width: 10vh;
+    color: #90EE90;
 }
 
 
