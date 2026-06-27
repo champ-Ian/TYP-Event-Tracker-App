@@ -23,6 +23,8 @@ let eventHistoryButton = document.querySelector("#eventHistoryButton")
 let myEventsButton = document.querySelector("#myEventsButton")
 
 myUpcomingEvents.style.display = 'block'
+upcomingEventsButton.style.backgroundColor = 'var(--dark)'
+upcomingEventsButton.style.color = 'var(--light)'
 
 upcomingEventsButton.addEventListener('click', () => {
     myUpcomingEvents.style.display = 'block';

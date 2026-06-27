@@ -24,21 +24,21 @@ if (!sessionStorage.getItem('hasVisited')) {
 }
 
 function checkNavBar() {
-    const homeButton = document.querySelector("#homeButtonLink")
-    const createButton = document.querySelector("#createEventButtonLink")
-    const accountButton = document.querySelector("#profileButtonLink")
-    const currentPage = window.location.href;
-    if (currentPage === 'index.html') {
-        homeButton.className = "fa-regular fa-house fa-xl"
-        createButton.className = "fa-solid fa-circle-plus fa-xl"
-        accountButton.className = "fa-solid fa-user fa-xl"
-    } else if (currentPage === 'create-event.html') {
-        homeButton.className = "fa-solid fa-house fa-xl"
-        createButton.className = "fa-regular fa-circle-plus fa-xl"
-        accountButton.className = "fa-solid fa-user fa-xl"
-    } else if (currentPage === 'account-in.html') {
-        homeButton.className = "fa-solid fa-house fa-xl"
-        createButton.className = "fa-solid fa-circle-plus fa-xl"
-        accountButton.className = "fa-regular fa-user fa-xl"
+    const homeButton = document.querySelector("#houseButton")
+    const createButton = document.querySelector("#createEventButton")
+    const accountButton = document.querySelector("#profileButton")
+    const currentPage = window.location.pathname;
+    console.log(currentPage)
+    if (currentPage === '/index.html') {
+        homeButton.style.color = 'var(--dark)'
+        homeButton.style.backgroundColor = 'var(--light)'
+    } else if (currentPage === '/create-event.html') {
+        createButton.style.color = 'var(--dark)'
+        createButton.style.backgroundColor = 'var(--light)'
+    } else if (currentPage === '/account-in.html' || currentPage === '/account-out.html') {
+        accountButton.style.color = 'var(--dark)'
+        accountButton.style.backgroundColor = 'var(--light)'
     }
 }
+
+checkNavBar();

@@ -37,6 +37,8 @@ nav ul {
 nav ul i {
     width: 10vh;
     color: #90EE90;
+    padding: 4.3vh 4.7vh 4.3vh 4.7vh;
+    background-color: var(--dark);
 }
 
 #acctInTop {
@@ -92,6 +94,7 @@ nav ul i {
     border-color: var(--dark);
     background-color: var(--primary);
     color: var(--pitch);
+    margin-bottom: 0.7rem;
 }
 
 #acctNav {
@@ -122,13 +125,14 @@ nav ul i {
     height: fit-content;
     min-height: 63.3vh;
     background-color: var(--primary);
-    padding: 0.7rem;
+    padding: 1.5rem;
 }
 
 .eventList {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0;
 }
 
 .event {
