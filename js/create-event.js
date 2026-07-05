@@ -2,7 +2,7 @@
 
 let eventCount = 0;
 
-function createEvent(){
+function newEvent(){
 
     const title =
         document.getElementById("title").value;
@@ -68,18 +68,7 @@ function createEvent(){
         });
     }
 }
-const profileButtonLink = document.querySelector("#profileButtonLink")
-const userLoggedIn = localStorage.getItem('loggedIn');
-console.log(userLoggedIn)
 
-profileButtonLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (userLoggedIn === "true") {
-        window.location.href = 'account-in.html'
-    } else {
-        window.location.href = 'account-out.html'
-    }
-})
 
 if (!sessionStorage.getItem('hasVisited')) {
     localStorage.setItem('loggedIn', false)

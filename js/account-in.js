@@ -64,8 +64,6 @@ myEventsButton.addEventListener('click', () => {
 
 
 
-
-
 //When log out button is clicked, it logs out
 
 const logOutButton = document.querySelector("#logOut")
