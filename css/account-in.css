@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family:"Segoe UI",sans-serif;
+    box-sizing: border-box;
 }
 
 :root {
@@ -33,11 +34,10 @@ nav ul {
     width: 100vw;
 }
 
-
 nav ul i {
-    width: 10vh;
+    width: 100%;
     color: #90EE90;
-    padding: 4.3vh 4.7vh 4.3vh 4.7vh;
+    padding: 4.3vh 8vh 4.3vh 6vh;
     background-color: var(--dark);
 }
 
@@ -70,7 +70,7 @@ nav ul i {
     width: 60px;
     border: solid;
     border: var(--dark);
-    border-width: 4px;
+    border-width: 2px;
     margin-bottom: 1rem;
 }
 
@@ -81,7 +81,7 @@ nav ul i {
     border: solid;
     border-color: var(--dark);
     border-radius: 1rem;
-    border-width: 4px;
+    border-width: 3px;
     margin-bottom: 1rem;
 }
 
@@ -89,7 +89,7 @@ nav ul i {
     width: 35vw;
     height: 10vw;
     border: solid;
-    border-width: 3px;
+    border-width: 2px;
     border-radius: 15px;
     border-color: var(--dark);
     background-color: var(--primary);
@@ -106,6 +106,7 @@ nav ul i {
     border-top: solid;
     border-bottom: solid;
     border-color: var(--dark);
+    border-width: 2px;
     background-color: var(--light);
     color: var(--pitch);
     align-items: center;
@@ -142,6 +143,6 @@ nav ul i {
     color: var(--pitch);
     border: solid;
     border-radius: 15px;
-    border-width: 4px;
+    border-width: 3px;
     border-color: var(--dark);
 }

@@ -21,29 +21,25 @@
     </nav>
 
 
-<div class="stats">
-    <div class="stat-card">
-        <h3 id="eventCount">0</h3>
-        <p>Events</p>
-    </div>
-
 
 
 <section class="create-event">
     <h2>Create Event</h2>
 
-    <input type="text" id="title" placeholder="Event Name">
+    <div class="input-group">
+        <input type="text" id="title" placeholder="Event Name">
 
-    <input type="date" id="date">
+        <input type="date" id="date">
 
-    <textarea
-    id="description"
-    placeholder="Describe your event"></textarea>
+        <textarea
+        id="description"
+        placeholder="Describe your event"></textarea>
 
-    <input
-    type="file"
-    id="image"
-    accept="image/*">
+        <input
+        type="file"
+        id="image"
+        accept="image/*">
+    </div>
 
     <button onclick="newEvent()">
         Create Event
@@ -60,6 +56,4 @@
 <script src="js/create-event.js" defer></script>
 
 </body>
-<a href="view-event.html">link<a>
-<a href="account-in.html">link<a>
 </html>

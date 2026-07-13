@@ -1,6 +1,8 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family:"Segoe UI",sans-serif;
 }
 
 body {
@@ -38,9 +40,9 @@ nav ul {
 }
 
 nav ul i {
-    width: 10vh;
+    width: 100%;
     color: #90EE90;
-    padding: 4.3vh 4.7vh 4.3vh 4.7vh;
+    padding: 4.3vh 8vh 4.3vh 6vh;
     background-color: var(--dark);
 }
 
