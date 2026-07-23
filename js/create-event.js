@@ -24,6 +24,9 @@ function newEvent(){
 
     const date =
         document.getElementById("date").value;
+    
+    const time =
+        document.getElementById('time').value;
 
     const description =
         document.getElementById("description").value;
@@ -35,13 +38,18 @@ function newEvent(){
     const eventCreator =
         userInfo[0]
 
-    if(!title || !date){
+    if(!title || !date || !time){
         alert("Please fill out all required fields.");
         return;
     }
 
+    if(!eventCreator){
+        alert('log in to create an event');
+        return;
+    }
+
     const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
-    retreivedData.push([title, date, description, image, eventCreator])
+    retreivedData.push([title, date, time, description, image, eventCreator])
     console.log(retreivedData)
     localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
 }
