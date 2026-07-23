@@ -1,4 +1,19 @@
 
+if (!localStorage.getItem('didRun')) {
+    let eventArray = []
+
+    for (let i=0; i<1; i++) {
+        eventArray[i] = []
+        for(let j = 0; j < 5; j++) {
+            eventArray[i][0] = 'Placeholder Event'
+        }
+    }   
+    console.log(eventArray)
+    localStorage.setItem('eventStorage', JSON.stringify(eventArray))
+
+  localStorage.setItem('didRun', 'true');
+}
+
 
 let eventCount = 0;
 
@@ -15,58 +30,20 @@ function newEvent(){
 
     const image =
         document.getElementById("image").files[0];
+    const userInfo = 
+        JSON.parse(localStorage.getItem('userInformation'))
+    const eventCreator =
+        userInfo[0]
 
     if(!title || !date){
         alert("Please fill out all required fields.");
         return;
     }
 
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-
-        const eventCard =
-        document.createElement("div");
-
-        eventCard.className = "event";
-
-        eventCard.innerHTML = `
-            ${
-                image
-                ? `<img src="${e.target.result}">`
-                : ""
-            }
-
-            <div class="event-content">
-                <h3>${title}</h3>
-                <div class="event-date">${date}</div>
-                <p>${description}</p>
-            </div>
-        `;
-
-        document
-            .getElementById("eventList")
-            .prepend(eventCard);
-
-        eventCount++;
-
-        document.getElementById(
-            "eventCount"
-        ).textContent = eventCount;
-
-        document.getElementById("title").value="";
-        document.getElementById("date").value="";
-        document.getElementById("description").value="";
-        document.getElementById("image").value="";
-    };
-
-    if(image){
-        reader.readAsDataURL(image);
-    }else{
-        reader.onload({
-            target:{result:""}
-        });
-    }
+    const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
+    retreivedData.push([title, date, description, image, eventCreator])
+    console.log(retreivedData)
+    localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
 }
 
 

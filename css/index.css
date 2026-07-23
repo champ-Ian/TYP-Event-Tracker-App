@@ -44,7 +44,7 @@ nav ul i {
     background-color: var(--dark);
 }
 
-#event_1 {
+.eventBlock {
     padding: 20px;
     background-color: var(--pale);
     margin: 20px;
@@ -54,56 +54,7 @@ nav ul i {
     border-width: 4px;
     border-color: var(--dark);
 }
-#event_2 {
-    padding: 20px;
-    background-color: var(--pale);
-    margin: 20px;
-    color: var(--pitch);
-    border: solid;
-    border-radius: 15px;
-    border-width: 4px;
-    border-color: var(--dark);
-}
-#event_3 {
-    padding: 20px;
-    background-color: var(--pale);
-    margin: 20px;
-    color: var(--pitch);
-    border: solid;
-    border-radius: 15px;
-    border-width: 4px;
-    border-color: var(--dark);
-}
-#event_4 {
-    padding: 20px;
-    background-color: var(--pale);
-    margin: 20px;
-    color: var(--pitch);
-    border: solid;
-    border-radius: 15px;
-    border-width: 4px;
-    border-color: var(--dark);
-}
-#pas_event_1 {
-    padding: 20px;
-    background-color: var(--pale);
-    margin: 20px;
-    color: var(--pitch);
-    border: solid;
-    border-radius: 15px;
-    border-width: 4px;
-    border-color: var(--dark);
-}
-#pas_event_2 {
-    padding: 20px;
-    background-color: var(--pale);
-    margin: 20px;
-    color: var(--pitch);
-    border: solid;
-    border-radius: 15px;
-    border-width: 4px;
-    border-color: var(--dark);
-}
+
 #pas {
     size: 150%;
     display: flex;
