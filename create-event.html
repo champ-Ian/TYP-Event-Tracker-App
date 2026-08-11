@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Event</title>
     <script src="js/create-event.js" defer></script>
-    <link rel="stylesheet" href="https://cloudflare.com" integrity="fa512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/create-event.css">
     <script src="js/navbar.js" defer></script>
 </head>
@@ -20,13 +20,19 @@
     </nav>
 
     <section class="create-event">
+        <!-- New Exit Button Wrapper -->
+        <div class="exit-container">
+            <button class="exit-btn" onclick="window.location.href='index.html'" aria-label="Close menu">
+                <i class="fa-solid fa-xmark fa-xl"></i>
+            </button>
+        </div>
+
         <h2>Create Event</h2>
         <div class="input-group">
             <input type="text" id="title" placeholder="Event Name">
             <input type="date" id="date">
             <input type="time" id="time">
-            <input type = "location" id ="location">
-            <!-- Styled container to place the landmark icon inside the location field -->
+            
             <div class="location-wrapper">
                 <i class="fa-solid fa-landmark location-icon"></i>
                 <input type="text" id="location" placeholder="Event Location">
