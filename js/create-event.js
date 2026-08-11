@@ -1,18 +1,16 @@
-
-if (!localStorage.getItem('didRun')) {
-    let eventArray = []
-
-    for (let i=0; i<1; i++) {
-        eventArray[i] = []
-        for(let j = 0; j < 5; j++) {
-            eventArray[i][0] = 'Placeholder Event'
-        }
-    }   
-    console.log(eventArray)
-    localStorage.setItem('eventStorage', JSON.stringify(eventArray))
-
-  localStorage.setItem('didRun', 'true');
+if (!localStorage.getItem('didRun')) { 
+  let eventArray = []; 
+  for (let i = 0; i < 1; i++) { 
+    eventArray[i] = []; 
+    for (let j = 0; j < 5; j++) { 
+      eventArray[i][j] = 'Placeholder Event'; 
+    } 
+  } 
+  console.log(eventArray); 
+  localStorage.setItem('eventStorage', JSON.stringify(eventArray)); 
+  localStorage.setItem('didRun', 'true'); 
 }
+
 
 
 let eventCount = 0;
