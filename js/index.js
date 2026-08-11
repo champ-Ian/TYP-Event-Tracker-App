@@ -60,15 +60,54 @@ for (let i = 1; i < eventAmount; i++) {
     } else {
         pastEventSection.appendChild(eventBlock)
     }
+
+    eventBlock.id = `event${i}`
 }
 
 
 
 //View event page code goes here vvv
+
+// opening the view event page
 const viewEvent = document.querySelector('#viewEvent')
+const darkener = document.querySelector('#darkener')
+const eventName = document.querySelector('#eventName')
+const eventDate = document.querySelector('#viewEventDate')
+const eventTime = document.querySelector('#viewEventTime')
+const creatorsName = document.querySelector('#eventCreator')
+const eventDescription = document.querySelector('#description')
+const eventImage = document.querySelector('#eventImage')
 
 document.addEventListener('click', (event) => {
-    if(event.target.closest('eventBlock')) {
+    if(event.target.closest('.eventBlock')) {
         viewEvent.style.display = 'block'
-    }
+        darkener.style.display = 'block'
+        const j = event.target.closest('.eventBlock').id[5]
+        console.log(j)
+        eventName.textContent = eventArray[j][0]
+        eventDate.textContent = `${eventArray[j][1].slice(5, 7)}/${eventArray[j][1].slice(8, 10)}/${eventArray[j][1].slice(0, 4)}`
+        let formattedTime = null
+        if (eventArray[j][2].slice(0,2) == 12){
+            formattedTime = `12:00 PM`
+        } else if (eventArray[j][2].slice(0,2) == 00) {
+            formattedTime = '12:00 AM'
+        } else if (eventArray[j][2].slice(0,2) < 12) {
+            formattedTime = `${eventArray[j][2]} AM`
+        } else {
+            formattedTime = `${eventArray[j][2].slice(0,2) - 12}:${eventArray[j][2].slice(3, 5)} PM`
+        }
+        eventTime.textContent = formattedTime
+        creatorsName.textContent = eventArray[j][5]
+        eventDescription.textContent = eventArray[j][3]
+        eventImage.src = eventArray[j][4]
+    } 
+
+})
+
+//closing the view event page
+const exitButton = document.querySelector('#exit')
+
+exitButton.addEventListener('click', () => {
+    viewEvent.style.display = 'none'
+    darkener.style.display = 'none'
 })

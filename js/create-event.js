@@ -18,25 +18,14 @@ if (!localStorage.getItem('didRun')) {
 let eventCount = 0;
 
 function newEvent(){
+    const title = document.getElementById("title").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById('time').value;
+    const description = document.getElementById("description").value;
+    const image = document.getElementById("image").files[0];
 
-    const title =
-        document.getElementById("title").value;
-
-    const date =
-        document.getElementById("date").value;
-    
-    const time =
-        document.getElementById('time').value;
-
-    const description =
-        document.getElementById("description").value;
-
-    const image =
-        document.getElementById("image").files[0];
-    const userInfo = 
-        JSON.parse(localStorage.getItem('userInformation'))
-    const eventCreator =
-        userInfo[0]
+    const userInfo = JSON.parse(localStorage.getItem('userInformation'))
+    const eventCreator = userInfo[0]
 
     if(!title || !date || !time){
         alert("Please fill out all required fields.");
@@ -48,12 +37,26 @@ function newEvent(){
         return;
     }
 
-    const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
-    retreivedData.push([title, date, time, description, image, eventCreator])
-    console.log(retreivedData)
-    localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
-}
+    function saveToStorage(image) {
+        const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
+        retreivedData.push([title, date, time, description, image, eventCreator])
+        console.log(retreivedData)
+        localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
+    }
 
+
+    if(image) {
+        const imageReader = new FileReader()
+
+        imageReader.onload = function(e) {
+            const b64image = e.target.result
+            saveToStorage(b64image)
+        }
+        imageReader.readAsDataURL(image)
+    } else {
+        saveToStorage(null)
+    }
+}
 
 if (!sessionStorage.getItem('hasVisited')) {
     localStorage.setItem('loggedIn', false)
