@@ -129,7 +129,7 @@ nav ul i {
     padding: 1.5rem;
 }
 
-.eventList {
+#eventList {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
