@@ -199,3 +199,25 @@ nav ul i {
     border-radius:20px;
 }
 
+.exit-container {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: auto;
+}
+
+.exit-btn {
+    background: none;
+    border: none;
+    color: #333333;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.exit-btn:hover {
+    color: #ff4d4d; 
+
