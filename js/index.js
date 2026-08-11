@@ -3,7 +3,7 @@ console.log(eventArray)
 
 let eventAmount = eventArray.length
 
-for (i = 1; i <= eventAmount; i++) {
+for (let i = 1; i < eventAmount; i++) {
     const currentEventSection = document.querySelector('#currentEvents')
     const pastEventSection = document.querySelector('#pastEvents')
 
@@ -61,3 +61,14 @@ for (i = 1; i <= eventAmount; i++) {
         pastEventSection.appendChild(eventBlock)
     }
 }
+
+
+
+//View event page code goes here vvv
+const viewEvent = document.querySelector('#viewEvent')
+
+document.addEventListener('click', (event) => {
+    if(event.target.closest('eventBlock')) {
+        viewEvent.style.display = 'block'
+    }
+})
