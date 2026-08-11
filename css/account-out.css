@@ -53,17 +53,18 @@ nav ul i {
     align-items: center;
     background-color: var(--pale);
     margin: 7vw;
-    border: solid;
-    border-color: var(--dark);
-    border-radius: 1rem;
-    border-width: 4px;
+    border: none;
+    border-radius: 15px;
     color: var(--pitch);
     margin-bottom: 5vw;
     margin-top: 5vw;
+    box-shadow: 7px 7px 10px #424242;
+
 }
 
 #login {
     height: 30vh;
+    margin-bottom: 10vw;
 }
 
 #signup {
