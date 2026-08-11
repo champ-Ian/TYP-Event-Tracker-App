@@ -38,16 +38,29 @@ for (let i = 1; i < eventAmount; i++) {
     // string for display (e.g., `14:30` -> `2:30 PM`). This is simple and
     // assumes the stored string is always `HH:MM`.
     const eventTime = document.createElement('h4');
-    let formattedTime = null
+    let formattedStartTime = null
     if (eventArray[i][2].slice(0,2) == 12){
-        formattedTime = `12:00 PM`
+        formattedStartTime = `12:00 PM`
     } else if (eventArray[i][2].slice(0,2) == 00) {
-        formattedTime = '12:00 AM'
+        formattedstartTime = '12:00 AM'
     } else if (eventArray[i][2].slice(0,2) < 12) {
-        formattedTime = `${eventArray[i][2]} AM`
+        formattedStartTime = `${eventArray[i][2]} AM`
     } else {
-        formattedTime = `${eventArray[i][2].slice(0,2) - 12}:${eventArray[i][2].slice(3, 5)} PM`
+        formattedStartTime = `${eventArray[i][2].slice(0,2) - 12}:${eventArray[i][2].slice(3, 5)} PM`
     }
+
+    let formattedEndTime = null
+    if (eventArray[i][6].slice(0,2) == 12){
+        formattedEndTime = `12:00 PM`
+    } else if (eventArray[i][6].slice(0,2) == 00) {
+        formattedEndTime = '12:00 AM'
+    } else if (eventArray[i][6].slice(0,2) < 12) {
+        formattedEndTime = `${eventArray[i][6]} AM`
+    } else {
+        formattedEndTime = `${eventArray[i][6].slice(0,2) - 12}:${eventArray[i][6].slice(3, 5)} PM`
+    }
+
+    let formattedTime = `${formattedStartTime} - ${formattedEndTime}`
     eventTime.textContent = formattedTime
 
     // Event description stored at index 3
