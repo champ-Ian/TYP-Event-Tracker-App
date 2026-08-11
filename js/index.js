@@ -1,22 +1,42 @@
-const eventArray = JSON.parse(localStorage.getItem('eventStorage'))
-console.log(eventArray)
+// Read stored events from localStorage. If parsing fails or the value
+// isn't an array, fall back to an empty array so the page doesn't error.
+let eventArray;
+try {
+    eventArray = JSON.parse(localStorage.getItem('eventStorage'))
+} catch (e) {
+    console.error('Failed to parse eventStorage:', e)
+    eventArray = []
+}
+if (!Array.isArray(eventArray)) eventArray = []
+console.log('eventArray', eventArray)
 
+// Select the sections in the page where upcoming and past events will be
+// appended. These match the markup in `index.html` (`.upcomingEvents`/`.pastEvents`).
+const currentEventSection = document.querySelector('.upcomingEvents')
+const pastEventSection = document.querySelector('.pastEvents')
+
+// Number of stored events. Note: this code starts at index 1 because
+// index 0 is used for placeholder data in `create-event.js`.
 let eventAmount = eventArray.length
 
+// Loop through stored events and build DOM nodes for each one.
 for (let i = 1; i < eventAmount; i++) {
-    const currentEventSection = document.querySelector('#currentEvents')
-    const pastEventSection = document.querySelector('#pastEvents')
 
     const eventBlock = document.createElement('div');
     eventBlock.className = 'eventBlock'
 
+    // Event title is stored at index 0 of the event array
     const eventName = document.createElement('h2');
     eventName.textContent = eventArray[i][0]
 
+    // Format stored ISO date (YYYY-MM-DD) to MM/DD/YYYY for display
     const eventDate = document.createElement('h4');
     const formattedDate = `${eventArray[i][1].slice(5, 7)}/${eventArray[i][1].slice(8, 10)}/${eventArray[i][1].slice(0, 4)}`
     eventDate.textContent = formattedDate
 
+    // Convert 24-hour `HH:MM` stored time into a human-friendly 12-hour
+    // string for display (e.g., `14:30` -> `2:30 PM`). This is simple and
+    // assumes the stored string is always `HH:MM`.
     const eventTime = document.createElement('h4');
     let formattedTime = null
     if (eventArray[i][2].slice(0,2) == 12){
@@ -30,6 +50,7 @@ for (let i = 1; i < eventAmount; i++) {
     }
     eventTime.textContent = formattedTime
 
+    // Event description stored at index 3
     const eventDesc = document.createElement('p');
     eventDesc.textContent = eventArray[i][3];
 
@@ -38,6 +59,10 @@ for (let i = 1; i < eventAmount; i++) {
     eventBlock.appendChild(eventTime)
     eventBlock.appendChild(eventDesc)
 
+    // Decide whether the event is past or upcoming by comparing today's
+    // date to the stored date string (YYYY-MM-DD). This is a simple
+    // lexicographic comparison that works with the ISO format. For same-day
+    // events it also compares times (approximate).
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0
@@ -50,6 +75,7 @@ for (let i = 1; i < eventAmount; i++) {
     if (currentDate > eventArray[i][1]) {
         pastEvent = true
     } else if (currentDate == eventArray[i][1] && currentTime.slice(0, 4) > formattedTime.slice(0, 4)) {
+        // crude same-day time comparison; may need improvement for edge cases
         pastEvent = true
     } else {
         pastEvent = false
@@ -61,6 +87,8 @@ for (let i = 1; i < eventAmount; i++) {
         pastEventSection.appendChild(eventBlock)
     }
 
+    // Give each event block an id that includes the index so the click
+    // handler can locate the correct event data later (e.g. `event3`).
     eventBlock.id = `event${i}`
 }
 
