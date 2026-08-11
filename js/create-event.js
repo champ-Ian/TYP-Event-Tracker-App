@@ -25,7 +25,7 @@ function newEvent(){
     const userInfo = JSON.parse(localStorage.getItem('userInformation'))
     const eventCreator = userInfo[0]
 
-    if(!title || !date || !time){
+    if(!title || !date || !time || !location){
         alert("Please fill out all required fields.");
         return;
     }
