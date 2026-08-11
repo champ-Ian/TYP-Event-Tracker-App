@@ -21,13 +21,14 @@ function newEvent(){
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const time = document.getElementById('time').value;
+    const location = document.getElementById('location').value;
     const description = document.getElementById("description").value;
     const image = document.getElementById("image").files[0];
 
     const userInfo = JSON.parse(localStorage.getItem('userInformation'))
     const eventCreator = userInfo[0]
 
-    if(!title || !date || !time){
+    if(!title || !date || !time || !location){
         alert("Please fill out all required fields.");
         return;
     }
