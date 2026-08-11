@@ -11,7 +11,7 @@
 </head>
 <body>
     <!--Bottom nav bar-->
-    <nav>
+    <nav class="bottom-nav">
         <ul>
             <li><a id="houseButtonLink" href="index.html"><i id="houseButton" class="fa-solid fa-house fa-xl"></i></a></li>
             <li><a id="createEventButtonLink" href="create-event.html"><i id="createEventButton" class="fa-solid fa-circle-plus fa-xl"></i></a></li>
@@ -19,29 +19,37 @@
         </ul>
     </nav>
 
-    <section class="create-event">
-        <!-- New Exit Button Wrapper -->
+    <!-- Main Section Container with a scrollable interior to prevent layout breaks -->
+    <section class="create-event-screen">
         <div class="exit-container">
             <button class="exit-btn" onclick="window.location.href='index.html'" aria-label="Close menu">
                 <i class="fa-solid fa-xmark fa-xl"></i>
             </button>
         </div>
 
-        <h2>Create Event</h2>
-        <div class="input-group">
-            <input type="text" id="title" placeholder="Event Name">
-            <input type="date" id="date">
-            <input type="time" id="time">
+        <div class="form-content-wrapper">
+            <h2>Create Event</h2>
             
-            <div class="location-wrapper">
-                <i class="fa-solid fa-landmark location-icon"></i>
-                <input type="text" id="location" placeholder="Event Location">
-            </div>
+            <div class="input-group">
+                <input type="text" id="title" class="form-input" placeholder="Event Name">
+                <input type="date" id="date" class="form-input">
+                <input type="time" id="time" class="form-input">
+                
+                <div class="location-wrapper">
+                    <i class="fa-solid fa-landmark location-icon"></i>
+                    <input type="text" id="location" class="form-input location-input" placeholder="Event Location">
+                </div>
 
-            <textarea id="description" placeholder="Describe your event"></textarea>
-            <input type="file" id="image" accept="image/*">
+                <textarea id="description" class="form-input form-textarea" placeholder="Describe your event"></textarea>
+                
+                <div class="file-wrapper">
+                    <label for="image" class="file-label">Choose Event Image</label>
+                    <input type="file" id="image" accept="image/*">
+                </div>
+            </div>
+            
+            <button class="submit-btn" onclick="newEvent()">Create Event</button>
         </div>
-        <button onclick="newEvent()"> Create Event </button>
     </section>
 </body>
 </html>
