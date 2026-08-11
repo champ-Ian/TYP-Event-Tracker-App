@@ -43,8 +43,21 @@ nav ul i {
     background-color: var(--dark);
 }
 
+#logo {
+    height: 4vh;
+}
+
+nav ul i {
+    width: 10vh;
+    color: #90EE90;
+}
+
+#logo {
+    height: 5vh;
+}
+
 #event_1 {
-    padding: 30px;
+    padding: 20px;
     background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
@@ -55,7 +68,7 @@ nav ul i {
     font-family:"Segoe UI",sans-serif;
 }
 #event_2 {
-    padding: 30px;
+    padding: 20px;
     background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
@@ -66,7 +79,7 @@ nav ul i {
     font-family:"Segoe UI",sans-serif;
 }
 #event_3 {
-    padding: 30px;
+    padding: 20px;
     background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
@@ -77,7 +90,7 @@ nav ul i {
     font-family:"Segoe UI",sans-serif;
 }
 #event_4 {
-    padding: 30px;
+    padding: 20px;
     background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
@@ -88,7 +101,7 @@ nav ul i {
     font-family:"Segoe UI",sans-serif;
 }
 #pas_event_1 {
-    padding: 30px;
+    padding: 20px;
     background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
@@ -99,7 +112,7 @@ nav ul i {
     font-family:"Segoe UI",sans-serif;
 }
 #pas_event_2 {
-    padding: 30px;
+    padding: 20px;
     background-color: var(--pale);
     margin: 20px;
     color: var(--pitch);
@@ -123,4 +136,22 @@ nav ul i {
     margin: 20px 0px 0px;
     font-weight: 1000%;
     font-family:"Segoe UI",sans-serif;
+}
+#date_1 {
+    padding: 3.5px 0 1px;
+}
+#date_2 {
+    padding: 3.5px 0 1px;
+}
+#date_3 {
+    padding: 3.5px 0 1px;
+}
+#date_4 {
+    padding: 3.5px 0 1px;
+}
+#date_5 {
+    padding: 3.5px 0 1px;
+}
+#date_6 {
+    padding: 3.5px 0 1px;
 }
