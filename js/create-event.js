@@ -13,6 +13,8 @@ if (!localStorage.getItem('didRun')) {
   localStorage.setItem('didRun', 'true');
 }
 
+const personLoggedIn = localStorage.getItem('loggedIn');
+
 
 let eventCount = 0;
 
@@ -30,20 +32,15 @@ function newEvent(){
         return;
     }
 
-    if(!eventCreator){
+    if(personLoggedIn !== "true"){
         alert('log in to create an event');
         return;
     }
 
-    const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
-    retreivedData.push([title, date, time, description, image, eventCreator])
-    console.log(retreivedData)
-    localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
-}
+
     function saveToStorage(image) {
         const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
         retreivedData.push([title, date, time, description, image, eventCreator])
-        console.log(retreivedData)
         localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
     }
 
@@ -60,6 +57,8 @@ function newEvent(){
         saveToStorage(null)
     }
 
+    alert('your event has successfully been created')
+}
 
 if (!sessionStorage.getItem('hasVisited')) {
     localStorage.setItem('loggedIn', false)
