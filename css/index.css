@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 body {
     background-color: #99ed98;
@@ -20,7 +21,7 @@ nav {
     list-style: none;
     height: 9vh;
     background-color: var(--dark);
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100vw;
     border-radius: 20px 20px 0 0;
@@ -35,17 +36,11 @@ nav ul {
     width: 100vw;
 }
 
-#logo {
-    height: 4vh;
-}
-
 nav ul i {
-    width: 10vh;
+    width: 100%;
     color: #90EE90;
-}
-
-#logo {
-    height: 5vh;
+    padding: 4.3vh 8vh 4.3vh 6vh;
+    background-color: var(--dark);
 }
 
 #event_1 {
