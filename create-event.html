@@ -3,53 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Event</title>
-    <script src="js/create-event.js" defer></script>
-    <link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/create-event.css">
-    <script src="js/navbar.js" defer></script>
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/create-event.css"> 
+    <script src="js/navbar.js" defer></script>   
 </head>
+
 <body>
+
     <!--Bottom nav bar-->
-    <nav class="bottom-nav">
+    <nav>
         <ul>
-            <li><a id="houseButtonLink" href="index.html"><i id="houseButton" class="fa-solid fa-house fa-xl"></i></a></li>
+            <li><a id="houseButtonLink" href="index.html"><i id="houseButton" class="fa-solid fa-house fa-xl" ></i></a></li>
             <li><a id="createEventButtonLink" href="create-event.html"><i id="createEventButton" class="fa-solid fa-circle-plus fa-xl"></i></a></li>
             <li><a id="profileButtonLink" href="account-in.html"><i id="profileButton" class="fa-solid fa-user fa-xl"></i></a></li>
         </ul>
     </nav>
 
-    <!-- Main Section Container with a scrollable interior to prevent layout breaks -->
-    <section class="create-event-screen">
-        <div class="exit-container">
-            <button class="exit-btn" onclick="window.location.href='index.html'" aria-label="Close menu">
-                <i class="fa-solid fa-xmark fa-xl"></i>
-            </button>
-        </div>
 
-        <div class="form-content-wrapper">
-            <h2>Create Event</h2>
-            
-            <div class="input-group">
-                <input type="text" id="title" class="form-input" placeholder="Event Name">
-                <input type="date" id="date" class="form-input">
-                <input type="time" id="time" class="form-input">
-                
-                <div class="location-wrapper">
-                    <i class="fa-solid fa-landmark location-icon"></i>
-                    <input type="text" id="location" class="form-input location-input" placeholder="Event Location">
-                </div>
 
-                <textarea id="description" class="form-input form-textarea" placeholder="Describe your event"></textarea>
-                
-                <div class="file-wrapper">
-                    <label for="image" class="file-label">Choose Event Image</label>
-                    <input type="file" id="image" accept="image/*">
-                </div>
-            </div>
-            
-            <button class="submit-btn" onclick="newEvent()">Create Event</button>
-        </div>
-    </section>
+
+<section class="create-event">
+    <h2>Create Event</h2>
+
+    <div class="input-group">
+        <input type="text" id="title" placeholder="Event Name">
+
+        <input type="date" id="date">
+
+        <input type="time" id="time">
+
+        <textarea
+        id="description"
+        placeholder="Describe your event"></textarea>
+
+        <input
+        type="file"
+        id="image"
+        accept="image/*">
+    </div>
+
+    <button onclick="newEvent()">
+        Create Event
+    </button>
+</section>
+
+
+<script src="js/create-event.js" defer></script>
+
 </body>
 </html>
