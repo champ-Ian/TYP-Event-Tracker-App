@@ -54,6 +54,8 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 #event_2 {
     padding: 20px;
@@ -62,6 +64,8 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 #event_3 {
     padding: 20px;
@@ -70,6 +74,8 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 #event_4 {
     padding: 20px;
@@ -78,6 +84,8 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 #pas_event_1 {
     padding: 20px;
@@ -86,6 +94,8 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 #pas_event_2 {
     padding: 20px;
@@ -94,6 +104,8 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 .eventBlock {
     padding: 20px;
@@ -102,19 +114,24 @@ nav ul i {
     color: var(--stext_col);
     border-radius: 15px;
     border-width: 4px;
+    box-shadow: 7px 7px 10px #424242;
+    font-family: "Roboto", sans-serif;
 }
 #pas {
     size: 500%;
     display: flex;
     justify-content: center;
-    font-weight: 1000%;
+    font-family: "Roboto", sans-serif;
 }
 #cur {
     size: 500%;
     display: flex;
     justify-content: center;
     margin: 20px 0px 0px;
-    font-weight: 1000%;
+    font-family: "Roboto", sans-serif;
+}
+#passEvents {
+    padding-bottom: 12vh;
 }
 #date_1 {
     padding: 3.5px 0 1px;
@@ -138,12 +155,12 @@ nav ul i {
     position: absolute;
     position: fixed;
     top: 20vh;
-    margin: 0 3vw 0 3vw;
     background-color: var(--pale);
     border-width: 4px;
     border-radius: 2rem;
     display: none;
     z-index: 1200;
+    margin: 0px 3vw 0px 3vw;
 }
 
 #title {
@@ -219,4 +236,21 @@ nav ul i {
 #date_6 {
     padding: 3.5px 0 1px;
 }
-
+#t1 {
+    color: var(--text_col);
+}
+#t2 {
+    color: var(--text_col);
+}
+#t3 {
+    color: var(--text_col);
+}
+#t4 {
+    color: var(--text_col);
+}
+#t5 {
+    color: var(--text_col);
+}
+#t6 {
+    color: var(--text_col);
+}
