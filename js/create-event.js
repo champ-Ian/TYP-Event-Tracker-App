@@ -21,13 +21,14 @@ let eventCount = 0;
 function newEvent(){
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
-    const time = document.getElementById('time').value;
+    const startTime = document.getElementById('start-time').value;
+    const endTime = document.getElementById('end-time').value;
     const description = document.getElementById("description").value;
     const image = document.getElementById("image").files[0];
     const userInfo = JSON.parse(localStorage.getItem('userInformation'))
     const eventCreator = userInfo[0]
 
-    if(!title || !date || !time || !location){
+    if(!title || !date || !startTime || !location || !endTime){
         alert("Please fill out all required fields.");
         return;
     }
@@ -40,7 +41,7 @@ function newEvent(){
 
     function saveToStorage(image) {
         const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
-        retreivedData.push([title, date, time, description, image, eventCreator])
+        retreivedData.push([title, date, startTime, description, image, eventCreator, endTime])
         localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
     }
 
