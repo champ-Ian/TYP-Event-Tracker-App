@@ -6,56 +6,54 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="js/navbar.js" defer></script>
 </head>
 <body>
-    <section id="mainPage">
-    <section id="currentEvents">
-        <h2 id="cur">current events</h2>
+    <section class="upcoming events">
+        <h1 id="cur">Upcoming Events</h1>
+        <div id="event_1">
+            <h2>Ryan's Study Day</h2>
+            <h4>December 1, 2026</h4>
+            <h4>All DAY</h4>
+        </div>
+        <div id="event_2">
+            <h2>Han-Yang's Graduation</h2>
+            <h4>July 31, 2026</h4>
+            <h4>10:00 - 11:00 AM</h4>
+        </div>
+        <div id="event_3">
+            <h2>Cyrus's Swim Test</h2>
+            <h4>November 18, 2026</h4>
+            <h4>12:00 - 12:30 PM</h4>
+        </div>
+        <div id="event_4">
+            <h2>Ian's Hair Cut</h2>
+            <h4>September 15, 2026</h4>
+            <h4>7:00 - 7:30 PM</h4>
+        </div>
     </section>
-    <section id="pastEvents">
-        <h2 id="pas">past events</h2>
+    <section class="past events">
+        <h1 id="pas">Past Events</h1>
+        <div id="pas_event_1">
+            <h2>Cyrus's brthday</h2>
+            <h4>December 26, 2025</h4>
+            <h4>ALL DAY</h4>
+        </div>
+        <div id="pas_event_2">
+            <h2>Ryan's brthday party</h2>
+            <h4>January 14, 2026</h4>
+            <h4>1:00 - 8:00 AM</h4>
+        </div>
     </section>
 <!--Bottom nav bar-->
     <nav>
         <ul>
+            <li><img id="logo" src="img/typ-logo.png" alt="Logo of TYP"></li>
             <li><a id="houseButtonLink" href="index.html"><i id="houseButton" class="fa-solid fa-house fa-xl" ></i></a></li>
             <li><a id="createEventButtonLink" href="create-event.html"><i id="createEventButton" class="fa-solid fa-circle-plus fa-xl"></i></a></li>
             <li><a id="profileButtonLink" href="account-in.html"><i id="profileButton" class="fa-solid fa-user fa-xl"></i></a></li>
         </ul>
     </nav>
-    </section>
 
-    <div id="darkener">
-
-    </div>
-
-    <!--view events pop up-->
-    <section id="viewEvent">
-        <div id="title">
-            <h1 id="eventName">Event Name</h1>
-        </div>
-        <div id="middleRow">
-            <div id="viewEventInfo">
-                <p id="viewEventDate">xx/xx/xxxx</p>
-                <p id="viewEventTime">xx:xx xx</p>
-                <p id="eventCreator">creatorsName</p>
-                <button id="participants">participants</button>
-            </div>
-            <div id="image">
-                <img id="eventImage" src="img/anonymous pfp.webp" alt="image">
-            </div>
-        </div>
-        <div id="bottomRow">
-            <p>Description:</p>
-            <p id="description">description goes here...</p>
-        </div>
-        <div id="bottomButtons">
-            <button id="signUp" class="viewEventButton">RSVP</button>
-            <button id="exit" class="viewEventButton">Exit</button>
-        </div>
-
-    </section>
     <script src="js/index.js"></script>
 </body>
 </html>
