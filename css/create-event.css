@@ -199,25 +199,192 @@ nav ul i {
     border-radius:20px;
 }
 
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+    background-color: #f7f9fa;
+    overflow: hidden; 
+}
+
+/* --- Fixed Screen Wrapper --- */
+.create-event-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px); /
+    background-color: #ffffff;
+    z-index: 10;
+    overflow-y: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+
+.form-content-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    margin-bottom: 24px;
+    color: #111111;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+
+.form-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    background-color: #f1f3f5;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 16px; /* Native 16px font size prevents iOS safari auto-zoom bug */
+    color: #212529;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-input:focus {
+    background-color: #ffffff;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+
+.form-textarea {
+    height: 100px;
+    padding: 12px 16px;
+    resize: none; /* Prevents users from manually stretching layout columns */
+}
+
+.location-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.location-icon {
+    position: absolute;
+    left: 14px;
+    color: #868e96;
+    z-index: 2;
+    pointer-events: none; /* Icon won't block mouse click clicks onto input */
+}
+
+.location-input {
+    padding-left: 40px !important; /* Forces text to clear space for landmark icon */
+}
+
+
+.file-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: #e9ecef;
+    border: 2px dashed #ced4da;
+    border-radius: 8px;
+    color: #495057;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.file-wrapper input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Keeps raw ugly native input fully hidden but fully tappable */
+    cursor: pointer;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 50px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-btn:active {
+    background-color: #0056b3;
+}
+
+/* Exit Button Wrapper Placement */
 .exit-container {
     position: absolute;
     top: 16px;
     right: 16px;
-    width: auto;
+    z-index: 15;
 }
 
 .exit-btn {
     background: none;
     border: none;
-    color: #333333;
+    color: #495057;
     cursor: pointer;
     padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 
-.exit-btn:hover {
-    color: #ff4d4d; 
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #e9ecef;
+    z-index: 100;
+}
 
+.bottom-nav ul {
+    display: flex;
+    height: 100%;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bottom-nav a {
+    color: #6c757d;
+    text-decoration: none;
+    padding: 12px;
+}
