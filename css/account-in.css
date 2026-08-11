@@ -97,52 +97,6 @@ nav ul i {
     margin-bottom: 0.7rem;
 }
 
-#acctNav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    height: 6.7vh;
-    align-items: stretch;
-    border-top: solid;
-    border-bottom: solid;
-    border-color: var(--dark);
-    border-width: 2px;
-    background-color: var(--light);
-    color: var(--pitch);
-    align-items: center;
-    position: sticky;
-    top: 0;
-}
-
-#acctNav i {
-    flex-grow: 1;
-    align-items: center;
-    vertical-align: middle;
-    padding: 3.34vh;
-}
-
-.myEventTracker {
-    display: none;
-    height: fit-content;
-    min-height: 63.3vh;
-    background-color: var(--primary);
-    padding: 1.5rem;
-}
-
-#eventList {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0;
-}
-
-.event {
-    padding: 20px;
-    background-color: var(--pale);
-    margin: 20px;
-    color: var(--pitch);
-    border: solid;
-    border-radius: 15px;
-    border-width: 3px;
-    border-color: var(--dark);
+body {
+    background-color: #90EE90;
 }
