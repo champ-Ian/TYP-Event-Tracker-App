@@ -127,17 +127,29 @@ document.addEventListener('click', (event) => {
         console.log(j)
         eventName.textContent = eventArray[j][0]
         eventDate.textContent = `${eventArray[j][1].slice(5, 7)}/${eventArray[j][1].slice(8, 10)}/${eventArray[j][1].slice(0, 4)}`
-        let formattedTime = null
-        if (eventArray[j][2].slice(0,2) == 12){
-            formattedTime = `12:00 PM`
-        } else if (eventArray[j][2].slice(0,2) == 00) {
-            formattedTime = '12:00 AM'
-        } else if (eventArray[j][2].slice(0,2) < 12) {
-            formattedTime = `${eventArray[j][2]} AM`
+        let formattedStartTime = null
+        if (eventArray[i][2].slice(0,2) == 12){
+            formattedStartTime = `12:00 PM`
+        } else if (eventArray[i][2].slice(0,2) == 00) {
+            formattedstartTime = '12:00 AM'
+        } else if (eventArray[i][2].slice(0,2) < 12) {
+            formattedStartTime = `${eventArray[i][2]} AM`
         } else {
-            formattedTime = `${eventArray[j][2].slice(0,2) - 12}:${eventArray[j][2].slice(3, 5)} PM`
+            formattedStartTime = `${eventArray[i][2].slice(0,2) - 12}:${eventArray[i][2].slice(3, 5)} PM`
         }
-        eventTime.textContent = formattedTime
+
+        let formattedEndTime = null
+        if (eventArray[i][6].slice(0,2) == 12){
+            formattedEndTime = `12:00 PM`
+        } else if (eventArray[i][6].slice(0,2) == 00) {
+            formattedEndTime = '12:00 AM'
+        } else if (eventArray[i][6].slice(0,2) < 12) {
+            formattedEndTime = `${eventArray[i][6]} AM`
+        } else {
+            formattedEndTime = `${eventArray[i][6].slice(0,2) - 12}:${eventArray[i][6].slice(3, 5)} PM`
+        }
+
+        eventTime.textContent = `${formattedStartTime} - ${formattedEndTime}`
         creatorsName.textContent = eventArray[j][5]
         eventDescription.textContent = eventArray[j][3]
         eventImage.src = eventArray[j][4]
