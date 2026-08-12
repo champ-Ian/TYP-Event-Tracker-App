@@ -3,10 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    background-color: #8fb733;
-}
-
 :root {
     --dark: #1d7543;
     --light: #99ed98;
@@ -14,10 +10,14 @@ body {
     --pitch: #053623;
     --primary: #90EE90;
     --text_col: #37352F;
-    --stext_col: #7A7666;
+    --sectext_col: #7A7666;
     --box_col: #FFFFE3;
+    --back_col: #8fb733;
+    --secback_col: #DBFF76;
 }
-
+body {
+    background-color: var(--back_col);
+}
 nav {
     display: flex;
     flex-direction: row;
@@ -51,7 +51,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -61,7 +61,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -71,7 +71,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -81,7 +81,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -91,7 +91,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -101,7 +101,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -111,7 +111,7 @@ nav ul i {
     padding: 20px;
     background-color: var(--box_col);
     margin: 20px;
-    color: var(--stext_col);
+    color: var(--sectext_col);
     border-radius: 15px;
     border-width: 4px;
     box-shadow: 7px 7px 10px #424242;
@@ -132,6 +132,9 @@ nav ul i {
 }
 #passEvents {
     padding-bottom: 12vh;
+}
+#currentEvents {
+    padding-bottom: 2vh;
 }
 #date_1 {
     padding: 3.5px 0 1px;
@@ -236,21 +239,6 @@ nav ul i {
 #date_6 {
     padding: 3.5px 0 1px;
 }
-#t1 {
-    color: var(--text_col);
-}
-#t2 {
-    color: var(--text_col);
-}
-#t3 {
-    color: var(--text_col);
-}
-#t4 {
-    color: var(--text_col);
-}
-#t5 {
-    color: var(--text_col);
-}
-#t6 {
+.t1 {
     color: var(--text_col);
 }
