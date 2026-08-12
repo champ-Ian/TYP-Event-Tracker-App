@@ -6,11 +6,18 @@
 }
 
 body {
-    background-color: var(--light);
+    background-color: var(--Background-Color);
     text-align: center;
 }
 
 :root {
+    --Background-Color: #8fb733;
+    --Secondary-Background-Color: #DBFF76;
+    --Box-Color: #FFFFE3;
+    --Primary-Text-Color: #37352F;
+    --Secondary-Text-Color: #7A7666;
+
+    /* delete later */
     --dark: #1d7543;
     --light: #99ed98;
     --pale: #daf8d6;
@@ -51,7 +58,7 @@ nav ul i {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    background-color: var(--pale);
+    background-color: var(--Box-Color);
     margin: 7vw;
     border: none;
     border-radius: 15px;
@@ -72,7 +79,7 @@ nav ul i {
 }
 
 #logInButton {
-    background-color: var(--light);
+    background-color: var(--Secondary-Background-Color);
     border: solid;
     border-radius: 5px;
     border-width: 1px;
@@ -81,11 +88,13 @@ nav ul i {
 }
 
 .accountInput input {
-    background-color: var(--light);
+    background-color: var(--Secondary-Background-Color);
     border: solid;
     border-radius: 5px;
     border-width: 1px;
-    height: 5vw;
+    height: 6vw;
+    padding: 3vw;
+    border-color: var(--Secondary-Text-Color);
 }
 
 #passwordIncorrect {
@@ -101,10 +110,29 @@ nav ul i {
 }
 
 #signUpButton {
-    background-color: var(--light);
+    background-color: var(--Secondary-Background-Color);
     border: solid;
     border-radius: 5px;
     border-width: 1px;
     width: 20vw;
     height: 7vw;
+}
+
+.accountInfoInput h1 {
+    color: var(--Primary-Text-Color);
+    font-size: 5vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+}
+
+.accountInfoInput p {
+    color: var(--Secondary-Text-Color);
+    font-size: 3.5vw;
+    margin: 1vw 0 1vw 0;
+}
+
+#signUpButton, #logInButton {
+    font-size: 4vw;
+    color: var(--Primary-Text-Color);
+    border-color: var(--Secondary-Text-Color);
 }
