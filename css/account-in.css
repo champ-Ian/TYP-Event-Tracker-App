@@ -5,7 +5,18 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--Background-Color);
+}
+
 :root {
+    --Background-Color: #8fb733;
+    --Secondary-Background-Color: #DBFF76;
+    --Box-Color: #FFFFE3;
+    --Primary-Text-Color: #37352F;
+    --Secondary-Text-Color: #7A7666;
+
+    /* delete later */
     --dark: #1d7543;
     --light: #99ed98;
     --pale: #daf8d6;
@@ -47,7 +58,6 @@ nav ul i {
     justify-content: space-between;
     height: 30vh;
     padding: 1rem;
-    background-color: var(--light);
 }
 
 .blockColumn {
@@ -58,11 +68,31 @@ nav ul i {
     height: 30vh;
 }
 
-.flexRow {
+.buttonRow {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-content: center;
+}
+
+
+.pfpRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    background-color: var(--Box-Color);
+    margin-bottom: 7vw;
+    border-radius: 15px;
+    box-shadow: 7px 7px 10px #424242;
+    padding: 1rem;
+}
+
+#username {
+    color: var(--Primary-Text-Color);
+    font-size: 7vw;
+    display: flex;
+    align-items: center;
 }
 
 #pfp {
@@ -71,32 +101,28 @@ nav ul i {
     border: solid;
     border: var(--dark);
     border-width: 2px;
-    margin-bottom: 1rem;
 }
 
 #acctBio {
-    background-color: var(--pale);
-    height: 10vh;
-    padding: 0.6rem;
-    border: solid;
-    border-color: var(--dark);
-    border-radius: 1rem;
+    background-color: var(--Box-Color);
+    /* height: 10vh; */
+    padding: 1rem;
+    border: none;
+    border-radius: 15px;
     border-width: 3px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 7px 7px 10px #424242;
+    color: var(--Secondary-Text-Color);
 }
 
 .acctChangeButton {
     width: 35vw;
     height: 10vw;
-    border: solid;
-    border-width: 2px;
+    border: none;
     border-radius: 15px;
-    border-color: var(--dark);
-    background-color: var(--primary);
+    background-color: var(--Box-Color);
     color: var(--pitch);
     margin-bottom: 0.7rem;
-}
+    box-shadow: 7px 7px 10px #424242;
 
-body {
-    background-color: #90EE90;
 }
