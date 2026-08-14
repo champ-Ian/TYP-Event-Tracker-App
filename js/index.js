@@ -202,3 +202,7 @@ rsvpButton.addEventListener('click', () => {
     }
     
 })
+
+
+
+//opening the participant list

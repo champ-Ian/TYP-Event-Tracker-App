@@ -136,3 +136,8 @@ nav ul i {
     color: var(--Primary-Text-Color);
     border-color: var(--Secondary-Text-Color);
 }
+
+#eye1 {
+    position: absolute;
+    top: 100;
+}
