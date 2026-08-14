@@ -40,9 +40,9 @@ logInButton.addEventListener('click', () => {
         if (accounts[i][0] === username) {
             if (accounts[i][2] === password) {
                 console.log("password correct");
-                localStorage.setItem('loggedIn', true);
+                sessionStorage.setItem('loggedIn', true);
                 window.location.href = 'account-in.html'
-                localStorage.setItem('userInformation', JSON.stringify(accounts[i]))
+                sessionStorage.setItem('userInformation', JSON.stringify(accounts[i]))
             } else {
                 passwordIncorrect.style.display = 'block'
                 passwordIncorrect.style.color = 'red'
