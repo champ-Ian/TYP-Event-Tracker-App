@@ -43,6 +43,7 @@ logInButton.addEventListener('click', () => {
                 sessionStorage.setItem('loggedIn', true);
                 window.location.href = 'account-in.html'
                 sessionStorage.setItem('userInformation', JSON.stringify(accounts[i]))
+                return
             } else {
                 passwordIncorrect.style.display = 'block'
                 passwordIncorrect.style.color = 'red'

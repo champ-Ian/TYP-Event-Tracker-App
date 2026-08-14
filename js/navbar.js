@@ -1,8 +1,8 @@
 //when the account button in the navbar is clicked, which page to go to
 
 const profileButtonLink = document.querySelector("#profileButtonLink")
-const userLoggedIn = localStorage.getItem('loggedIn');
-console.log(userLoggedIn)
+const userLoggedIn = sessionStorage.getItem('loggedIn');
+console.log('this',userLoggedIn)
 
 profileButtonLink.addEventListener('click', (event) => {
     event.preventDefault();
