@@ -115,7 +115,7 @@ button:hover{
 
 
 .events-section{
-    background:rgba(238,250,237,.6);
+    background:white;
     margin:1rem;
     padding:1.5rem;
     border-radius:25px;
@@ -180,7 +180,7 @@ nav ul {
 
 nav ul i {
     width: 100%;
-    color: white;
+    color: ;
     padding: 4.3vh 8vh 4.3vh 6vh;
     background-color: var(--dark);
 }
