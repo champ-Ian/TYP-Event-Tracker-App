@@ -128,25 +128,25 @@ document.addEventListener('click', (event) => {
         eventName.textContent = eventArray[j][0]
         eventDate.textContent = `${eventArray[j][1].slice(5, 7)}/${eventArray[j][1].slice(8, 10)}/${eventArray[j][1].slice(0, 4)}`
         let formattedStartTime = null
-        if (eventArray[i][2].slice(0,2) == 12){
+        if (eventArray[j][2].slice(0,2) == 12){
             formattedStartTime = `12:00 PM`
-        } else if (eventArray[i][2].slice(0,2) == 00) {
+        } else if (eventArray[j][2].slice(0,2) == 00) {
             formattedstartTime = '12:00 AM'
-        } else if (eventArray[i][2].slice(0,2) < 12) {
-            formattedStartTime = `${eventArray[i][2]} AM`
+        } else if (eventArray[j][2].slice(0,2) < 12) {
+            formattedStartTime = `${eventArray[j][2]} AM`
         } else {
-            formattedStartTime = `${eventArray[i][2].slice(0,2) - 12}:${eventArray[i][2].slice(3, 5)} PM`
+            formattedStartTime = `${eventArray[j][2].slice(0,2) - 12}:${eventArray[j][2].slice(3, 5)} PM`
         }
 
         let formattedEndTime = null
-        if (eventArray[i][6].slice(0,2) == 12){
+        if (eventArray[j][6].slice(0,2) == 12){
             formattedEndTime = `12:00 PM`
-        } else if (eventArray[i][6].slice(0,2) == 00) {
+        } else if (eventArray[j][6].slice(0,2) == 00) {
             formattedEndTime = '12:00 AM'
-        } else if (eventArray[i][6].slice(0,2) < 12) {
-            formattedEndTime = `${eventArray[i][6]} AM`
+        } else if (eventArray[j][6].slice(0,2) < 12) {
+            formattedEndTime = `${eventArray[j][6]} AM`
         } else {
-            formattedEndTime = `${eventArray[i][6].slice(0,2) - 12}:${eventArray[i][6].slice(3, 5)} PM`
+            formattedEndTime = `${eventArray[j][6].slice(0,2) - 12}:${eventArray[j][6].slice(3, 5)} PM`
         }
 
         eventTime.textContent = `${formattedStartTime} - ${formattedEndTime}`
@@ -164,3 +164,4 @@ exitButton.addEventListener('click', () => {
     viewEvent.style.display = 'none'
     darkener.style.display = 'none'
 })
+
