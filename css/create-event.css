@@ -180,7 +180,7 @@ nav ul {
 
 nav ul i {
     width: 100%;
-    color: #90EE90;
+    color: white;
     padding: 4.3vh 8vh 4.3vh 6vh;
     background-color: var(--dark);
 }
@@ -191,10 +191,13 @@ nav ul i {
 }
 
 ::-webkit-scrollbar-track{
-    background:var(--light);
+    background:white;
 }
 
 ::-webkit-scrollbar-thumb{
     background:var(--dark);
     border-radius:20px;
+}
+.create-event {
+  box-shadow: 7px 7px 10px #424242;
 }
