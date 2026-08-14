@@ -13,7 +13,7 @@ if (!localStorage.getItem('didRun')) {
   localStorage.setItem('didRun', 'true');
 }
 
-const personLoggedIn = localStorage.getItem('loggedIn');
+const personLoggedIn = sessionStorage.getItem('loggedIn');
 
 
 let eventCount = 0;

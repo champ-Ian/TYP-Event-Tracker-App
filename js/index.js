@@ -190,8 +190,14 @@ rsvpButton.addEventListener('click', () => {
     if (isLoggedIn == 'true') {
         const accountInfo = JSON.parse(sessionStorage.getItem('userInformation'))
         const userName = accountInfo[0]
-        console.log(userName)
-        participantArray[l].push(userName)
+        if (participantArray[l].includes(userName)) {
+            alert('You are already signed up for this event')
+            return
+        } else {
+            participantArray[l].push(userName)
+            alert('You have successfully signed up for this event')
+        }
+
         console.log(participantArray)
     }
     
