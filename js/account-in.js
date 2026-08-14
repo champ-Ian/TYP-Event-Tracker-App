@@ -16,14 +16,28 @@ bio.textContent = userInfo[4]
 
 //When log out button is clicked, it logs out
 
-const logOutButton = document.querySelector("#logOut")
+const logOutButton = document.querySelector("#logout")
 
-logOutButton.addEventListener('click', () => {
-    localStorage.setItem('loggedIn', false);
-    window.location.href = 'account-out.html'
-})
+if (logOutButton) {
+    logOutButton.addEventListener('click', () => {
+        localStorage.setItem('loggedIn', false);
+        window.location.href = 'account-out.html'
+    })
+} else {
+    console.warn('Logout button not found')
+}
+
 
 
 
 //when edit button is clicked, the edit profile interface appears
 
+const editButton = document.querySelector("#edits")
+
+if (editButton) {
+    editButton.addEventListener('click', () => {
+        window.location.href = 'edit-account.html'
+    })
+} else {
+    console.warn('Edit button not found')
+}
