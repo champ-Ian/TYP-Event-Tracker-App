@@ -11,43 +11,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section id="currentEvents" class="upcomingEvents">
-        <h1 id="cur">UPCOMING EVENTS</h1>
-        <div id="event_1">
-            <h2 class="t1">Ryan's Study Day</h2>
-            <h4 id="date_1">December 1, 2026</h4>
-            <h4>All DAY</h4>
+    <!--Upcoming/Past Events Toggle Bar-->
+    <section id="toggleBar">
+        <div id="toggleBarContainer">
+            <button id="upcomingEventsButton" class="toggleButton">Upcoming Events</button>
+            <button id="pastEventsButton" class="toggleButton">Past Events</button>
         </div>
-        <div id="event_2">
-            <h2 class="t1">Han-Yang's Graduation</h2>
-            <h4 id="date_2">July 31, 2026</h4>
-            <h4>10:00 - 11:00 AM</h4>
-        </div>
-        <div id="event_3">
-            <h2 class="t1">Cyrus's Swim Test</h2>
-            <h4 id="date_3">November 18, 2026</h4>
-            <h4>12:00 - 12:30 PM</h4>
-        </div>
-        <div id="event_4">
-            <h2 class="t1">Ian's Hair Cut</h2>
-            <h4 id="date_4">September 15, 2026</h4>
-            <h4>7:00 - 7:30 PM</h4>
+        <div class="hlinecontainer">
+            <div id="upcomingEventsHLine" class="hline"></div>
+            <div id="pastEventsHLine" class="hline"></div>
         </div>
     </section>
+
+    <!--Upcoming Events-->
+    <section id="upcomingEvents" class="upcomingEvents">
+        <div class="event">
+            <h2 class="eventTitle">Ryan's Study Day</h2>
+            <h4 class="date">December 1, 2026</h4>
+            <h4 class="time">All DAY</h4>
+            <div class="seeMore">
+                <h4 class="seeMoreText">See More</h4>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+        <div class="event">
+            <h2 class="eventTitle">Han-Yang's Graduation</h2>
+            <h4 class="date">July 31, 2026</h4>
+            <h4 class="time">10:00 - 11:00 AM</h4>
+            <div class="seeMore">
+                <h4 class="seeMoreText">See More</h4>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </div>
+    </section>
+
+    <!--Past Events-->
     <section id="passEvents" class="pastEvents">
-        <h1 id="pas">PAST EVENTS</h1>
-        <div id="pas_event_1">
-            <h2 class="t1">Cyrus's brthday</h2>
-            <h4 id="date_5">December 26, 2025</h4>
-            <h4>ALL DAY</h4>
+        <div class="event">
+            <h2 class="eventTitle">Cyrus's Birthday</h2>
+            <h4 class="date">December 26, 2025</h4>
+            <h4 class="time">ALL DAY</h4>
+            <div class="seeMore">
+                <h4 class="seeMoreText">See More</h4>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
         </div>
-        <div id="pas_event_2">
-            <h2 class="t1">Ryan's brthday party</h2>
-            <h4 id="date_6">January 14, 2026</h4>
-            <h4>1:00 - 8:00 AM</h4>
+        <div class="event">
+            <h2 class="eventTitle">Ryan's Birthday Party</h2>
+            <h4 class="date">January 14, 2026</h4>
+            <h4 class="time">1:00 - 8:00 AM</h4>
+            <div class="seeMore">
+                <h4 class="seeMoreText">See More</h4>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
         </div>
     </section>
-        <!--view events pop up-->
+
+    <!--view events pop up-->
     <section id="viewEvent">
         <div id="title">
             <h1 id="eventName">Event Name</h1>
@@ -72,6 +92,7 @@
             <button id="exit" class="viewEventButton">Exit</button>
         </div>
     </section>
+
     <!--Bottom nav bar-->
     <nav>
         <ul>
