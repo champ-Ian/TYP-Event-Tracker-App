@@ -15,7 +15,7 @@
 }
 
 body{
-    background:var(--light);
+    background:var(white);
     color:var(--pitch);
 }
 
