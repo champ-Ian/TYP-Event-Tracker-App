@@ -55,18 +55,12 @@ nav ul i {
     background-color: var(--dark);
 }
 
+/*han-yangs ubov this point*/
+
 #toggleBar {
     display: flex;
     flex-direction: column;
     margin-top: 4vh;    
-}
-
-#toggleBarContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 80vw;
-
 }
 
 .toggleButton{
@@ -76,13 +70,6 @@ nav ul i {
     font-size: 1rem;
     background: none;
     border: none;
-}
-
-.hlinecontainer {
-    width: 80vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .hline {
@@ -97,6 +84,36 @@ nav ul i {
 #pastEventsHLine{
     width: 34%;
 }
+
+.event{
+    border: solid;
+    border-color: black;
+    background-color: #e8e3e3;
+    padding: 10px 17px;
+    margin: 15px 0;
+    justify-content: space-between;
+}
+
+.eventinfo1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.eventinfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.seeMore{
+    text-align: right;
+    color:  #3036f0;
+}
+
+.eventTitle{
+    margin: 0 0 3px;
+}
+
+/*han-yangs below this point*/
 
 #viewEvent {
     height: 60vh;
