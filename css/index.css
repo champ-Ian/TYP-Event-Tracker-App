@@ -94,6 +94,7 @@ nav ul i {
     justify-content: space-between;
 }
 
+
 .eventinfo1{
     display: flex;
     justify-content: space-between;
@@ -111,6 +112,12 @@ nav ul i {
 
 .eventTitle{
     margin: 0 0 3px;
+}
+
+.seeMoreText{
+    background: none;
+    border: none;
+    color:  #3036f0;
 }
 
 /*han-yangs below this point*/
@@ -200,3 +207,11 @@ nav ul i {
     display: none;
 }
 
+.eventBlock{
+    border: solid;
+    border-color: black;
+    background-color: #e8e3e3;
+    padding: 10px 17px;
+    margin: 15px 0;
+    justify-content: space-between;
+}
