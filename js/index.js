@@ -23,7 +23,7 @@ let eventAmount = eventArray.length
 for (let i = 1; i < eventAmount; i++) {
 
     const eventBlock = document.createElement('div');
-    eventBlock.className = 'eventBlock'
+    eventBlock.className = 'event'
 
     const eventInfo1 = document.createElement('div')
     eventInfo1.className = 'eventinfo1'
@@ -86,9 +86,9 @@ for (let i = 1; i < eventAmount; i++) {
     eventInfo.appendChild(eventDate)
     eventInfo.appendChild(eventTime)
     eventInfo1.appendChild(eventInfo)
+    eventInfo1.appendChild(seeMore)
     eventBlock.appendChild(eventName)
     eventBlock.appendChild(eventInfo1)
-    eventBlock.appendChild(seeMore)
 
     // Decide whether the event is past or upcoming by comparing today's
     // date to the stored date string (YYYY-MM-DD). This is a simple
@@ -138,10 +138,10 @@ const eventDescription = document.querySelector('#description')
 const eventImage = document.querySelector('#eventImage')
 
 document.addEventListener('click', (event) => {
-    if(event.target.closest('.eventBlock')) {
+    if(event.target.closest('.seeMore')) {
         viewEvent.style.display = 'block'
         darkener.style.display = 'block'
-        const j = event.target.closest('.eventBlock').id[5]
+        const j = event.target.closest('.event').id[5]
         globalThis.l = j
         console.log(j)
         eventName.textContent = eventArray[j][0]
