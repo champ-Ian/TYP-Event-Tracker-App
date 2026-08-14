@@ -106,8 +106,11 @@ nav ul i {
 }
 
 .seeMore{
-    text-align: right;
     color:  #3036f0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
 }
 
 .eventTitle{
