@@ -16,7 +16,7 @@ bio.textContent = userInfo[4]
 
 //When log out button is clicked, it logs out
 
-const logOutButton = document.querySelector("#logout")
+const logOutButton = document.querySelector("#logoutButton")
 
 if (logOutButton) {
     logOutButton.addEventListener('click', () => {
@@ -32,7 +32,7 @@ if (logOutButton) {
 
 //when edit button is clicked, the edit profile interface appears
 
-const editButton = document.querySelector("#edits")
+const editButton = document.querySelector("#editButton")
 
 if (editButton) {
     editButton.addEventListener('click', () => {

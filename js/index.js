@@ -124,6 +124,7 @@ document.addEventListener('click', (event) => {
         viewEvent.style.display = 'block'
         darkener.style.display = 'block'
         const j = event.target.closest('.eventBlock').id[5]
+        globalThis.l = j
         console.log(j)
         eventName.textContent = eventArray[j][0]
         eventDate.textContent = `${eventArray[j][1].slice(5, 7)}/${eventArray[j][1].slice(8, 10)}/${eventArray[j][1].slice(0, 4)}`
@@ -182,13 +183,16 @@ console.log(participantArray)
 
 //RSVP saving names to array
 const rsvpButton = document.querySelector('#signUp')
+const isLoggedIn = sessionStorage.getItem('loggedIn')
+console.log(isLoggedIn)
 
 rsvpButton.addEventListener('click', () => {
-    const loggedIn = sessionStorage.getItem('loggedIn')
-    if (loggedIn == true) {
+    if (isLoggedIn == 'true') {
         const accountInfo = JSON.parse(sessionStorage.getItem('userInformation'))
         const userName = accountInfo[0]
         console.log(userName)
+        participantArray[l].push(userName)
+        console.log(participantArray)
     }
     
 })
