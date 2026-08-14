@@ -11,7 +11,7 @@ body {
 }
 
 :root {
-    --Background-Color: #8fb733;
+    --Background-Color: #FFF;
     --Secondary-Background-Color: #DBFF76;
     --Box-Color: #FFFFE3;
     --Primary-Text-Color: #37352F;
@@ -85,6 +85,8 @@ nav ul i {
     border-width: 1px;
     width: 20vw;
     height: 7vw;
+    margin-bottom: 1px;
+    margin-top: 25px;
 }
 
 .accountInput input {
@@ -116,6 +118,8 @@ nav ul i {
     border-width: 1px;
     width: 20vw;
     height: 7vw;
+    margin-bottom: 1px;
+    margin-top: 25px;
 }
 
 .accountInfoInput h1 {
@@ -140,4 +144,5 @@ nav ul i {
 #eye1 {
     position: absolute;
     top: 100;
+}
 }
