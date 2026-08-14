@@ -13,15 +13,6 @@ profileButtonLink.addEventListener('click', (event) => {
     }
 })
 
-if (!sessionStorage.getItem('hasVisited')) {
-    localStorage.setItem('loggedIn', false)
-  console.log("Welcome! This is your very first time here in this session.");
-  
-  // Set the flag so this block won't run again on reload
-  sessionStorage.setItem('hasVisited', 'true');
-} else {
-  console.log("Page has been reloaded or navigated to previously.");
-}
 
 function checkNavBar() {
     const homeButton = document.querySelector("#houseButton")

@@ -165,3 +165,30 @@ exitButton.addEventListener('click', () => {
     darkener.style.display = 'none'
 })
 
+
+
+//RSVPing
+
+//initiating the participatn array
+let participantArray = []
+for (i = 0; i < eventArray.length; i++) {
+    let eventName = eventArray[i][0]
+    participantArray[i] = []
+    for (j = 0; j < 1; j++) {
+        participantArray[i][j] = eventName
+    }
+}
+console.log(participantArray)
+
+//RSVP saving names to array
+const rsvpButton = document.querySelector('#signUp')
+
+rsvpButton.addEventListener('click', () => {
+    const loggedIn = sessionStorage.getItem('loggedIn')
+    if (loggedIn == true) {
+        const accountInfo = JSON.parse(sessionStorage.getItem('userInformation'))
+        const userName = accountInfo[0]
+        console.log(userName)
+    }
+    
+})
