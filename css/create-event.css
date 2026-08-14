@@ -115,7 +115,7 @@ button:hover{
 
 
 .events-section{
-    background:white;
+    background:rgba(238,250,237,.6);
     margin:1rem;
     padding:1.5rem;
     border-radius:25px;
