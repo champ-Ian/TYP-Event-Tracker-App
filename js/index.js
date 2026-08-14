@@ -25,6 +25,24 @@ for (let i = 1; i < eventAmount; i++) {
     const eventBlock = document.createElement('div');
     eventBlock.className = 'eventBlock'
 
+    const eventInfo1 = document.createElement('div')
+    eventInfo1.className = 'eventinfo1'
+
+    const eventInfo = document.createElement('div')
+    eventInfo.className = 'eventinfo'
+
+    const seeMore = document.createElement('div')
+    seeMore.className = 'seeMore'
+
+    const seeMoreText = document.createElement('button')
+    seeMoreText.className = 'seeMoreText'
+    seeMoreText.textContent = 'See More'
+
+    const dotDotDot = document.createElement('i')
+    dotDotDot.className = 'fa-solid fa-ellipsis'
+
+
+
     // Event title is stored at index 0 of the event array
     const eventName = document.createElement('h2');
     eventName.textContent = eventArray[i][0]
@@ -63,14 +81,14 @@ for (let i = 1; i < eventAmount; i++) {
     let formattedTime = `${formattedStartTime} - ${formattedEndTime}`
     eventTime.textContent = formattedTime
 
-    // Event description stored at index 3
-    const eventDesc = document.createElement('p');
-    eventDesc.textContent = eventArray[i][3];
-
+    seeMore.appendChild(seeMoreText)
+    seeMore.appendChild(dotDotDot)
+    eventInfo.appendChild(eventDate)
+    eventInfo.appendChild(eventTime)
+    eventInfo1.appendChild(eventInfo)
     eventBlock.appendChild(eventName)
-    eventBlock.appendChild(eventDate)
-    eventBlock.appendChild(eventTime)
-    eventBlock.appendChild(eventDesc)
+    eventBlock.appendChild(eventInfo1)
+    eventBlock.appendChild(seeMore)
 
     // Decide whether the event is past or upcoming by comparing today's
     // date to the stored date string (YYYY-MM-DD). This is a simple
