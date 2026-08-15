@@ -25,7 +25,6 @@
 }
 body {
     background-color: white;
-    font-family: Roboto, sans-serif;
 }
 nav {
     display: flex;
@@ -61,27 +60,31 @@ nav ul i {
 #toggleBar {
     display: flex;
     flex-direction: row;
-    margin-top: 4vh; 
-    margin-bottom: 3vh; 
+    margin-top: 4vh;    
 }
 
 #togglebar1 {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     width: 50%;
-}
+} 
 
 #togglebar2 {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     width: 50%;
-}
+} 
 
 .toggleButton{
-    width: 100%;
+    width: 75%;
     height: 3vh;
     color: var(--dark);
     font-size: 1rem;
     background: none;
     border: none;
     text-align: left;
-    padding-left: 0.4rem;
 }
 
 .hline {
@@ -90,25 +93,21 @@ nav ul i {
 }
 
 #upcomingEventsHLine{
-    width: 80%;
+    width: 70%;
 }
 
 #pastEventsHLine{
-    width: 80%;
+    width: 47%;
 }
 
 .event{
     border: solid;
     border-color: black;
-    background-color: var(--pale);
-    padding: 15px 20px;
-    margin: 15px 13px;
+    background-color: #e8e3e3;
+    padding: 10px 17px;
+    margin: 15px 0;
     justify-content: space-between;
-    border:3px solid var(--dark);
-    border-radius: 15px;
-    box-shadow: 5px 5px 8px #424242;
 }
-
 
 .eventinfo1{
     display: flex;
@@ -120,11 +119,6 @@ nav ul i {
     flex-direction: column;
 }
 
-.eventinfo h4 {
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
 .seeMore{
     color:  #3036f0;
     display: flex;
@@ -134,8 +128,7 @@ nav ul i {
 }
 
 .eventTitle{
-    font-size: 1rem;
-    margin: 0 0 5px;
+    margin: 0 0 3px;
 }
 
 .seeMoreText{
