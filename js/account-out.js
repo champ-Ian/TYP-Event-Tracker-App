@@ -2,25 +2,36 @@
 
 
 //i is y dimension. each row is a new user
-//j is x dimension. column 0 = username, column 1 = email, column 2 = password, column 3 = pfp, column 4 = bio
+//j is x dimension. column 0 = username, column 1 = password, column 2 = email, column 3 = phone number, column 4 = pfp, column 5 = school, column 6 = grade, column 7 = additional info
 let accountNumber = 3
 let accounts = [];
 
 for (let i = 0; i < accountNumber; i++) {
   accounts[i] = []; // Initialize the inner array (row)
-  for (let j = 0; j < 5; j++) {
+  for (let j = 0; j < 8; j++) {
     accounts[i][j] = 0; // Fill each column index with a value
   }
 }
 accounts[0][0] = "Cyrus";
-accounts[0][2] = "cyruspassword";
-accounts[0][4] = "My name is Cyrus and I'm very cool"
+accounts[0][1] = "cyruspassword";
+accounts[0][2] = "cyrusbai@gmail.com";
+accounts[0][3] = "123-456-7890";
+accounts[0][5] = "West High School";
+accounts[0][6] = "12th";
+accounts[0][7] = "I am a senior at a high school in the United States. I enjoy playing basketball and listening to music. In my free time, I like to read books and watch movies.";
 accounts[1][0] = "Ryan";
-accounts[1][2] = "123456";
-accounts[1][4] = "Ryan is very cool"
+accounts[1][1] = "123456";
+accounts[1][2] = "ryan@gmail.com";
+accounts[1][3] = "098-765-4321";
+accounts[1][5] = "11th";
+accounts[1][6] = "I am a junior at a high school in the United States. I enjoy playing sports and listening to music. In my free time, I like to watch movies and hang out with friends.";
 accounts[2][0] = "Matthew";
-accounts[2][2] = "654321";
-accounts[2][4] = "The individual who bears the name of Matthew is a highly intellectual being"
+accounts[2][1] = "mathewpassword";
+accounts[2][2] = "mathew@gmail.com";
+accounts[2][3] = "555-1234";
+accounts[2][5] = "West High School";
+accounts[2][6] = "10th"
+accounts[2][7] = "I am a sophomore at a high school in the United States. I enjoy playing basketball and reading novels. In my free time, I like to explore new places and try different foods."
 
 
 console.log(accounts);
@@ -38,7 +49,8 @@ logInButton.addEventListener('click', () => {
 
     for (let i = 0; i < accountNumber; i++)
         if (accounts[i][0] === username) {
-            if (accounts[i][2] === password) {
+            // password is stored at index 1 (see top comment)
+            if (accounts[i][1] === password) {
                 console.log("password correct");
                 sessionStorage.setItem('loggedIn', true);
                 window.location.href = 'account-in.html'
@@ -80,14 +92,18 @@ signUpButton.addEventListener('click', () => {
             noUsername.style.color = 'red'
             stop = 1
         }
-        if (accounts[i][1] === newEmail) {
+        // email is stored at index 2
+        if (accounts[i][2] === newEmail) {
             noEmail.style.display = 'block'
             noEmail.style.color = 'red'
             stop = 1
         }
     }
-        let newUser = [newUsername, newEmail, newPassword, null, null]
+    if (stop === 0) {
+        // store as [username, password, email, phone, pfp, school, grade, info]
+        let newUser = [newUsername, newPassword, newEmail, null, null, null, null, null]
         accounts.push(newUser)
         accountNumber++
         console.log(accounts)
+    }
 })
