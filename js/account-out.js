@@ -36,6 +36,34 @@ accounts[2][7] = "I am a sophomore at a high school in the United States. I enjo
 
 console.log(accounts);
 
+// Persist accounts to localStorage so changes survive reloads
+const saveAccounts = () => localStorage.setItem('accounts', JSON.stringify(accounts))
+const loadAccounts = () => {
+    const s = localStorage.getItem('accounts')
+    if (s) {
+        accounts = JSON.parse(s)
+        accountNumber = accounts.length
+    } else {
+        // no stored accounts yet — save the defaults we created above
+        saveAccounts()
+    }
+}
+
+// Expose a simple reset helper usable from the console: `resetAccounts()`
+window.resetAccounts = () => {
+    console.log('resetAccounts called')
+    // Replace stored accounts with an empty array so load won't repopulate defaults
+    localStorage.setItem('accounts', JSON.stringify([]))
+    // Remove any stored user/session info
+    localStorage.removeItem('userInformation')
+    localStorage.removeItem('loggedIn')
+    sessionStorage.clear()
+    location.reload()
+}
+
+// Load stored accounts (overwrites defaults if present)
+loadAccounts()
+
 const logInButton = document.querySelector("#logInButton")
 const usernameInput = document.querySelector("#logInUsername")
 const passwordInput = document.querySelector("#logInPassword")
@@ -104,6 +132,7 @@ signUpButton.addEventListener('click', () => {
         let newUser = [newUsername, newPassword, newEmail, null, null, null, null, null]
         accounts.push(newUser)
         accountNumber++
+        saveAccounts()
         console.log(accounts)
     }
 })
