@@ -46,6 +46,7 @@ for (let i = 1; i < eventAmount; i++) {
     // Event title is stored at index 0 of the event array
     const eventName = document.createElement('h2');
     eventName.textContent = eventArray[i][0]
+    eventName.className = 'eventTitle'
 
     // Format stored ISO date (YYYY-MM-DD) to MM/DD/YYYY for display
     const eventDate = document.createElement('h4');
@@ -113,7 +114,7 @@ for (let i = 1; i < eventAmount; i++) {
     }
 
     if (pastEvent === false) {
-            currentEventSection.appendChild(eventBlock)
+        currentEventSection.appendChild(eventBlock)
     } else {
         pastEventSection.appendChild(eventBlock)
     }
@@ -122,6 +123,30 @@ for (let i = 1; i < eventAmount; i++) {
     // handler can locate the correct event data later (e.g. `event3`).
     eventBlock.id = `event${i}`
 }
+
+pastEventSection.style.display = 'none'
+
+const toggleBarUpcoming = document.querySelector('#togglebar1')
+const toggleBarPast = document.querySelector('#togglebar2')
+
+toggleBarUpcoming.addEventListener('click', () => {
+    currentEventSection.style.display = 'block'
+    pastEventSection.style.display = 'none'
+    toggleBarUpcoming.style.backgroundColor = 'var(--Secondary-Background-Color)'
+    toggleBarUpcoming.style.boxShadow = '5px 5px 8px #424242'
+    toggleBarPast.style.backgroundColor = 'var(--Box-Color)'
+    toggleBarPast.style.boxShadow = 'none'
+
+})
+
+toggleBarPast.addEventListener('click', () => {
+    currentEventSection.style.display = 'none'
+    pastEventSection.style.display = 'block'
+    toggleBarPast.style.backgroundColor = 'var(--Secondary-Background-Color)'
+    toggleBarPast.style.boxShadow = '5px 5px 8px #424242'
+    toggleBarUpcoming.style.backgroundColor = 'var(--Box-Color)'
+    toggleBarUpcoming.style.boxShadow = 'none'
+})
 
 
 
@@ -141,7 +166,7 @@ document.addEventListener('click', (event) => {
     if(event.target.closest('.seeMore')) {
         viewEvent.style.display = 'block'
         darkener.style.display = 'block'
-        const j = event.target.closest('.event').id[5]
+        const l = event.target.closest('.event').id[5]
         globalThis.l = j
         console.log(j)
         eventName.textContent = eventArray[j][0]
