@@ -26,7 +26,7 @@ function newEvent(){
     const description = document.getElementById("description").value;
     const image = document.getElementById("image").files[0];
     const userInfo = JSON.parse(localStorage.getItem('accounts'))
-    const eventCreator = userInfo[0]
+    const eventCreator = userInfo[0][0]
 
     if(!title || !date || !startTime || !location || !endTime){
         alert("Please fill out all required fields.");
