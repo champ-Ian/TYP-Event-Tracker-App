@@ -27,12 +27,15 @@
             <p>Username</p>
             <input id=logInUsername type="text" >
         </div>
-        <div class="accountInput">
-            <p>Password</p>
-            <input id=logInPassword type="password" >
-        </div>
-        <p id="passwordIncorrect">Username or Password Incorrect</p>
-        <input type="button" id="logInButton" value="Log In">
+
+    <div class="accountInput">
+    <p>Password</p>
+    <input type="password" id="loginPassword">
+    <img src="open open eye.png" alt="openeye icon" id="eye1" onclick="togglePassword('loginPassword', 'eye1')">
+</div>
+
+    <p id="passwordIncorrect">Username or Password Incorrect</p>
+    <input type="button" id="logInButton" value="Log In">
 
     </section>
 
@@ -49,15 +52,22 @@
             <input id="newEmail" type="text">
         </div>
         <p id="noEmail">Email address is already in use</p>
-        <div class="accountInput">
-            <p>Password</p>
-            <input id="newPassword" type="password" >
-        </div>
-        <div class="accountInput">
-            <p>Confirm Password</p>
-            <input id="confirmPassword" type="password">
-        </div>
-        <input type="button" id="signUpButton" value="Sign up">
+
+    <div class="accountInput">
+    <p>Password</p>
+    <input type="password" id="signupPassword">
+    <img src="open open eye.png" alt="openeye icon" id="eye2" onclick="togglePassword('signupPassword', 'eye2')">
+</div>
+</div>
+
+    <div class="accountInput">
+    <p>Confirm Password</p>
+    <input type="password" id="confirmPassword">
+    <img src="open open eye.png" alt="openeye icon" id="eye3" onclick="togglePassword('confirmPassword', 'eye3')">
+</div>
+</div>
+    <input type="button" id="signUpButton" value="Sign up">
     </section>
 
 </body>
+
