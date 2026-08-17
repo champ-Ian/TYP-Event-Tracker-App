@@ -66,7 +66,6 @@ nav ul i {
     margin-bottom: 5vw;
     margin-top: 5vw;
     box-shadow: 7px 7px 10px #424242;
-
 }
 
 #login {
@@ -125,8 +124,8 @@ nav ul i {
 .accountInfoInput h1 {
     color: var(--Primary-Text-Color);
     font-size: 5vw;
-    margin-top: 0.5vw;
-    margin-bottom: 0.5vw;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 .accountInfoInput p {
@@ -142,7 +141,55 @@ nav ul i {
 }
 
 #eye1 {
-    position: absolute;
-    top: 100;
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    cursor: finger;
+    position: relative; top: 40px; right: -10px;
 }
+
+#eye2 {
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    cursor: finger;
+    position: relative; top: 40px; right: 1px;
+}
+
+#eye3 {
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    cursor: finger;
+    position: relative; top: 40px; right: 1px;
+}
+
+.passwordContainer {
+    position: relative;
+    width: 3vw;
+}
+
+.passwordContainer input {
+    width: 100%;
+}
+
+.passwordContainer img {
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.accountInput {
+    position: relative;
+}
+
+#eye1,
+#eye2,
+#eye3 {
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    cursor: pointer;
+    right: -9vw;
+    bottom: 10vw;
 }
