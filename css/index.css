@@ -300,7 +300,7 @@ nav ul i {
 }
 
 #imageSection {
-    height: 65%;
+    height: 55%;
     overflow-y: auto; 
     margin-top: 9px;
     padding: 0 1rem 0 1rem;
@@ -311,4 +311,23 @@ nav ul i {
     border-radius: 5px 5px 10px 10px;
     width: 90%;
     margin: 5% 5% 0 5%;
+}
+
+#fileUpload {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 7%;
+    margin: 5% 5% 0 5%;
+}
+
+#imageInput {
+    background-color: white;
+    margin: 0 8vw 0 0;
+    width: 70%;
+    padding: 0.4rem 0 0 0.4rem;
+    border: solid;
+    border-radius: 0.5rem;
+    border-color: var(--primary);
+    border-width: 3px;
 }

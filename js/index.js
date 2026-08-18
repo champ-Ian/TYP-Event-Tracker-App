@@ -332,3 +332,33 @@ const imageExit = document.querySelector('#exitImagesButton')
 imageExit.addEventListener('click', () => {
     imageSection.style.display = 'none'
 })
+
+
+//creating the imageArray
+
+let imageArray = []
+for (i = 0; i < eventArray.length; i++) {
+    let eventName = eventArray[i][0]
+    imageArray[i] = []
+    for (j = 0; j < 1; j++) {
+        imageArray[i][j] = eventName
+    }
+}
+console.log(imageArray)
+
+
+//adding images to the array
+
+const addImageButton = document.querySelector('#addImageButton')
+const imageContainer = document.querySelector('#imageSection')
+const imageInput = document.querySelector('#imageInput')
+
+addImageButton.addEventListener('click', () => {
+    console.log('add image clicked')
+    const imageSrc = imageInput.files
+    imageArray[l].push(imageSrc)
+    console.log(imageArray)
+})
+
+
+//function displaying the images on the image display
