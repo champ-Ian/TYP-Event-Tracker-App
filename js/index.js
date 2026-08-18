@@ -166,7 +166,7 @@ document.addEventListener('click', (event) => {
     if(event.target.closest('.seeMore')) {
         viewEvent.style.display = 'block'
         darkener.style.display = 'block'
-        const l = event.target.closest('.event').id[5]
+        let l = event.target.closest('.event').id[5]
         globalThis.l = j
         console.log(j)
         eventName.textContent = eventArray[j][0]
@@ -249,3 +249,8 @@ rsvpButton.addEventListener('click', () => {
 
 
 //opening the participant list
+const participantsButton = document.querySelector('#participants')
+
+participantsButton.addEventListener('click', () => {
+    
+})
