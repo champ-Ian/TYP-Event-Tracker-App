@@ -27,7 +27,7 @@ console.log(accounts);
 
 const logInButton = document.querySelector("#logInButton")
 const usernameInput = document.querySelector("#logInUsername")
-const passwordInput = document.querySelector("#logInPassword")
+const passwordInput = document.querySelector("#loginPassword")
 const passwordIncorrect = document.querySelector("#passwordIncorrect")
 
 logInButton.addEventListener('click', () => {
