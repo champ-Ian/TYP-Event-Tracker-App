@@ -201,3 +201,11 @@ nav ul i {
 .create-event {
   box-shadow: 7px 7px 10px #424242;
 }
+
+.right-placeholder::placeholder {
+  text-align: right;
+}
+
+.end-placeholder::placeholder {
+  text-align: right;
+}
