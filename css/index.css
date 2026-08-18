@@ -149,9 +149,11 @@ nav ul i {
     position: absolute;
     position: fixed;
     top: 20vh;
-    background-color: var(--Box-Color);
+    background-color: var(--pale);
+    border: solid;
     border-width: 4px;
     border-radius: 2rem;
+    border-color: var(--dark);
     display: none;
     z-index: 1200;
     margin: 0px 3vw 0px 3vw;
@@ -159,11 +161,12 @@ nav ul i {
 
 #title {
     text-align: center;
-    background-color: var(--Secondary-Background-Color);
+    background-color: var(--light);
     border-radius: 1.9rem 1.9rem 0 0;
     height: 15%;
     padding: 5%;
     font-family: Roboto, sans-serif;
+    color: var(--pitch);
 }
 
 #middleRow {
@@ -177,8 +180,13 @@ nav ul i {
 }
 
 #participants {
-    background-color: var(--pale);
-    border-color: var(--dark);
+    background-color: var(--primary);
+    border-radius: 10px 10px 10px 10px; /*10px 10px 5px 5px when open*/
+    border: none;
+    height: 3vh;
+    margin: 1rem 0 0 0;
+    font-weight: 800;
+    font-family: roboto, sans-serif;
 }
 
 #viewEventInfo {
@@ -203,10 +211,11 @@ nav ul i {
 
 #desc {
     font-weight: 800;
+    margin-bottom: 10px;
 }
 
 #bottomButtons {
-    background-color: var(--Secondary-Background-Color);
+    background-color: var(--pale);
     height: 15%;
     border-radius: 0 0 1.9rem 1.9rem;
     display: flex;
@@ -216,11 +225,12 @@ nav ul i {
 }
 
 .viewEventButton {
-    width: 30%;
-    background-color: var(--pale);
-    border-color: var(--dark);
-    border-width: 4px;
-    border-radius: 0.5rem;
+    width: 40%;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 1rem;
+    font-weight: 800;
+    font-family: roboto, sans-serif;
 }
 
 #darkener {
@@ -235,5 +245,17 @@ nav ul i {
 }
 
 #participantList {
-    
+    display: none;
+    position: fixed;
+    top: 45vh;
+    max-height: 100px;         /* Limits the box height so it scrolls */
+    overflow-y: auto;          /* Shows vertical scrollbar when content exceeds max-height */
+    margin-top: 9px;
+    padding: 0 1rem 0 1rem;
+    background-color: white;
+    border: solid;
+    border-width: 0 3px 3px 3px;
+    border-color: var(--primary);
+    border-radius: 5px 5px 10px 10px;
+    width: 41.5vw;
 }

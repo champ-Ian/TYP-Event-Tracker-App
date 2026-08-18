@@ -167,7 +167,7 @@ document.addEventListener('click', (event) => {
     if(event.target.closest('.seeMore')) {
         viewEvent.style.display = 'block'
         darkener.style.display = 'block'
-        let l = event.target.closest('.event').id[5]
+        let j = event.target.closest('.event').id[5]
         globalThis.l = j
         console.log(j)
         eventName.textContent = eventArray[j][0]
@@ -195,7 +195,7 @@ document.addEventListener('click', (event) => {
         }
 
         eventTime.textContent = `${formattedStartTime} - ${formattedEndTime}`
-        creatorsName.textContent = eventArray[j][5]
+        creatorsName.textContent = `Creator: ${eventArray[j][5]}`
         eventDescription.textContent = eventArray[j][3]
         eventImage.src = eventArray[j][4]
     } 
@@ -225,6 +225,9 @@ for (i = 0; i < eventArray.length; i++) {
 }
 console.log(participantArray)
 
+const participantsButton = document.querySelector('#participants')
+const participantContainer = document.querySelector('#participantList')
+
 //RSVP saving names to array
 const rsvpButton = document.querySelector('#signUp')
 const isLoggedIn = sessionStorage.getItem('loggedIn')
@@ -239,6 +242,7 @@ rsvpButton.addEventListener('click', () => {
             return
         } else {
             participantArray[l].push(userName)
+            participantContainer.style.display = 'none'
             alert('You have successfully signed up for this event')
         }
 
@@ -250,8 +254,33 @@ rsvpButton.addEventListener('click', () => {
 
 
 //opening the participant list
-const participantsButton = document.querySelector('#participants')
+
 
 participantsButton.addEventListener('click', () => {
-    
+    if (participantArray[l].length > 1) {
+        if (participantContainer.style.display == 'none') {
+            participantContainer.innerHTML = ''
+            participantArray[l].slice(1).forEach(name => {
+                const p = document.createElement('p');
+                p.textContent = name;
+                p.style.margin = "4px 0"; 
+                participantContainer.appendChild(p);
+                participantContainer.style.display = 'block'
+            })
+        } else {
+            participantContainer.style.display = 'none'
+        }
+    } else {
+        if (participantContainer.style.display == 'none') {
+        participantContainer.innerHTML = ''
+        const p = document.createElement('p');
+        p.textContent = 'No one has signed up yet'
+        p.style.margin = '4px 0'
+        participantContainer.appendChild(p)
+        participantContainer.style.display = 'block'
+        } else {
+            participantContainer.style.display = 'none'
+        }
+    }
+
 })
