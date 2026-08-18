@@ -45,7 +45,11 @@ function newEvent(){
         localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
     }
 
-
+    function saveToStorage(image2) {
+        const retreivedData = JSON.parse(localStorage.getItem('eventStorage'))
+        retreivedData.push([title, date, startTime, description, image, eventCreator, endTime])
+        localStorage.setItem('eventStorage', JSON.stringify(retreivedData))
+    }
     if(image) {
         const imageReader = new FileReader()
 
@@ -57,7 +61,17 @@ function newEvent(){
     } else {
         saveToStorage(null)
     }
+    if(image2) {
+        const imageReader = new FileReader()
 
+        imageReader.onload = function(e) {
+            const b64image = e.target.result
+            saveToStorage(b64image)
+        }
+        imageReader.readAsDataURL(image)
+    } else {
+        saveToStorage(null)
+    }
     alert('your event has successfully been created')
 }
 
