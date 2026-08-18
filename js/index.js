@@ -334,6 +334,18 @@ imageExit.addEventListener('click', () => {
 })
 
 
+//function displaying the images on the image display
+
+function openImages() {
+    if (imageArray[l].length > 1) {
+        imageArray[l].slice(1).forEach(image => {
+            const img = document.createElement('img')
+            img.src = image
+            imageContainer.appendChild(img)
+        })
+    }
+}
+
 //creating the imageArray
 
 let imageArray = []
@@ -358,7 +370,8 @@ addImageButton.addEventListener('click', () => {
     const imageSrc = imageInput.files
     imageArray[l].push(imageSrc)
     console.log(imageArray)
+    openImages
 })
 
 
-//function displaying the images on the image display
+openImages
