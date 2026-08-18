@@ -170,7 +170,7 @@ nav ul i {
 }
 
 #middleRow {
-    height: 35%;
+    height: 40%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -189,6 +189,16 @@ nav ul i {
     font-family: roboto, sans-serif;
 }
 
+#viewImages {
+    background-color: var(--primary);
+    border-radius: 10px 10px 10px 10px; /*10px 10px 5px 5px when open*/
+    border: none;
+    height: 3vh;
+    margin: 1rem 0 0 0;
+    font-weight: 800;
+    font-family: roboto, sans-serif;    
+}
+
 #viewEventInfo {
     display: flex;
     flex-direction: column;
@@ -205,7 +215,7 @@ nav ul i {
 }
 
 #bottomRow {
-    height: 35%;
+    height: 30%;
     padding: 5%;
 }
 
@@ -214,7 +224,7 @@ nav ul i {
     margin-bottom: 10px;
 }
 
-#bottomButtons {
+.bottomButtons {
     background-color: var(--pale);
     height: 15%;
     border-radius: 0 0 1.9rem 1.9rem;
@@ -224,8 +234,9 @@ nav ul i {
     padding: 5%;
 }
 
-.viewEventButton {
+.bottomButton {
     width: 40%;
+    height: 100%;
     background-color: var(--primary);
     border: none;
     border-radius: 1rem;
@@ -244,10 +255,21 @@ nav ul i {
     display: none;
 }
 
+#darkener2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1400;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0 0 0 / 0.5);
+    display: none;
+}
+
 #participantList {
     display: none;
     position: fixed;
-    top: 45vh;
+    top: 44vh;
     max-height: 100px;         /* Limits the box height so it scrolls */
     overflow-y: auto;          /* Shows vertical scrollbar when content exceeds max-height */
     margin-top: 9px;
@@ -258,4 +280,35 @@ nav ul i {
     border-color: var(--primary);
     border-radius: 5px 5px 10px 10px;
     width: 41.5vw;
+}
+
+#eventImages {
+    height: 60vh;
+    width: 94vw;
+    position: absolute;
+    position: fixed;
+    top: 20vh;
+    background-color: var(--pale);
+    border: solid;
+    border-width: 4px;
+    border-radius: 2rem;
+    border-color: var(--dark);
+    z-index: 1200;
+    margin: 0px 3vw 0px 3vw;
+    align-items: center;
+    display: none;
+}
+
+#imageSection {
+    height: 65%;
+    overflow-y: auto; 
+    margin-top: 9px;
+    padding: 0 1rem 0 1rem;
+    background-color: white;
+    border: solid;
+    border-width: 3px 3px 3px 3px;
+    border-color: var(--primary);
+    border-radius: 5px 5px 10px 10px;
+    width: 90%;
+    margin: 5% 5% 0 5%;
 }

@@ -10,6 +10,11 @@ try {
 if (!Array.isArray(eventArray)) eventArray = []
 console.log('eventArray', eventArray)
 
+
+
+
+
+
 // Select the sections in the page where upcoming and past events will be
 // appended. These match the markup in `index.html` (`.upcomingEvents`/`.pastEvents`).
 const currentEventSection = document.querySelector('.upcomingEvents')
@@ -125,6 +130,9 @@ for (let i = 1; i < eventAmount; i++) {
     console.log(eventBlock.id)
 }
 
+
+//opening past and current events on their respective tabs
+
 pastEventSection.style.display = 'none'
 
 const toggleBarUpcoming = document.querySelector('#togglebar1')
@@ -151,9 +159,19 @@ toggleBarPast.addEventListener('click', () => {
 
 
 
+
+
+
+
+
 //View event page code goes here vvv
 
+
+
+
+
 // opening the view event page
+
 const viewEvent = document.querySelector('#viewEvent')
 const darkener = document.querySelector('#darkener')
 const eventName = document.querySelector('#eventName')
@@ -212,9 +230,15 @@ exitButton.addEventListener('click', () => {
 
 
 
+
+
+
+
+
 //RSVPing
 
-//initiating the participatn array
+
+//initiating the participation array
 let participantArray = []
 for (i = 0; i < eventArray.length; i++) {
     let eventName = eventArray[i][0]
@@ -252,9 +276,7 @@ rsvpButton.addEventListener('click', () => {
 })
 
 
-
 //opening the participant list
-
 
 participantsButton.addEventListener('click', () => {
     if (participantArray[l].length > 1) {
@@ -283,4 +305,30 @@ participantsButton.addEventListener('click', () => {
         }
     }
 
+})
+
+
+
+
+
+//images section code goes below vvvvv
+
+
+
+
+// opening the event images section
+
+const openImageButton = document.querySelector('#viewImages')
+const imageSection = document.querySelector('#eventImages')
+
+openImageButton.addEventListener('click', () => {
+    imageSection.style.display = 'block'
+})
+
+//exiting image section
+
+const imageExit = document.querySelector('#exitImagesButton')
+
+imageExit.addEventListener('click', () => {
+    imageSection.style.display = 'none'
 })
