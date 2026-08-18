@@ -122,6 +122,7 @@ for (let i = 1; i < eventAmount; i++) {
     // Give each event block an id that includes the index so the click
     // handler can locate the correct event data later (e.g. `event3`).
     eventBlock.id = `event${i}`
+    console.log(eventBlock.id)
 }
 
 pastEventSection.style.display = 'none'

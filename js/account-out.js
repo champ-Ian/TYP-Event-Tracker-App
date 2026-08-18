@@ -42,7 +42,7 @@ logInButton.addEventListener('click', () => {
                 console.log("password correct");
                 sessionStorage.setItem('loggedIn', true);
                 window.location.href = 'account-in.html'
-                localStorage.setItem('userInformation', JSON.stringify(accounts[i]))
+                sessionStorage.setItem('userInformation', JSON.stringify(accounts[i]))
             } else {
                 passwordIncorrect.style.display = 'block'
                 passwordIncorrect.style.color = 'red'

@@ -3,7 +3,7 @@ const username = document.querySelector("#username")
 const pfp = document.querySelector("#pfp")
 const bio = document.querySelector("#acctBio")
 
-const storedAccountInfo = localStorage.getItem('userInformation')
+const storedAccountInfo = sessionStorage.getItem('userInformation')
 const userInfo = storedAccountInfo ? JSON.parse(storedAccountInfo) : [];
 username.textContent = userInfo[0]
 console.log(userInfo)
