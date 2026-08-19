@@ -5,10 +5,10 @@ const bio = document.querySelector("#acctBio")
 
 const storedAccountInfo = sessionStorage.getItem('userInformation')
 const userInfo = storedAccountInfo ? JSON.parse(storedAccountInfo) : [];
-if (username && userInfo && userInfo[0]) username.textContent = userInfo[0]
+username.textContent = userInfo[0]
 console.log(userInfo)
 
-if (bio && userInfo && userInfo[4]) bio.textContent = userInfo[4]
+bio.textContent = userInfo[4]
 
 
 

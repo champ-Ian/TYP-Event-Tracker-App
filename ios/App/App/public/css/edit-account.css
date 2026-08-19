@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:"Segoe UI",sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+}
+
+:root {
+    --Background-Color: #8fb733;
+    --Secondary-Background-Color: #DBFF76;
+    --Box-Color: #FFFFE3;
+    --Primary-Text-Color: #37352F;
+    --Secondary-Text-Color: #7A7666;
+
+    /* delete later */
+    --dark: #1d7543;
+    --light: #99ed98;
+    --pale: #daf8d6;
+    --pitch: #053623;
+    --primary: #5cc465;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: 9vh;
+    background-color: var(--dark);
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    border-radius: 20px 20px 0 0;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+    align-items: center;
+    width: 100vw;
+}
+
+nav ul i {
+    width: 100%;
+    color: #90EE90;
+    padding: 4.3vh 8vh 4.3vh 6vh;
+    background-color: var(--dark);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh; 
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    width: 80%;
+}
+
+.description {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--Primary-Text-Color);
+}
+
+.text-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    margin: 0.5rem;
+}

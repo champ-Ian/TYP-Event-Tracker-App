@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Upcoming/Past Events Toggle Bar-->
+    <section id="toggleBar">
+        <div id="togglebar1" class="aToggleBar">
+            <p>Upcoming Events</p>
+            <div id="upcomingEventsHLine" class="hline"></div>
+        </div>
+        <div id="togglebar2" class="aToggleBar">
+            <p>Past Events</p>
+            <div id="pastEventsHLine" class="hline"></div>
+        </div>
+    </section>
+
+    <!--Upcoming Events-->
+    <section id="upcomingEvents" class="upcomingEvents">
+        <div class="event">
+            <h2 class="eventTitle">Ryan's Study Day</h2>
+            <div class="eventinfo1">
+                <div class="eventinfo">
+                    <h4 class="date">December 17, 2026</h4>
+                    <h4 class="time">All DAY</h4>
+                </div>
+                <div class="seeMore">
+                    <button class="seeMoreText">See More</button>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+            </div>
+        </div>
+        <div class="event">
+            <h2 class="eventTitle">Han-Yang's Graduation</h2>
+            <div class="eventinfo1">
+                <div class="eventinfo">
+                    <h4 class="date">July 31, 2026</h4>
+                    <h4 class="time">10:00 - 11:00 AM</h4>
+                </div>
+                <div class="seeMore">
+                    <button class="seeMoreText">See More</button>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Past Events-->
+    <section id="passEvents" class="pastEvents">
+        <div class="event">
+            <h2 class="eventTitle">Cyrus's Birthday</h2>
+            <div class="eventinfo1">
+                <div class="eventinfo">
+                    <h4 class="date">December 26, 2025</h4>
+                    <h4 class="time">ALL DAY</h4>
+                </div>
+                <div class="seeMore">
+                    <button class="seeMoreText">See More</button>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+            </div>
+        </div>
+        <div class="event">
+            <h2 class="eventTitle">Ryan's Birthday Party</h2>
+            <div class="eventinfo1">
+                <div class="eventinfo">
+                    <h4 class="date">January 14, 2026</h4>
+                    <h4 class="time">12:00 - 12:50 AM</h4>
+                </div>
+                <div class="seeMore">
+                    <button class="seeMoreText">See More</button>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--view events pop up-->
+    <section id="viewEvent">
+        <div id="title">
+            <h1 id="eventName">Event Name</h1>
+        </div>
+        <div id="middleRow">
+            <div id="viewEventInfo">
+                <p id="viewEventDate">xx/xx/xxxx</p>
+                <p id="viewEventTime">xx:xx xx</p>
+                <p id="eventCreator">creatorsName</p>
+                <button id="participants">participants</button>
+                <div id="participantList">
+                    
+                </div>
+                <button id="viewImages">Event Images</button>
+            </div>
+            <div id="participantList">
+                
+            </div>
+            <div id="image">
+                <img id="eventImage" src="img/anonymous pfp.webp" alt="image">
+            </div>
+        </div>
+        <div id="bottomRow">
+            <p id="desc">Description:</p>
+            <p id="description">description goes here...</p>
+        </div>
+        <div class="bottomButtons">
+            <button id="signUp" class="bottomButton">RSVP</button>
+            <button id="exit" class="bottomButton">Exit</button>
+        </div>
+    </section>
+
+    <!--Event Images pop up-->
+    <section id="eventImages">
+        <div id="title">
+            <h1>Event Images</h1>
+        </div>
+        <div id="imageSection">
+
+        </div>
+        <div class="bottomButtons">
+            <button id="addImageButton" class="bottomButton">Add Image</button>
+            <button id="exitImagesButton" class="bottomButton">Exit</button>
+        </div>
+    </section>
+
+    <!--Bottom nav bar-->
+    <nav>
+        <ul>
+            <li><a id="houseButtonLink" href="index.html"><i id="houseButton" class="fa-solid fa-house fa-xl" ></i></a></li>
+            <li><a id="createEventButtonLink" href="create-event.html"><i id="createEventButton" class="fa-solid fa-circle-plus fa-xl"></i></a></li>
+            <li><a id="profileButtonLink" href="account-in.html"><i id="profileButton" class="fa-solid fa-user fa-xl"></i></a></li>
+        </ul>
+    </nav>
+    <div id="darkener">
+    </div>
+    <div id="darkener2">
+    </div>
+    <script src="js/index.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>
+

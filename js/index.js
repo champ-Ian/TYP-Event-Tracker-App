@@ -25,7 +25,8 @@ const pastEventSection = document.querySelector('.pastEvents')
 let eventAmount = eventArray.length
 
 // Loop through stored events and build DOM nodes for each one.
-for (let i = 1; i < eventAmount; i++) {
+if (currentEventSection && pastEventSection) {
+    for (let i = 1; i < eventAmount; i++) {
 
     const eventBlock = document.createElement('div');
     eventBlock.className = 'event'
@@ -48,9 +49,15 @@ for (let i = 1; i < eventAmount; i++) {
 
 
 
+    // Validate event record shape before using fields
+    if (!eventArray[i] || !Array.isArray(eventArray[i]) || typeof eventArray[i][1] !== 'string' || typeof eventArray[i][2] !== 'string') {
+        console.warn(`Skipping malformed event at index ${i}`, eventArray[i])
+        continue
+    }
+
     // Event title is stored at index 0 of the event array
     const eventName = document.createElement('h2');
-    eventName.textContent = eventArray[i][0]
+    eventName.textContent = eventArray[i][0] || 'Untitled Event'
     eventName.className = 'eventTitle'
 
     // Format stored ISO date (YYYY-MM-DD) to MM/DD/YYYY for display
@@ -63,25 +70,32 @@ for (let i = 1; i < eventAmount; i++) {
     // assumes the stored string is always `HH:MM`.
     const eventTime = document.createElement('h4');
     let formattedStartTime = null
-    if (eventArray[i][2].slice(0,2) == 12){
+    const startHour = parseInt(eventArray[i][2].slice(0,2), 10)
+    if (startHour === 12){
         formattedStartTime = `12:00 PM`
-    } else if (eventArray[i][2].slice(0,2) == 00) {
-        formattedstartTime = '12:00 AM'
-    } else if (eventArray[i][2].slice(0,2) < 12) {
+    } else if (startHour === 0) {
+        formattedStartTime = '12:00 AM'
+    } else if (startHour < 12) {
         formattedStartTime = `${eventArray[i][2]} AM`
     } else {
-        formattedStartTime = `${eventArray[i][2].slice(0,2) - 12}:${eventArray[i][2].slice(3, 5)} PM`
+        formattedStartTime = `${startHour - 12}:${eventArray[i][2].slice(3, 5)} PM`
     }
 
-    let formattedEndTime = null
-    if (eventArray[i][6].slice(0,2) == 12){
-        formattedEndTime = `12:00 PM`
-    } else if (eventArray[i][6].slice(0,2) == 00) {
-        formattedEndTime = '12:00 AM'
-    } else if (eventArray[i][6].slice(0,2) < 12) {
-        formattedEndTime = `${eventArray[i][6]} AM`
+    let formattedEndTime = ''
+    // end time is stored at index 7 in the event record; guard if missing
+    if (eventArray[i][7]) {
+        const endHour = parseInt(eventArray[i][7].slice(0,2), 10)
+        if (endHour === 12) {
+            formattedEndTime = `12:00 PM`
+        } else if (endHour === 0) {
+            formattedEndTime = '12:00 AM'
+        } else if (endHour < 12) {
+            formattedEndTime = `${eventArray[i][7]} AM`
+        } else {
+            formattedEndTime = `${endHour - 12}:${eventArray[i][7].slice(3, 5)} PM`
+        }
     } else {
-        formattedEndTime = `${eventArray[i][6].slice(0,2) - 12}:${eventArray[i][6].slice(3, 5)} PM`
+        formattedEndTime = ''
     }
 
     let formattedTime = `${formattedStartTime} - ${formattedEndTime}`
@@ -124,37 +138,40 @@ for (let i = 1; i < eventAmount; i++) {
         pastEventSection.appendChild(eventBlock)
     }
 
-    // Give each event block an id that includes the index so the click
-    // handler can locate the correct event data later (e.g. `event3`).
-    eventBlock.id = `event${i}`
-    console.log(eventBlock.id)
+        // Give each event block an id that includes the index so the click
+        // handler can locate the correct event data later (e.g. `event3`).
+        eventBlock.id = `event${i}`
+        console.log(eventBlock.id)
+    }
+} else {
+    console.warn('Upcoming/past event sections not found in DOM; skipping event rendering')
 }
 
 
 //opening past and current events on their respective tabs
 
-pastEventSection.style.display = 'none'
+if (pastEventSection) pastEventSection.style.display = 'none'
 
 const toggleBarUpcoming = document.querySelector('#togglebar1')
 const toggleBarPast = document.querySelector('#togglebar2')
 
-toggleBarUpcoming.addEventListener('click', () => {
-    currentEventSection.style.display = 'block'
-    pastEventSection.style.display = 'none'
+if (toggleBarUpcoming) toggleBarUpcoming.addEventListener('click', () => {
+    if (currentEventSection) currentEventSection.style.display = 'block'
+    if (pastEventSection) pastEventSection.style.display = 'none'
     toggleBarUpcoming.style.backgroundColor = 'var(--Secondary-Background-Color)'
     toggleBarUpcoming.style.boxShadow = '5px 5px 8px #424242'
-    toggleBarPast.style.backgroundColor = 'var(--Box-Color)'
-    toggleBarPast.style.boxShadow = 'none'
+    if (toggleBarPast) toggleBarPast.style.backgroundColor = 'var(--Box-Color)'
+    if (toggleBarPast) toggleBarPast.style.boxShadow = 'none'
 
 })
 
-toggleBarPast.addEventListener('click', () => {
-    currentEventSection.style.display = 'none'
-    pastEventSection.style.display = 'block'
+if (toggleBarPast) toggleBarPast.addEventListener('click', () => {
+    if (currentEventSection) currentEventSection.style.display = 'none'
+    if (pastEventSection) pastEventSection.style.display = 'block'
     toggleBarPast.style.backgroundColor = 'var(--Secondary-Background-Color)'
     toggleBarPast.style.boxShadow = '5px 5px 8px #424242'
-    toggleBarUpcoming.style.backgroundColor = 'var(--Box-Color)'
-    toggleBarUpcoming.style.boxShadow = 'none'
+    if (toggleBarUpcoming) toggleBarUpcoming.style.backgroundColor = 'var(--Box-Color)'
+    if (toggleBarUpcoming) toggleBarUpcoming.style.boxShadow = 'none'
 })
 
 
@@ -181,51 +198,61 @@ const creatorsName = document.querySelector('#eventCreator')
 const eventDescription = document.querySelector('#description')
 const eventImage = document.querySelector('#eventImage')
 
-document.addEventListener('click', (event) => {
-    if(event.target.closest('.seeMore')) {
-        viewEvent.style.display = 'block'
-        darkener.style.display = 'block'
-        let j = event.target.closest('.event').id[5]
-        globalThis.l = j
-        console.log(j)
-        eventName.textContent = eventArray[j][0]
-        eventDate.textContent = `${eventArray[j][1].slice(5, 7)}/${eventArray[j][1].slice(8, 10)}/${eventArray[j][1].slice(0, 4)}`
-        let formattedStartTime = null
-        if (eventArray[j][2].slice(0,2) == 12){
-            formattedStartTime = `12:00 PM`
-        } else if (eventArray[j][2].slice(0,2) == 00) {
-            formattedstartTime = '12:00 AM'
-        } else if (eventArray[j][2].slice(0,2) < 12) {
-            formattedStartTime = `${eventArray[j][2]} AM`
-        } else {
-            formattedStartTime = `${eventArray[j][2].slice(0,2) - 12}:${eventArray[j][2].slice(3, 5)} PM`
+if (viewEvent && darkener && eventName && eventDate && eventTime && creatorsName && eventDescription && eventImage) {
+    document.addEventListener('click', (event) => {
+        const seeMoreEl = event.target.closest('.seeMore')
+        if(seeMoreEl) {
+            const eventEl = seeMoreEl.closest('.event')
+            if (!eventEl) return
+            const idStr = eventEl.id || ''
+            const idx = parseInt(idStr.replace('event',''), 10)
+            if (Number.isNaN(idx) || !eventArray[idx]) return
+
+            viewEvent.style.display = 'block'
+            darkener.style.display = 'block'
+            globalThis.l = idx
+            console.log(idx)
+
+            eventName.textContent = eventArray[idx][0] || 'Untitled Event'
+            if (eventArray[idx][1]) {
+                eventDate.textContent = `${eventArray[idx][1].slice(5, 7)}/${eventArray[idx][1].slice(8, 10)}/${eventArray[idx][1].slice(0, 4)}`
+            } else {
+                eventDate.textContent = ''
+            }
+
+            let formattedStartTime = ''
+            if (eventArray[idx][2]) {
+                const sh = parseInt(eventArray[idx][2].slice(0,2), 10)
+                if (sh === 12) formattedStartTime = '12:00 PM'
+                else if (sh === 0) formattedStartTime = '12:00 AM'
+                else if (sh < 12) formattedStartTime = `${eventArray[idx][2]} AM`
+                else formattedStartTime = `${sh - 12}:${eventArray[idx][2].slice(3,5)} PM`
+            }
+
+            let formattedEndTime = ''
+            if (eventArray[idx][7]) {
+                const eh = parseInt(eventArray[idx][7].slice(0,2), 10)
+                if (eh === 12) formattedEndTime = '12:00 PM'
+                else if (eh === 0) formattedEndTime = '12:00 AM'
+                else if (eh < 12) formattedEndTime = `${eventArray[idx][7]} AM`
+                else formattedEndTime = `${eh - 12}:${eventArray[idx][7].slice(3,5)} PM`
+            }
+
+            eventTime.textContent = `${formattedStartTime} - ${formattedEndTime}`
+            creatorsName.textContent = `Creator: ${eventArray[idx][6] || 'Unknown'}`
+            eventDescription.textContent = eventArray[idx][3] || ''
+            if (eventArray[idx][4]) eventImage.src = eventArray[idx][4]
         }
-
-        let formattedEndTime = null
-        if (eventArray[j][6].slice(0,2) == 12){
-            formattedEndTime = `12:00 PM`
-        } else if (eventArray[j][6].slice(0,2) == 00) {
-            formattedEndTime = '12:00 AM'
-        } else if (eventArray[j][6].slice(0,2) < 12) {
-            formattedEndTime = `${eventArray[j][6]} AM`
-        } else {
-            formattedEndTime = `${eventArray[j][6].slice(0,2) - 12}:${eventArray[j][6].slice(3, 5)} PM`
-        }
-
-        eventTime.textContent = `${formattedStartTime} - ${formattedEndTime}`
-        creatorsName.textContent = `Creator: ${eventArray[j][5]}`
-        eventDescription.textContent = eventArray[j][3]
-        eventImage.src = eventArray[j][4]
-    } 
-
-})
+    })
+} else {
+    console.warn('View event elements not found; skipping view handlers')
+}
 
 //closing the view event page
 const exitButton = document.querySelector('#exit')
-
-exitButton.addEventListener('click', () => {
-    viewEvent.style.display = 'none'
-    darkener.style.display = 'none'
+if (exitButton) exitButton.addEventListener('click', () => {
+    if (viewEvent) viewEvent.style.display = 'none'
+    if (darkener) darkener.style.display = 'none'
 })
 
 
@@ -240,12 +267,10 @@ exitButton.addEventListener('click', () => {
 
 //initiating the participation array
 let participantArray = []
-for (i = 0; i < eventArray.length; i++) {
-    let eventName = eventArray[i][0]
+for (let i = 0; i < eventArray.length; i++) {
+    const eventName = eventArray[i] && eventArray[i][0] ? eventArray[i][0] : ''
     participantArray[i] = []
-    for (j = 0; j < 1; j++) {
-        participantArray[i][j] = eventName
-    }
+    participantArray[i][0] = eventName
 }
 console.log(participantArray)
 
@@ -257,16 +282,19 @@ const rsvpButton = document.querySelector('#signUp')
 const isLoggedIn = sessionStorage.getItem('loggedIn')
 console.log(isLoggedIn)
 
-rsvpButton.addEventListener('click', () => {
-    if (isLoggedIn == 'true') {
+if (rsvpButton) rsvpButton.addEventListener('click', () => {
+    const isLoggedInNow = sessionStorage.getItem('loggedIn')
+    if (isLoggedInNow == 'true') {
         const accountInfo = JSON.parse(sessionStorage.getItem('userInformation'))
-        const userName = accountInfo[0]
-        if (participantArray[l].includes(userName)) {
+        const userName = accountInfo ? accountInfo[0] : null
+        if (!userName) return
+        if (!Number.isInteger(globalThis.l) || !participantArray[globalThis.l]) return
+        if (participantArray[globalThis.l].includes(userName)) {
             alert('You are already signed up for this event')
             return
         } else {
-            participantArray[l].push(userName)
-            participantContainer.style.display = 'none'
+            participantArray[globalThis.l].push(userName)
+            if (participantContainer) participantContainer.style.display = 'none'
             alert('You have successfully signed up for this event')
         }
 
@@ -278,7 +306,7 @@ rsvpButton.addEventListener('click', () => {
 
 //opening the participant list
 
-participantsButton.addEventListener('click', () => {
+if (participantsButton) participantsButton.addEventListener('click', () => {
     if (participantArray[l].length > 1) {
         if (participantContainer.style.display == 'none') {
             participantContainer.innerHTML = ''
@@ -321,16 +349,16 @@ participantsButton.addEventListener('click', () => {
 const openImageButton = document.querySelector('#viewImages')
 const imageSection = document.querySelector('#eventImages')
 
-openImageButton.addEventListener('click', () => {
-    imageSection.style.display = 'block'
+if (openImageButton) openImageButton.addEventListener('click', () => {
+    if (imageSection) imageSection.style.display = 'block'
 })
 
 //exiting image section
 
 const imageExit = document.querySelector('#exitImagesButton')
 
-imageExit.addEventListener('click', () => {
-    imageSection.style.display = 'none'
+if (imageExit) imageExit.addEventListener('click', () => {
+    if (imageSection) imageSection.style.display = 'none'
 })
 
 
@@ -349,12 +377,10 @@ function openImages() {
 //creating the imageArray
 
 let imageArray = []
-for (i = 0; i < eventArray.length; i++) {
-    let eventName = eventArray[i][0]
+for (let i = 0; i < eventArray.length; i++) {
+    const eventName = eventArray[i] && eventArray[i][0] ? eventArray[i][0] : ''
     imageArray[i] = []
-    for (j = 0; j < 1; j++) {
-        imageArray[i][j] = eventName
-    }
+    imageArray[i][0] = eventName
 }
 console.log(imageArray)
 
@@ -365,13 +391,16 @@ const addImageButton = document.querySelector('#addImageButton')
 const imageContainer = document.querySelector('#imageSection')
 const imageInput = document.querySelector('#imageInput')
 
-addImageButton.addEventListener('click', () => {
+if (addImageButton) addImageButton.addEventListener('click', () => {
     console.log('add image clicked')
-    const imageSrc = imageInput.files
-    imageArray[l].push(imageSrc)
+    if (!imageInput || !imageInput.files) return
+    const imageSrc = imageInput.files[0]
+    if (!Number.isInteger(globalThis.l)) return
+    if (!imageArray[globalThis.l]) imageArray[globalThis.l] = []
+    imageArray[globalThis.l].push(imageSrc)
     console.log(imageArray)
-    openImages
+    openImages()
 })
 
 
-openImages
+if (typeof openImages === 'function') openImages()

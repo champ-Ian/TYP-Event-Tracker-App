@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body {
+    background-color: var(--Background-Color);
+    text-align: center;
+}
+
+:root {
+    --Background-Color: #FFF;
+    --Secondary-Background-Color: #DBFF76;
+    --Box-Color: #FFFFE3;
+    --Primary-Text-Color: #37352F;
+    --Secondary-Text-Color: #7A7666;
+
+    /* delete later */
+    --dark: #1d7543;
+    --light: #99ed98;
+    --pale: #daf8d6;
+    --pitch: #053623;
+    --primary: #5cc465;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: 9vh;
+    background-color: var(--dark);
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    border-radius: 20px 20px 0 0;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+    align-items: center;
+    width: 100vw;
+}
+
+nav ul i {
+    width: 100%;
+    color: #90EE90;
+    padding: 4.3vh 8vh 4.3vh 6vh;
+    background-color: var(--dark);
+}
+
+.accountInfoInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--Box-Color);
+    margin: 7vw;
+    border: none;
+    border-radius: 15px;
+    color: var(--pitch);
+    margin-bottom: 5vw;
+    margin-top: 5vw;
+    box-shadow: 7px 7px 10px #424242;
+}
+
+#login {
+    height: 30vh;
+    margin-bottom: 10vw;
+}
+
+#signup {
+    height: 50vh;
+}
+
+#logInButton {
+    background-color: var(--Secondary-Background-Color);
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    width: 20vw;
+    height: 7vw;
+    margin-bottom: 1px;
+    margin-top: 25px;
+}
+
+.accountInput input {
+    background-color: var(--Secondary-Background-Color);
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    height: 6vw;
+    padding: 3vw;
+    border-color: var(--Secondary-Text-Color);
+}
+
+#passwordIncorrect {
+    display: none;
+}
+
+#noUsername {
+    display: none;
+}
+
+#noEmail {
+    display: none;
+}
+
+#signUpButton {
+    background-color: var(--Secondary-Background-Color);
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    width: 20vw;
+    height: 7vw;
+    margin-bottom: 1px;
+    margin-top: 25px;
+}
+
+.accountInfoInput h1 {
+    color: var(--Primary-Text-Color);
+    font-size: 5vw;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.accountInfoInput p {
+    color: var(--Secondary-Text-Color);
+    font-size: 3.5vw;
+    margin: 1vw 0 1vw 0;
+}
+
+#signUpButton, #logInButton {
+    font-size: 4vw;
+    color: var(--Primary-Text-Color);
+    border-color: var(--Secondary-Text-Color);
+}
+
+#eye1 {
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    cursor: finger;
+    position: relative; top: 40px; right: -10px;
+}
+
+#eye2 {
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    cursor: finger;
+    position: relative; top: 40px; right: 1px;
+}
+
+#eye3 {
+    width: 5vw;
+    height: 5vw;
+    transform: translate(-50%, -50%);
+    cursor: finger;
+    position: relative; top: 40px; right: 1px;
+}
+
+.passwordContainer {
+    position: relative;
+    width: 3vw;
+}
+
+.passwordContainer input {
+    width: 100%;
+}
+
+.passwordContainer img {
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.accountInput {
+    position: relative;
+}
+
+#eye1,
+#eye2,
+#eye3 {
+    position: absolute;
+    width: 5vw;
+    height: 5vw;
+    cursor: pointer;
+    right: -9vw;
+    bottom: 10vw;
+}
