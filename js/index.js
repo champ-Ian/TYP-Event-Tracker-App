@@ -365,11 +365,14 @@ if (imageExit) imageExit.addEventListener('click', () => {
 //function displaying the images on the image display
 
 function openImages() {
+    imageContainer.innerHTML = ''
     if (imageArray[l].length > 1) {
         imageArray[l].slice(1).forEach(image => {
             const img = document.createElement('img')
             img.src = image
+            img.style.width = '80%'
             imageContainer.appendChild(img)
+            img.style.margin = '10% 10% 0 10%'
         })
     }
 }
@@ -393,13 +396,20 @@ const imageInput = document.querySelector('#imageInput')
 
 if (addImageButton) addImageButton.addEventListener('click', () => {
     console.log('add image clicked')
-    if (!imageInput || !imageInput.files) return
     const imageSrc = imageInput.files[0]
-    if (!Number.isInteger(globalThis.l)) return
-    if (!imageArray[globalThis.l]) imageArray[globalThis.l] = []
-    imageArray[globalThis.l].push(imageSrc)
-    console.log(imageArray)
-    openImages()
+    if (imageSrc) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const base64String = e.target.result;
+            imageArray[l].push(base64String)
+            openImages()
+        }
+        reader.readAsDataURL(imageSrc)
+
+        console.log(imageArray)
+
+    }
+
 })
 
 
