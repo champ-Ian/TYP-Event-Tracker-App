@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class = header>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account Sign In</title>
-    <link rel="stylesheet" href="css/account-in.css">
+    <link rel="stylesheet" href="css/edit-account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="js/account-in.js" defer></script>
+    <script src="js/edit-account.js" defer></script>
     <script src="js/navbar.js" defer></script>
 </head>
 <body>
@@ -20,43 +20,38 @@
         </ul>
     </nav>
 
-    <!--Part of accout displaying user profile-->
-    <section id="acctInTop">
-        <div class="blockColumn">
-            <div class="pfpRow">
-                <img id="pfp" src="img/anonymous pfp.webp" alt="pfp">
-                <div id="usenam">
-                    <h5 id="use">Username:</h6>
-                    <h2 id="username">Name</h2>
-                </div>
-            </div>
-            <div id="bioanschool">
-                <div id="schag">
-                    <div id="sch">
-                        <h5 id="sch:">School:</h5>
-                        <h4 id="school">(Placeholder)</h4>
-                    </div>
-                    <div id="grad">
-                        <h5 id="grad:">Grade:</h5>
-                        <h4 id="grade">(Placeholder)</h4>
-                    </div>
-                </div>
-                <p id="acctBio">Bio</p>
-            </div>
-            <div class="buttonRow">
 
-                <div id="editButton" class="accChangeButton">
-                    <p>Edit</p>
-                    <button id="edits"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                </div>
+    <section class="form">
 
-                <div id="logoutButton" class="accChangeButton">
-                    <p>Logout</p>
-                    <button id="logout"><i class="fa-solid fa-right-from-bracket"></i></button>
-                </div>
-
-            </div>
+        <div class="input-group">
+            <h2 class="description">Username</h2>
+            <input type="text" class="text-input">
+            <h2 class="description">Password</h2>
+            <input type="password" class="text-input">
+            <h2 class="description">Email</h2>
+            <input type="email" class="text-input">
+            <h2 class="description">Phone Number</h2>
+            <input type="text" class="text-input">
+            <h2 class="description">Profile Picture</h2>
+            <input type="text" class="text-input">
+            <h2 class="description">School</h2>
+            <input type="text" class="text-input">
+            <h2 class="description">Grade</h2>
+            <input type="text" class="text-input">
+            <h2 class="description">Additional Information</h2>
+            <input type="text" class="text-input">      
         </div>
+
+        <div class="buttons">
+            <button class="btn" id="save">
+                Save
+            </button>
+
+            <button class="btn" id="cancel">
+                Cancel
+            </button>
+        </div>
+
     </section>
 </body>
 </html>
