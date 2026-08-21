@@ -158,9 +158,9 @@ const toggleBarPast = document.querySelector('#togglebar2')
 if (toggleBarUpcoming) toggleBarUpcoming.addEventListener('click', () => {
     if (currentEventSection) currentEventSection.style.display = 'block'
     if (pastEventSection) pastEventSection.style.display = 'none'
-    toggleBarUpcoming.style.backgroundColor = 'var(--Secondary-Background-Color)'
+    toggleBarUpcoming.style.backgroundColor = 'var(--light)'
     toggleBarUpcoming.style.boxShadow = '5px 5px 8px #424242'
-    if (toggleBarPast) toggleBarPast.style.backgroundColor = 'var(--Box-Color)'
+    if (toggleBarPast) toggleBarPast.style.backgroundColor = 'var(--pale)'
     if (toggleBarPast) toggleBarPast.style.boxShadow = 'none'
 
 })
@@ -168,9 +168,9 @@ if (toggleBarUpcoming) toggleBarUpcoming.addEventListener('click', () => {
 if (toggleBarPast) toggleBarPast.addEventListener('click', () => {
     if (currentEventSection) currentEventSection.style.display = 'none'
     if (pastEventSection) pastEventSection.style.display = 'block'
-    toggleBarPast.style.backgroundColor = 'var(--Secondary-Background-Color)'
+    toggleBarPast.style.backgroundColor = 'var(--light)'
     toggleBarPast.style.boxShadow = '5px 5px 8px #424242'
-    if (toggleBarUpcoming) toggleBarUpcoming.style.backgroundColor = 'var(--Box-Color)'
+    if (toggleBarUpcoming) toggleBarUpcoming.style.backgroundColor = 'var(--pale)'
     if (toggleBarUpcoming) toggleBarUpcoming.style.boxShadow = 'none'
 })
 
