@@ -7,7 +7,6 @@
 
 body {
     background-color: white;
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
 }
 
 :root {
@@ -62,35 +61,49 @@ nav ul i {
 }
 
 .input-group {
-    display: flex;
+    display:flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    justify-content: center;
+    margin-bottom: 10px;
     width: 80%;
 }
 
 .description {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem;
     color: var(--Primary-Text-Color);
 }
 
 .text-input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 8px;
+    border: 1px solid #1d7543;
+    border-radius: 10px;
+    border-width: 2px;
     width: 100%;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
+    top: -200px;
+
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
 }
 
 .btn {
     padding: 0.7rem 1.2rem;
+    width: 50%;
     border: none;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: var(--primary);
-    color: white;
+    color: black;
     cursor: pointer;
-    margin: 0.5rem;
+    margin: 5px;
+    background-color: #0a9144;
+    margin-top: 1rem;
+    margin-bottom: 5px;
 }
 header{
     background:var(--dark);
