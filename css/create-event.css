@@ -54,7 +54,7 @@ header p{
 
 .create-event{
     background:var(--pale);
-    margin:1rem;
+    margin: 1rem 1rem 6.5rem;
     padding:1.5rem;
     border-radius:25px;
     border:3px solid var(--dark);
@@ -68,8 +68,8 @@ header p{
 .input-group{
     display:flex;
     flex-direction:column;
-    gap: 0.4rem;
-    margin-bottom:1rem;
+    gap: 1.25rem;
+    margin-bottom:3rem;
 }
 
 .input-group label{
@@ -180,7 +180,7 @@ nav ul {
 
 nav ul i {
     width: 100%;
-    color: ;
+    color: #90EE90;
     padding: 4.3vh 8vh 4.3vh 6vh;
     background-color: var(--dark);
 }
