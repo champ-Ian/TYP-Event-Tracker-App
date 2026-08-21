@@ -1,43 +1,73 @@
-//updating the username, pfp, and bio depending on the user's information
-const username = document.querySelector("#username")
-const pfp = document.querySelector("#pfp")
-const bio = document.querySelector("#acctBio")
+const saveButton = document.querySelector("#save")
 
-const storedAccountInfo = sessionStorage.getItem('userInformation')
-const userInfo = storedAccountInfo ? JSON.parse(storedAccountInfo) : [];
-if (username && userInfo && userInfo[0]) username.textContent = userInfo[0]
-console.log(userInfo)
+if (saveButton) {
+    saveButton.addEventListener('click', () => {
+        // gather form values and save updates
+        const inputs = document.querySelectorAll('.text-input')
+        const updated = Array.from(inputs).map(i => i.value)
 
-if (bio && userInfo && userInfo[4]) bio.textContent = userInfo[4]
+        // save to sessionStorage for current session
+        sessionStorage.setItem('userInformation', JSON.stringify(updated))
 
+        // also update stored accounts in localStorage if present
+        try {
+            const s = localStorage.getItem('accounts')
+            if (s) {
+                const accounts = JSON.parse(s)
+                // original username may be stored in the form's first input before edit
+                const original = window.__originalUsername || null
+                let found = false
+                for (let i = 0; i < accounts.length; i++) {
+                    if (accounts[i] && accounts[i][0] === (original || updated[0])) {
+                        accounts[i] = updated
+                        found = true
+                        break
+                    }
+                }
+                if (!found) accounts.push(updated)
+                localStorage.setItem('accounts', JSON.stringify(accounts))
+            }
+        } catch (e) {
+            console.error('Failed to update accounts in localStorage', e)
+        }
 
-
-
-
-//When log out button is clicked, it logs out
-
-const logOutButton = document.querySelector("#logoutButton")
-
-if (logOutButton) {
-    logOutButton.addEventListener('click', () => {
-        sessionStorage.setItem('loggedIn', 'false');
-        window.location.href = 'account-out.html'
+        window.location.href = 'account-in.html'
     })
 } else {
-    console.warn('Logout button not found')
+    console.warn('Save button not found')
 }
 
 
+const cancelButton = document.querySelector("#cancel")
 
-
-//when edit button is clicked, the edit profile interface appears
-
-const editButton = document.querySelector("#editButton")
-
-if (editButton) {
-    editButton.addEventListener('click', () => {
-        window.location.href = 'edit-account.html'
+if (cancelButton) {
+    cancelButton.addEventListener('click', () => {
+        window.location.href = 'account-in.html'
     })
 } else {
-    console.warn('Edit button not found')
+    console.warn('Cancel button not found')
 }
+
+
+// Read stored events from localStorage. If parsing fails or the value
+// isn't an array, fall back to an empty array so the page doesn't error.
+// Prefer sessionStorage (set on login); fall back to localStorage
+const storedAccountInfo = sessionStorage.getItem('userInformation') || localStorage.getItem('userInformation')
+let userInfo;
+try {
+    userInfo = storedAccountInfo ? JSON.parse(storedAccountInfo) : [];
+} catch (e) {
+    console.error('Failed to parse eventStorage:', e)
+    userInfo = []
+}
+if (!Array.isArray(userInfo)) userInfo = []
+console.log('userInfo', userInfo)
+
+const formInformacion = document.querySelectorAll('.text-input')
+console.log("User info",userInfo)
+for (let i = 0; i < formInformacion.length; i++) {
+    formInformacion[i].value = userInfo[i] || ''
+}
+
+// Save original username so we can find the account record when username changes
+if (userInfo[0]) window.__originalUsername = userInfo[0]
