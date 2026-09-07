@@ -20,7 +20,7 @@ const logOutButton = document.querySelector("#logoutButton")
 
 if (logOutButton) {
     logOutButton.addEventListener('click', () => {
-        sessionStorage.setItem('loggedIn', 'false');
+        sessionStorage.setItem('loggedIn', false);
         window.location.href = 'account-out.html'
     })
 } else {

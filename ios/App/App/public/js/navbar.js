@@ -4,9 +4,10 @@ const profileButtonLink = document.querySelector("#profileButtonLink")
 const userLoggedIn = sessionStorage.getItem('loggedIn');
 console.log('this',userLoggedIn)
 
-profileButtonLink.addEventListener('click', (event) => {
+if (profileButtonLink) profileButtonLink.addEventListener('click', (event) => {
     event.preventDefault();
-    if (userLoggedIn === "true") {
+    const nowLoggedIn = sessionStorage.getItem('loggedIn')
+    if (nowLoggedIn === "true") {
         window.location.href = 'account-in.html'
     } else {
         window.location.href = 'account-out.html'
@@ -21,14 +22,11 @@ function checkNavBar() {
     const currentPage = window.location.pathname;
     console.log(currentPage)
     if (currentPage === '/index.html') {
-        homeButton.style.color = 'var(--dark)'
-        homeButton.style.backgroundColor = 'var(--light)'
+        if (homeButton) { homeButton.style.color = 'var(--dark)'; homeButton.style.backgroundColor = 'var(--light)'; }
     } else if (currentPage === '/create-event.html') {
-        createButton.style.color = 'var(--dark)'
-        createButton.style.backgroundColor = 'var(--light)'
+        if (createButton) { createButton.style.color = 'var(--dark)'; createButton.style.backgroundColor = 'var(--light)'; }
     } else if (currentPage === '/account-in.html' || currentPage === '/account-out.html') {
-        accountButton.style.color = 'var(--dark)'
-        accountButton.style.backgroundColor = 'var(--light)'
+        if (accountButton) { accountButton.style.color = 'var(--dark)'; accountButton.style.backgroundColor = 'var(--light)'; }
     }
 }
 

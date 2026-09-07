@@ -1,6 +1,6 @@
 {
-	"appId": "com.typ.apptracker",
-	"appName": "typ.apptracker",
+	"appId": "com.ianbai.typ_event_tracker",
+	"appName": "typ_event_tracker",
 	"webDir": "www",
 	"packageClassList": []
 }

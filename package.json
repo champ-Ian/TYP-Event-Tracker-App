@@ -1,0 +1,28 @@
+{
+  "name": "typ-event-tracker-app",
+  "version": "1.0.0",
+  "description": "App to help Total Youth Productions manage upcoming events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/champ-Ian/TYP-Event-Tracker-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/champ-Ian/TYP-Event-Tracker-App/issues"
+  },
+  "homepage": "https://github.com/champ-Ian/TYP-Event-Tracker-App#readme",
+  "dependencies": {
+    "@capacitor/core": "^8.5.1",
+    "@capacitor/ios": "^8.5.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.1"
+  }
+}
