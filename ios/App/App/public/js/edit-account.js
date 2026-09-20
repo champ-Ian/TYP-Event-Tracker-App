@@ -1,16 +1,81 @@
+// account record shape: [username, password, email, phone, pfp, school, grade, bio, role]
+const usernameInput = document.querySelector('#usernameInput')
+const passwordInput = document.querySelector('#passwordInput')
+const emailInput = document.querySelector('#emailInput')
+const phoneInput = document.querySelector('#phoneInput')
+const schoolInput = document.querySelector('#schoolInput')
+const gradeInput = document.querySelector('#gradeInput')
+const bioInput = document.querySelector('#bioInput')
+const roleInput = document.querySelector('#roleInput')
+
+const pfpFile = document.querySelector('#pfpFile')
+const pfpFileName = document.querySelector('#pfpFile-name')
+const pfpPreview = document.querySelector('#pfpPreview')
+
+// Holds the current profile picture as a base64 data URL (from the existing
+// account, or replaced when the user picks a new file below).
+let pfpDataUrl = null
+
+function togglePassword(passwordId, eyeId) {
+    const input = document.getElementById(passwordId)
+    const eye = document.getElementById(eyeId)
+    if (!input) return
+
+    if (input.type === 'password') {
+        input.type = 'text'
+        if (eye) {
+            eye.classList.remove('fa-eye')
+            eye.classList.add('fa-eye-slash')
+        }
+    } else {
+        input.type = 'password'
+        if (eye) {
+            eye.classList.remove('fa-eye-slash')
+            eye.classList.add('fa-eye')
+        }
+    }
+}
+
+if (pfpFile) pfpFile.addEventListener('change', () => {
+    const file = pfpFile.files[0]
+    if (pfpFileName) pfpFileName.textContent = file?.name || 'No File Selected'
+    if (!file) return
+
+    // Profile pictures are only ever shown small, so keep them small in storage too
+    compressImage(file, 400, 0.8).then((dataUrl) => {
+        if (!dataUrl) return
+        pfpDataUrl = dataUrl
+        if (pfpPreview) pfpPreview.src = pfpDataUrl
+    })
+})
+
 const saveButton = document.querySelector("#save")
 
 if (saveButton) {
     saveButton.addEventListener('click', () => {
-        // gather form values and save updates
-        const inputs = document.querySelectorAll('.text-input')
-        const updated = Array.from(inputs).map(i => i.value)
+        if (!roleInput?.value) {
+            alert('Please select your role.')
+            return
+        }
 
-        // save to sessionStorage for current session
-        sessionStorage.setItem('userInformation', JSON.stringify(updated))
+        const updated = [
+            usernameInput?.value.trim() || '',
+            passwordInput?.value || '',
+            emailInput?.value.trim() || '',
+            phoneInput?.value.trim() || '',
+            pfpDataUrl || null,
+            schoolInput?.value.trim() || '',
+            gradeInput?.value.trim() || '',
+            bioInput?.value.trim() || '',
+            roleInput.value
+        ]
 
-        // also update stored accounts in localStorage if present
+        // Save to sessionStorage and localStorage. A large profile picture can
+        // push either of these over the browser's storage quota and throw -
+        // catch that so a storage failure can never block navigating back.
         try {
+            sessionStorage.setItem('userInformation', JSON.stringify(updated))
+
             const s = localStorage.getItem('accounts')
             if (s) {
                 const accounts = JSON.parse(s)
@@ -28,7 +93,8 @@ if (saveButton) {
                 localStorage.setItem('accounts', JSON.stringify(accounts))
             }
         } catch (e) {
-            console.error('Failed to update accounts in localStorage', e)
+            console.error('Failed to save account changes', e)
+            alert('Could not save your changes - the photo may be too large. Please try a smaller image.')
         }
 
         window.location.href = 'account-in.html'
@@ -49,25 +115,39 @@ if (cancelButton) {
 }
 
 
-// Read stored events from localStorage. If parsing fails or the value
-// isn't an array, fall back to an empty array so the page doesn't error.
+// Read stored account info. If parsing fails or the value isn't an array,
+// fall back to an empty array so the page doesn't error.
 // Prefer sessionStorage (set on login); fall back to localStorage
 const storedAccountInfo = sessionStorage.getItem('userInformation') || localStorage.getItem('userInformation')
 let userInfo;
 try {
     userInfo = storedAccountInfo ? JSON.parse(storedAccountInfo) : [];
 } catch (e) {
-    console.error('Failed to parse eventStorage:', e)
+    console.error('Failed to parse userInformation:', e)
     userInfo = []
 }
 if (!Array.isArray(userInfo)) userInfo = []
 console.log('userInfo', userInfo)
 
-const formInformacion = document.querySelectorAll('.text-input')
-console.log("User info",userInfo)
-for (let i = 0; i < formInformacion.length; i++) {
-    formInformacion[i].value = userInfo[i] || ''
-}
+// There's no account to edit without being logged in - without this guard,
+// saving a blank form here would push a brand-new empty-username account
+// into storage instead of editing anything.
+if (!userInfo[0]) {
+    window.location.href = 'account-out.html'
+} else {
+    if (usernameInput) usernameInput.value = userInfo[0] || ''
+    if (passwordInput) passwordInput.value = userInfo[1] || ''
+    if (emailInput) emailInput.value = userInfo[2] || ''
+    if (phoneInput) phoneInput.value = userInfo[3] || ''
 
-// Save original username so we can find the account record when username changes
-if (userInfo[0]) window.__originalUsername = userInfo[0]
+    pfpDataUrl = userInfo[4] || null
+    if (pfpPreview && pfpDataUrl) pfpPreview.src = pfpDataUrl
+
+    if (schoolInput) schoolInput.value = userInfo[5] || ''
+    if (gradeInput) gradeInput.value = userInfo[6] || ''
+    if (bioInput) bioInput.value = userInfo[7] || ''
+    if (roleInput) roleInput.value = userInfo[8] || ''
+
+    // Save original username so we can find the account record when username changes
+    window.__originalUsername = userInfo[0]
+}

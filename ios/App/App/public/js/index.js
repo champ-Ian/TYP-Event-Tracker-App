@@ -44,9 +44,6 @@ if (currentEventSection && pastEventSection) {
     seeMoreText.className = 'seeMoreText'
     seeMoreText.textContent = 'See More'
 
-    const dotDotDot = document.createElement('i')
-    dotDotDot.className = 'fa-solid fa-ellipsis'
-
 
 
     // Validate event record shape before using fields
@@ -102,7 +99,6 @@ if (currentEventSection && pastEventSection) {
     eventTime.textContent = formattedTime
 
     seeMore.appendChild(seeMoreText)
-    seeMore.appendChild(dotDotDot)
     eventInfo.appendChild(eventDate)
     eventInfo.appendChild(eventTime)
     eventInfo1.appendChild(eventInfo)
@@ -160,7 +156,7 @@ if (toggleBarUpcoming) toggleBarUpcoming.addEventListener('click', () => {
     if (pastEventSection) pastEventSection.style.display = 'none'
     toggleBarUpcoming.style.backgroundColor = 'var(--light)'
     toggleBarUpcoming.style.boxShadow = '5px 5px 8px #424242'
-    if (toggleBarPast) toggleBarPast.style.backgroundColor = 'var(--pale)'
+    if (toggleBarPast) toggleBarPast.style.backgroundColor = 'white'
     if (toggleBarPast) toggleBarPast.style.boxShadow = 'none'
 
 })
@@ -170,7 +166,7 @@ if (toggleBarPast) toggleBarPast.addEventListener('click', () => {
     if (pastEventSection) pastEventSection.style.display = 'block'
     toggleBarPast.style.backgroundColor = 'var(--light)'
     toggleBarPast.style.boxShadow = '5px 5px 8px #424242'
-    if (toggleBarUpcoming) toggleBarUpcoming.style.backgroundColor = 'var(--pale)'
+    if (toggleBarUpcoming) toggleBarUpcoming.style.backgroundColor = 'white'
     if (toggleBarUpcoming) toggleBarUpcoming.style.boxShadow = 'none'
 })
 
@@ -194,21 +190,32 @@ const darkener = document.querySelector('#darkener')
 const eventName = document.querySelector('#eventName')
 const eventDate = document.querySelector('#viewEventDate')
 const eventTime = document.querySelector('#viewEventTime')
+const eventLocation = document.querySelector('#viewEventLocation')
 const creatorsName = document.querySelector('#eventCreator')
+const creatorImage = document.querySelector('#creatorImage')
+const editEventButton = document.querySelector('#editEventButton')
 const eventDescription = document.querySelector('#description')
-const eventImage = document.querySelector('#eventImage')
 
-if (viewEvent && darkener && eventName && eventDate && eventTime && creatorsName && eventDescription && eventImage) {
+// Look up a stored account by username so we can show the event creator's own profile picture
+function getAccountByUsername(username) {
+    try {
+        const accounts = JSON.parse(localStorage.getItem('accounts') || '[]')
+        return Array.isArray(accounts) ? accounts.find(acc => Array.isArray(acc) && acc[0] === username) : null
+    } catch (e) {
+        return null
+    }
+}
+
+if (viewEvent && darkener && eventName && eventDate && eventTime && creatorsName && eventDescription) {
     document.addEventListener('click', (event) => {
-        const seeMoreEl = event.target.closest('.seeMore')
-        if(seeMoreEl) {
-            const eventEl = seeMoreEl.closest('.event')
-            if (!eventEl) return
+        // Clicking anywhere on the card opens it, not just the "See More" button
+        const eventEl = event.target.closest('.event')
+        if(eventEl) {
             const idStr = eventEl.id || ''
             const idx = parseInt(idStr.replace('event',''), 10)
             if (Number.isNaN(idx) || !eventArray[idx]) return
 
-            viewEvent.style.display = 'block'
+            viewEvent.style.display = 'flex'
             darkener.style.display = 'block'
             globalThis.l = idx
             console.log(idx)
@@ -239,20 +246,58 @@ if (viewEvent && darkener && eventName && eventDate && eventTime && creatorsName
             }
 
             eventTime.textContent = `${formattedStartTime} - ${formattedEndTime}`
-            creatorsName.textContent = `Creator: ${eventArray[idx][6] || 'Unknown'}`
+            if (eventLocation) eventLocation.textContent = eventArray[idx][8] || 'No location set'
+
+            const creatorUsername = eventArray[idx][6] || 'Unknown'
+            const creatorAccount = getAccountByUsername(creatorUsername)
+            const creatorRole = creatorAccount && creatorAccount[8] ? ` (${creatorAccount[8]})` : ''
+            creatorsName.textContent = `Created by ${creatorUsername}${creatorRole}`
+            if (creatorImage) creatorImage.src = (creatorAccount && creatorAccount[4]) ? creatorAccount[4] : 'img/anonymous pfp.webp'
+
+            // Only the event's own creator can edit it
+            if (editEventButton) {
+                let loggedInUsername = null
+                try {
+                    const info = JSON.parse(sessionStorage.getItem('userInformation') || 'null')
+                    loggedInUsername = info ? info[0] : null
+                } catch (e) {}
+                const isOwner = sessionStorage.getItem('loggedIn') === 'true' && loggedInUsername && loggedInUsername === creatorUsername
+                editEventButton.hidden = !isOwner
+            }
+
             eventDescription.textContent = eventArray[idx][3] || ''
-            if (eventArray[idx][4]) eventImage.src = eventArray[idx][4]
+
+            renderParticipants(idx)
+            openImages()
+
+            // Reset any leftover file selection from a previously viewed event
+            if (imageInput) imageInput.value = ''
+            if (imageInputName) imageInputName.textContent = 'No File Selected'
+            if (addImageButton) addImageButton.hidden = true
         }
     })
 } else {
     console.warn('View event elements not found; skipping view handlers')
 }
 
+//editing the currently viewed event (only shown for its creator)
+if (editEventButton) editEventButton.addEventListener('click', () => {
+    if (!Number.isInteger(globalThis.l)) return
+    sessionStorage.setItem('editEventIndex', String(globalThis.l))
+    window.location.href = 'create-event.html'
+})
+
 //closing the view event page
 const exitButton = document.querySelector('#exit')
 if (exitButton) exitButton.addEventListener('click', () => {
     if (viewEvent) viewEvent.style.display = 'none'
     if (darkener) darkener.style.display = 'none'
+})
+
+//closing the view event page by clicking outside of it
+if (darkener) darkener.addEventListener('click', () => {
+    if (viewEvent) viewEvent.style.display = 'none'
+    darkener.style.display = 'none'
 })
 
 
@@ -274,7 +319,6 @@ for (let i = 0; i < eventArray.length; i++) {
 }
 console.log(participantArray)
 
-const participantsButton = document.querySelector('#participants')
 const participantContainer = document.querySelector('#participantList')
 
 //RSVP saving names to array
@@ -294,96 +338,107 @@ if (rsvpButton) rsvpButton.addEventListener('click', () => {
             return
         } else {
             participantArray[globalThis.l].push(userName)
-            if (participantContainer) participantContainer.style.display = 'none'
+            renderParticipants(globalThis.l)
             alert('You have successfully signed up for this event')
         }
 
         console.log(participantArray)
-    }
-    
-})
-
-
-//opening the participant list
-
-if (participantsButton) participantsButton.addEventListener('click', () => {
-    if (participantArray[l].length > 1) {
-        if (participantContainer.style.display == 'none') {
-            participantContainer.innerHTML = ''
-            participantArray[l].slice(1).forEach(name => {
-                const p = document.createElement('p');
-                p.textContent = name;
-                p.style.margin = "4px 0"; 
-                participantContainer.appendChild(p);
-                participantContainer.style.display = 'block'
-            })
-        } else {
-            participantContainer.style.display = 'none'
-        }
     } else {
-        if (participantContainer.style.display == 'none') {
-        participantContainer.innerHTML = ''
-        const p = document.createElement('p');
-        p.textContent = 'No one has signed up yet'
-        p.style.margin = '4px 0'
-        participantContainer.appendChild(p)
-        participantContainer.style.display = 'block'
-        } else {
-            participantContainer.style.display = 'none'
-        }
+        alert('You must be logged in to RSVP.')
     }
 
 })
+
+
+//always showing the participant list for the currently viewed event
+
+function renderParticipants(idx) {
+    if (!participantContainer) return
+    participantContainer.innerHTML = ''
+    const names = (participantArray[idx] || []).slice(1)
+    if (names.length === 0) {
+        const p = document.createElement('p')
+        p.textContent = 'No one has signed up yet'
+        participantContainer.appendChild(p)
+        return
+    }
+    names.forEach(name => {
+        const p = document.createElement('p')
+        p.textContent = name
+        participantContainer.appendChild(p)
+    })
+}
 
 
 
 
 
 //images section code goes below vvvvv
-
-
-
-
-// opening the event images section
-
-const openImageButton = document.querySelector('#viewImages')
-const imageSection = document.querySelector('#eventImages')
-
-if (openImageButton) openImageButton.addEventListener('click', () => {
-    if (imageSection) imageSection.style.display = 'block'
-})
-
-//exiting image section
-
-const imageExit = document.querySelector('#exitImagesButton')
-
-if (imageExit) imageExit.addEventListener('click', () => {
-    if (imageSection) imageSection.style.display = 'none'
-})
+//the gallery is now always visible inside the main popup instead of a separate popup
 
 
 //function displaying the images on the image display
 
-function openImages() {
-    imageContainer.innerHTML = ''
-    if (imageArray[l].length > 1) {
-        imageArray[l].slice(1).forEach(image => {
-            const img = document.createElement('img')
-            img.src = image
-            img.style.width = '80%'
-            imageContainer.appendChild(img)
-            img.style.margin = '10% 10% 0 10%'
-        })
+// Lets the user save an image to their Photos library via the native share
+// sheet (works without any extra native plugin). Falls back to opening the
+// image in a new tab, where a long-press still offers "Save to Photos".
+async function saveImageToPhotos(dataUrl) {
+    try {
+        const res = await fetch(dataUrl)
+        const blob = await res.blob()
+        const file = new File([blob], 'event-image.jpg', { type: blob.type || 'image/jpeg' })
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file] })
+        } else {
+            window.open(dataUrl, '_blank')
+        }
+    } catch (e) {
+        console.error('Failed to save image', e)
     }
 }
 
-//creating the imageArray
+function openImages() {
+    if (!imageContainer || !Number.isInteger(globalThis.l) || !imageArray[globalThis.l]) return
+    imageContainer.innerHTML = ''
+    const images = imageArray[globalThis.l].slice(1)
+    if (images.length === 0) {
+        const p = document.createElement('p')
+        p.className = 'emptyState'
+        p.textContent = 'No images yet.'
+        imageContainer.appendChild(p)
+        return
+    }
+    images.forEach(image => {
+        const thumb = document.createElement('div')
+        thumb.className = 'imageThumb'
+
+        const img = document.createElement('img')
+        img.src = image
+        thumb.appendChild(img)
+
+        const saveBtn = document.createElement('button')
+        saveBtn.type = 'button'
+        saveBtn.className = 'saveImageButton'
+        saveBtn.setAttribute('aria-label', 'Save image to Photos')
+        saveBtn.innerHTML = '<i class="fa-solid fa-download"></i>'
+        saveBtn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            saveImageToPhotos(image)
+        })
+        thumb.appendChild(saveBtn)
+
+        imageContainer.appendChild(thumb)
+    })
+}
+
+//creating the imageArray, seeded with any images the event was created with
 
 let imageArray = []
 for (let i = 0; i < eventArray.length; i++) {
     const eventName = eventArray[i] && eventArray[i][0] ? eventArray[i][0] : ''
-    imageArray[i] = []
-    imageArray[i][0] = eventName
+    imageArray[i] = [eventName]
+    if (eventArray[i] && eventArray[i][4]) imageArray[i].push(eventArray[i][4])
+    if (eventArray[i] && eventArray[i][5]) imageArray[i].push(eventArray[i][5])
 }
 console.log(imageArray)
 
@@ -393,18 +448,27 @@ console.log(imageArray)
 const addImageButton = document.querySelector('#addImageButton')
 const imageContainer = document.querySelector('#imageSection')
 const imageInput = document.querySelector('#imageInput')
+const imageInputName = document.querySelector('#imageInput-name')
+
+if (imageInput) imageInput.addEventListener('change', () => {
+    const hasFile = !!imageInput.files[0]
+    if (imageInputName) imageInputName.textContent = imageInput.files[0]?.name || 'No File Selected'
+    if (addImageButton) addImageButton.hidden = !hasFile
+})
 
 if (addImageButton) addImageButton.addEventListener('click', () => {
     console.log('add image clicked')
+    if (!Number.isInteger(globalThis.l) || !imageArray[globalThis.l]) return
     const imageSrc = imageInput.files[0]
     if (imageSrc) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            const base64String = e.target.result;
-            imageArray[l].push(base64String)
+        compressImage(imageSrc).then((dataUrl) => {
+            if (!dataUrl) return
+            imageArray[globalThis.l].push(dataUrl)
             openImages()
-        }
-        reader.readAsDataURL(imageSrc)
+            imageInput.value = ''
+            if (imageInputName) imageInputName.textContent = 'No File Selected'
+            addImageButton.hidden = true
+        })
 
         console.log(imageArray)
 

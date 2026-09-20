@@ -16,17 +16,31 @@ if (profileButtonLink) profileButtonLink.addEventListener('click', (event) => {
 
 
 function checkNavBar() {
-    const homeButton = document.querySelector("#houseButton")
-    const createButton = document.querySelector("#createEventButton")
-    const accountButton = document.querySelector("#profileButton")
-    const currentPage = window.location.pathname;
+    // Highlight the whole tap target (the <a>), not the bare icon: the icon
+    // itself no longer has its own background/size, so styling it directly
+    // only lit up a tiny box around the glyph instead of the full nav cell.
+    const homeButton = document.querySelector("#houseButtonLink")
+    const createButton = document.querySelector("#createEventButtonLink")
+    const accountButton = document.querySelector("#profileButtonLink")
+    // Compare just the filename, not the full path - this way it still works
+    // whether the app is served from the root (/index.html) or a subpath
+    // (e.g. /www/index.html, if Live Server is serving the repo root).
+    const currentPage = window.location.pathname.split('/').pop();
     console.log(currentPage)
-    if (currentPage === '/index.html') {
-        if (homeButton) { homeButton.style.color = 'var(--dark)'; homeButton.style.backgroundColor = 'var(--light)'; }
-    } else if (currentPage === '/create-event.html') {
-        if (createButton) { createButton.style.color = 'var(--dark)'; createButton.style.backgroundColor = 'var(--light)'; }
-    } else if (currentPage === '/account-in.html' || currentPage === '/account-out.html') {
-        if (accountButton) { accountButton.style.color = 'var(--dark)'; accountButton.style.backgroundColor = 'var(--light)'; }
+
+    // Just nudge the icon's own color for the active page - no background fill.
+    function highlight(link) {
+        if (!link) return
+        const icon = link.querySelector('i')
+        if (icon) icon.style.color = 'white'
+    }
+
+    if (currentPage === 'index.html' || currentPage === '') {
+        highlight(homeButton)
+    } else if (currentPage === 'create-event.html') {
+        highlight(createButton)
+    } else if (currentPage === 'account-in.html' || currentPage === 'account-out.html' || currentPage === 'edit-account.html') {
+        highlight(accountButton)
     }
 }
 

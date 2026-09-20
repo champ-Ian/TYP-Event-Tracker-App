@@ -2,5 +2,9 @@
 	"appId": "com.ianbai.typ_event_tracker",
 	"appName": "typ_event_tracker",
 	"webDir": "www",
+	"server": {
+		"url": "http://192.168.0.222:5500",
+		"cleartext": true
+	},
 	"packageClassList": []
 }

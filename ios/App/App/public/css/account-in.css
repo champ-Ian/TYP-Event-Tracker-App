@@ -2,21 +2,16 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Segoe UI",sans-serif;
+    font-family:"Roboto",sans-serif;
 }
 
 body{
     background-color:white;
+    color:var(--pitch);
+    padding-bottom:11vh;
 }
 
 :root{
-    --Background-Color:#8fb733;
-    --Secondary-Background-Color:#DBFF76;
-    --Box-Color:#FFFFE3;
-    --Primary-Text-Color:#37352F;
-    --Secondary-Text-Color:#7A7666;
-
-    /* delete later */
     --dark:#1d7543;
     --light:#99ed98;
     --pale:#daf8d6;
@@ -28,12 +23,14 @@ nav{
     display:flex;
     flex-direction:row;
     list-style:none;
-    height:9vh;
+    height:calc(7vh + env(safe-area-inset-bottom, 0px));
     background-color:var(--dark);
     position:fixed;
     bottom:0;
     width:100vw;
     border-radius:20px 20px 0 0;
+    overflow:hidden;
+    z-index:1000;
 }
 
 nav ul{
@@ -43,35 +40,47 @@ nav ul{
     list-style:none;
     align-items:center;
     width:100vw;
+    height:100%;
+}
+
+nav ul li{
+    display:flex;
+    flex:1;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+}
+
+nav ul a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:100%;
+    text-decoration:none;
 }
 
 nav ul i{
-    width:100%;
     color:#90EE90;
-    padding:4.3vh 8vh 4.3vh 6vh;
-    background-color:var(--dark);
 }
 
 #acctInTop{
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
-    height:30vh;
-    margin: 1rem 1rem;
+    margin: calc(1rem + env(safe-area-inset-top, 0px)) 1rem 1rem;
 }
 
 .blockColumn{
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
-    padding:1rem;
-    height:30vh;
 }
 
 .pfpRow,
 #bioanschool {
+    background:var(--pale);
     border:3px solid var(--dark);
     border-radius:25px;
+    box-shadow:7px 7px 10px #424242;
 }
 
 .pfpRow{
@@ -79,15 +88,12 @@ nav ul i{
     flex-direction:row;
     justify-content:space-evenly;
     align-content:center;
-    margin:1rem;
+    margin:0.5rem;
     padding:1.5rem;
-    background:white;
-    border:3px solid var(--dark);
-    border-radius:20px;
 }
 
 #username{
-    color:var(--Primary-Text-Color);
+    color:var(--pitch);
     font-size:7vw;
     display:flex;
     align-items:center;
@@ -96,37 +102,41 @@ nav ul i{
 #pfp{
     height:60px;
     width:60px;
-    border:none;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--dark);
 }
 
 #bioanschool{
-    margin:1rem;
+    margin:0.5rem;
     padding:1.5rem;
-    background:white;
-    border:3px solid var(--dark);
-    border-radius:20px;
 }
 
 .buttonRow{
     display:flex;
     flex-direction:row;
-    justify-content:space-evenly;
+    gap:1rem;
     align-content:center;
+    margin:1.25rem 0.5rem 0;
 }
 
 .accChangeButton{
     display:flex;
     justify-content:center;
     align-items:center;
-    margin: 2em 1em;
+    flex:1;
+    margin:0;
     padding:1.2rem;
-    width:50%;
-    border:none;
+    border:2px solid var(--dark);
     border-radius:15px;
     background:var(--primary);
     color:var(--pitch);
     font-weight:700;
     transition:.2s;
+}
+
+.accChangeButton:hover{
+    transform:translateY(-2px);
 }
 
 .accChangeButton button{
@@ -138,15 +148,19 @@ nav ul i{
 }
 
 #sch{
-    width:50%;
+    flex:1;
 }
 
 #grad{
-    width:50%;
+    flex:1;
 }
 
 #schag{
     display:flex;
     flex-direction:row;
+    gap:1.5rem;
+    padding-bottom:1rem;
+    margin-bottom:1rem;
+    border-bottom:2px solid var(--dark);
 }
 

@@ -32,12 +32,13 @@ nav {
     display: flex;
     flex-direction: row;
     list-style: none;
-    height: 9vh;
+    height: calc(7vh + env(safe-area-inset-bottom, 0px));
     background-color: var(--dark);
     position: fixed;
     bottom: 0;
     width: 100vw;
     border-radius: 20px 20px 0 0;
+    overflow: hidden;
     z-index: 1000;
 }
 
@@ -48,20 +49,36 @@ nav ul {
     list-style: none;
     align-items: center;
     width: 100vw;
+    height: 100%;
+}
+
+nav ul li {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+nav ul a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
 }
 
 nav ul i {
-    width: 100%;
     color: #90EE90;
-    padding: 4.3vh 8vh 4.3vh 6vh;
-    background-color: var(--dark);
 }
 
-/*han-yangs ubov this point*/
+/*han-yangs above this point*/
 
 #toggleBar {
     display: flex;
     flex-direction: row; 
+    margin-top: 8vh;
 }
 
 #togglebar1 {
@@ -93,13 +110,13 @@ nav ul i {
     border-radius: 15px;
     text-align: center;
     padding: 1vh;
-    background-color: var(--pale);
+    background-color: white;
 }
 
 
 
 .event{
-    background-color: var(--pale);
+    background-color: white;
     padding: 10px 17px;
     margin: 15px 15px 0 15px;
     justify-content: space-between;
@@ -125,16 +142,6 @@ nav ul i {
     font-size: 0.875rem;
     font-weight: 500;
 }
-.seeMore{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2px;
-    background-color: var(--primary);
-    border-radius: 0.8rem;
-    padding: 0.7rem;
-    color: black;
-}
 
 .eventTitle {
     font-size: 1rem;
@@ -142,112 +149,164 @@ nav ul i {
     margin: 0 0 3px;
 }
 
+.seeMore{
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: var(--pale);
+    border: 2px solid var(--primary);
+    border-radius: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    color: var(--pitch);
+}
+
 .seeMoreText{
-    background: none;
     border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    color: var(--pitch);
+    font-weight: 700;
+    font-size: 0.875rem;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.seeMore i{
+    color: var(--pitch);
+    font-size: 0.8rem;
 }
 
 /*han-yangs below this point*/
 
 #viewEvent {
-    height: 60vh;
+    height: 70vh;
     width: 94vw;
-    position: absolute;
     position: fixed;
-    top: 20vh;
+    top: 10vh;
     background-color: var(--pale);
-    border: solid;
-    border-width: 4px;
-    border-radius: 2rem;
-    border-color: var(--dark);
+    border: 3px solid var(--dark);
+    border-radius: 1.5rem;
+    box-shadow: 7px 7px 10px #424242;
     display: none;
+    flex-direction: column;
     z-index: 1200;
-    margin: 0px 3vw 0px 3vw;
+    margin: 0 3vw;
+    overflow: hidden;
 }
 
-#title {
-    text-align: center;
-    background-color: var(--light);
-    border-radius: 1.9rem 1.9rem 0 0;
-    height: 15%;
-    padding: 5%;
-    font-family: Roboto, sans-serif;
-    color: var(--pitch);
-}
-
-#middleRow {
-    height: 40%;
+.popupCloseButton {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    width: 28px;
+    height: 28px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 5%;
-    border-bottom: solid;
-    border-color: var(--dark);
+    align-items: center;
+    justify-content: center;
+    background: var(--pale);
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    z-index: 5;
 }
 
-#participants {
-    background-color: var(--primary);
-    border-radius: 10px 10px 10px 10px; /*10px 10px 5px 5px when open*/
-    border: none;
-    height: 3vh;
-    margin: 1rem 0 0 0;
-    font-weight: 800;
-    font-family: roboto, sans-serif;
+#viewEventBody {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem;
 }
 
-#viewImages {
-    background-color: var(--primary);
-    border-radius: 10px 10px 10px 10px; /*10px 10px 5px 5px when open*/
-    border: none;
-    height: 3vh;
-    margin: 1rem 0 0 0;
-    font-weight: 800;
-    font-family: roboto, sans-serif;    
+#eventName {
+    text-align: center;
+    color: var(--pitch);
+    font-size: 1.4rem;
+    margin: 0 2rem 1rem;
 }
 
 #viewEventInfo {
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    width: 50%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
 }
 
-#image {
-    padding: 5%;
+.infoChip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+    background-color: white;
+    border: 2px solid var(--primary);
+    border-radius: 999px;
+    padding: 0.4rem 0.8rem;
+    color: var(--pitch);
+    font-weight: 600;
+    font-size: 0.8rem;
 }
 
-#eventImage {
-    height: 100%;
+.infoChip i {
+    color: var(--dark);
+}
+
+.infoChip p {
+    white-space: nowrap;
 }
 
 #bottomRow {
-    height: 30%;
-    padding: 5%;
+    margin-bottom: 1.5rem;
 }
 
 #desc {
-    font-weight: 800;
-    margin-bottom: 10px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
 }
 
-.bottomButtons {
-    background-color: var(--pale);
-    height: 15%;
-    border-radius: 0 0 1.9rem 1.9rem;
+#description {
+    color: var(--pitch);
+}
+
+.viewEventSection {
+    margin-bottom: 1.5rem;
+}
+
+.viewEventSectionTitle {
+    color: var(--pitch);
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+}
+
+.participantsRow {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding: 5%;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-.bottomButton {
-    width: 40%;
-    height: 100%;
+.participantsRow #participantList {
+    flex: 1;
+}
+
+.rsvpButton {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
     background-color: var(--primary);
-    border: none;
-    border-radius: 1rem;
-    font-weight: 800;
-    font-family: roboto, sans-serif;
+    border: 2px solid var(--dark);
+    border-radius: 15px;
+    color: var(--pitch);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.rsvpButton:hover {
+    transform: translateY(-2px);
 }
 
 #darkener {
@@ -261,79 +320,179 @@ nav ul i {
     display: none;
 }
 
-#darkener2 {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1400;
-    height: 100%;
-    width: 100%;
-    background-color: rgb(0 0 0 / 0.5);
-    display: none;
-}
-
 #participantList {
-    display: none;
-    position: fixed;
-    top: 44vh;
-    max-height: 100px;         /* Limits the box height so it scrolls */
-    overflow-y: auto;          /* Shows vertical scrollbar when content exceeds max-height */
-    margin-top: 9px;
-    padding: 0 1rem 0 1rem;
+    max-height: 140px;
+    overflow-y: auto;
     background-color: white;
-    border: solid;
-    border-width: 0 3px 3px 3px;
-    border-color: var(--primary);
-    border-radius: 5px 5px 10px 10px;
-    width: 41.5vw;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
 }
 
-#eventImages {
-    height: 60vh;
-    width: 94vw;
-    position: absolute;
-    position: fixed;
-    top: 20vh;
-    background-color: var(--pale);
-    border: solid;
-    border-width: 4px;
-    border-radius: 2rem;
-    border-color: var(--dark);
-    z-index: 1200;
-    margin: 0px 3vw 0px 3vw;
-    align-items: center;
-    display: none;
+#participantList p {
+    margin: 4px 0;
+    color: var(--pitch);
 }
 
 #imageSection {
-    height: 55%;
-    overflow-y: auto; 
-    margin-top: 9px;
-    padding: 0 1rem 0 1rem;
-    background-color: white;
-    border: solid;
-    border-width: 3px 3px 3px 3px;
-    border-color: var(--primary);
-    border-radius: 5px 5px 10px 10px;
-    width: 90%;
-    margin: 5% 5% 0 5%;
-}
-
-#fileUpload {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 7%;
-    margin: 5% 5% 0 5%;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    max-height: 220px;
+    overflow-y: auto;
+    background-color: white;
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    padding: 0.6rem;
 }
 
-#imageInput {
-    background-color: white;
-    margin: 0 8vw 0 0;
-    width: 70%;
-    padding: 0.4rem 0 0 0.4rem;
-    border: solid;
-    border-radius: 0.5rem;
-    border-color: var(--primary);
-    border-width: 3px;
+.imageThumb {
+    position: relative;
+    width: 45%;
+    aspect-ratio: 1;
+}
+
+.imageThumb img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.6rem;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+}
+
+.saveImageButton {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(5, 54, 35, 0.55);
+    color: white;
+    font-size: 11px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.saveImageButton:hover {
+    transform: translateY(-2px);
+    background: rgba(5, 54, 35, 0.75);
+}
+
+#imageSection .emptyState {
+    color: var(--pitch);
+    font-size: 0.875rem;
+}
+
+.file-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 32px;
+    margin-top: 0.5rem;
+}
+
+.file-input input[type="file"] {
+    display: none;
+}
+
+.file-button {
+    padding: 4px 10px;
+    border: 1px solid var(--primary);
+    border-radius: 15px;
+    background: none;
+    color: var(--pitch);
+    font-size: 0.8rem;
+    font-weight: 400;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.file-input span {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--pitch);
+    font-size: 0.8rem;
+    opacity: .8;
+}
+
+.addImagePlus {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--primary);
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    color: var(--pitch);
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.addImagePlus:hover {
+    transform: translateY(-2px);
+}
+
+.addImagePlus[hidden] {
+    display: none;
+}
+
+#creatorRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+#creatorImage {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--dark);
+}
+
+#eventCreator {
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: 600;
+    flex: 1;
+}
+
+.editEventButton {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--pale);
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    color: var(--dark);
+    font-size: 12px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.editEventButton:hover {
+    transform: translateY(-2px);
+}
+
+.editEventButton[hidden] {
+    display: none;
 }

@@ -2,13 +2,13 @@
 
 
 //i is y dimension. each row is a new user
-//j is x dimension. column 0 = username, column 1 = password, column 2 = email, column 3 = phone number, column 4 = pfp, column 5 = school, column 6 = grade, column 7 = additional info
+//j is x dimension. column 0 = username, column 1 = password, column 2 = email, column 3 = phone number, column 4 = pfp, column 5 = school, column 6 = grade, column 7 = additional info, column 8 = role
 let accountNumber = 3
 let accounts = [];
 
 for (let i = 0; i < accountNumber; i++) {
   accounts[i] = []; // Initialize the inner array (row)
-  for (let j = 0; j < 8; j++) {
+  for (let j = 0; j < 9; j++) {
     accounts[i][j] = 0; // Fill each column index with a value
   }
 }
@@ -19,6 +19,7 @@ accounts[0][3] = "123-456-7890";
 accounts[0][5] = "West High School";
 accounts[0][6] = "12th";
 accounts[0][7] = "I am a senior at a high school in the United States. I enjoy playing basketball and listening to music. In my free time, I like to read books and watch movies.";
+accounts[0][8] = "Student";
 accounts[1][0] = "Ryan";
 accounts[1][1] = "123456";
 accounts[1][2] = "ryan@gmail.com";
@@ -26,6 +27,7 @@ accounts[1][3] = "098-765-4321";
 accounts[1][5] = "West High School";
 accounts[1][6] = "11th";
 accounts[1][7] = "I am a junior at a high school in the United States. I enjoy playing sports and listening to music. In my free time, I like to watch movies and hang out with friends.";
+accounts[1][8] = "Student";
 accounts[2][0] = "Matthew";
 accounts[2][1] = "mathewpassword";
 accounts[2][2] = "mathew@gmail.com";
@@ -33,6 +35,7 @@ accounts[2][3] = "555-1234";
 accounts[2][5] = "West High School";
 accounts[2][6] = "10th"
 accounts[2][7] = "I am a sophomore at a high school in the United States. I enjoy playing basketball and reading novels. In my free time, I like to explore new places and try different foods."
+accounts[2][8] = "Student"
 
 
 console.log(accounts);
@@ -41,20 +44,23 @@ console.log(accounts);
 const saveAccounts = () => localStorage.setItem('accounts', JSON.stringify(accounts))
 const loadAccounts = () => {
     const s = localStorage.getItem('accounts')
-    if (s) {
-        accounts = JSON.parse(s)
+    const parsed = s ? JSON.parse(s) : null
+    if (Array.isArray(parsed) && parsed.length > 0) {
+        accounts = parsed
         accountNumber = accounts.length
     } else {
-        // no stored accounts yet — save the defaults we created above
+        // No stored accounts yet, or the stored list is empty (e.g. after
+        // clearing localStorage while testing) — (re)save the built-in demo
+        // accounts we created above so logins like Cyrus/Ryan/Matthew keep working.
         saveAccounts()
     }
 }
 
 // Expose a simple reset helper usable from the console: `resetAccounts()`
+// Resets back to just the built-in demo accounts (Cyrus/Ryan/Matthew).
 window.resetAccounts = () => {
     console.log('resetAccounts called')
-    // Replace stored accounts with an empty array so load won't repopulate defaults
-    localStorage.setItem('accounts', JSON.stringify([]))
+    localStorage.removeItem('accounts')
     // Remove any stored user/session info
     localStorage.removeItem('userInformation')
     sessionStorage.removeItem('loggedIn')
@@ -72,6 +78,7 @@ const passwordIncorrect = document.querySelector("#passwordIncorrect")
 
 if (logInButton) logInButton.addEventListener('click', () => {
     if (!usernameInput || !passwordInput) return
+    if (passwordIncorrect) passwordIncorrect.style.display = 'none'
     const username = usernameInput.value.trim();
     const password = passwordInput.value;
     console.log('login attempt for', username)
@@ -113,15 +120,35 @@ const newUsernameInput = document.querySelector("#newUsername")
 const newEmailInput = document.querySelector("#newEmail")
 const newPasswordInput = document.querySelector("#signupPassword")
 const confirmPasswordInput = document.querySelector("#confirmPassword")
+const newRoleInput = document.querySelector("#newRole")
 const noUsername = document.querySelector("#noUsername")
 const noEmail = document.querySelector("#noEmail")
 
 if (signUpButton) signUpButton.addEventListener('click', () => {
-    if (!newUsernameInput || !newEmailInput || !newPasswordInput) return
+    if (!newUsernameInput || !newEmailInput || !newPasswordInput || !confirmPasswordInput || !newRoleInput) return
+    noUsername.style.display = 'none'
+    noEmail.style.display = 'none'
     let stop = 0
-    let newUsername = newUsernameInput.value
-    let newEmail = newEmailInput.value
+    let newUsername = newUsernameInput.value.trim()
+    let newEmail = newEmailInput.value.trim()
     let newPassword = newPasswordInput.value
+    let confirmPassword = confirmPasswordInput.value
+    let newRole = newRoleInput.value
+
+    if (!newUsername || !newEmail || !newPassword) {
+        alert('Please fill out all fields.')
+        return
+    }
+
+    if (!newRole) {
+        alert('Please select your role.')
+        return
+    }
+
+    if (newPassword !== confirmPassword) {
+        alert('Passwords do not match.')
+        return
+    }
 
     for (let i=0; i < accountNumber; i++) {
         if (accounts[i][0] === newUsername) {
@@ -137,12 +164,17 @@ if (signUpButton) signUpButton.addEventListener('click', () => {
         }
     }
     if (stop === 0) {
-        // store as [username, password, email, phone, pfp, school, grade, info]
-        let newUser = [newUsername, newPassword, newEmail, null, null, null, null, null]
+        // store as [username, password, email, phone, pfp, school, grade, info, role]
+        let newUser = [newUsername, newPassword, newEmail, null, null, null, null, null, newRole]
         accounts.push(newUser)
         accountNumber++
         saveAccounts()
         console.log(accounts)
+
+        // Log the new account in and send them to fill out the rest of their profile
+        sessionStorage.setItem('loggedIn', 'true')
+        sessionStorage.setItem('userInformation', JSON.stringify(newUser))
+        window.location.href = 'edit-account.html'
     }
 })
 

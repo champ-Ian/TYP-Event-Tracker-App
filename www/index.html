@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Document</title>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,111 +25,54 @@
 
     <!--Upcoming Events-->
     <section id="upcomingEvents" class="upcomingEvents">
-        <div class="event">
-            <h2 class="eventTitle">Ryan's Study Day</h2>
-            <div class="eventinfo1">
-                <div class="eventinfo">
-                    <h4 class="date">December 17, 2026</h4>
-                    <h4 class="time">All DAY</h4>
-                </div>
-                <div class="seeMore">
-                    <button class="seeMoreText">See More</button>
-                    <i class="fa-solid fa-ellipsis"></i>
-                </div>
-            </div>
-        </div>
-        <div class="event">
-            <h2 class="eventTitle">Han-Yang's Graduation</h2>
-            <div class="eventinfo1">
-                <div class="eventinfo">
-                    <h4 class="date">July 31, 2026</h4>
-                    <h4 class="time">10:00 - 11:00 AM</h4>
-                </div>
-                <div class="seeMore">
-                    <button class="seeMoreText">See More</button>
-                    <i class="fa-solid fa-ellipsis"></i>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!--Past Events-->
     <section id="passEvents" class="pastEvents">
-        <div class="event">
-            <h2 class="eventTitle">Cyrus's Birthday</h2>
-            <div class="eventinfo1">
-                <div class="eventinfo">
-                    <h4 class="date">December 26, 2025</h4>
-                    <h4 class="time">ALL DAY</h4>
-                </div>
-                <div class="seeMore">
-                    <button class="seeMoreText">See More</button>
-                    <i class="fa-solid fa-ellipsis"></i>
-                </div>
-            </div>
-        </div>
-        <div class="event">
-            <h2 class="eventTitle">Ryan's Birthday Party</h2>
-            <div class="eventinfo1">
-                <div class="eventinfo">
-                    <h4 class="date">January 14, 2026</h4>
-                    <h4 class="time">12:00 - 12:50 AM</h4>
-                </div>
-                <div class="seeMore">
-                    <button class="seeMoreText">See More</button>
-                    <i class="fa-solid fa-ellipsis"></i>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!--view events pop up-->
     <section id="viewEvent">
-        <div id="title">
+        <button id="exit" class="popupCloseButton" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+
+        <div id="viewEventBody">
             <h1 id="eventName">Event Name</h1>
-        </div>
-        <div id="middleRow">
+
             <div id="viewEventInfo">
-                <p id="viewEventDate">xx/xx/xxxx</p>
-                <p id="viewEventTime">xx:xx xx</p>
-                <p id="eventCreator">creatorsName</p>
-                <button id="participants">participants</button>
-                <div id="participantList">
-                    
+                <div class="infoChip"><i class="fa-solid fa-calendar"></i><p id="viewEventDate">xx/xx/xxxx</p></div>
+                <div class="infoChip"><i class="fa-solid fa-clock"></i><p id="viewEventTime">xx:xx xx</p></div>
+                <div class="infoChip"><i class="fa-solid fa-location-dot"></i><p id="viewEventLocation">location</p></div>
+            </div>
+
+            <div id="bottomRow">
+                <p id="desc">Description:</p>
+                <p id="description">description goes here...</p>
+            </div>
+
+            <div class="viewEventSection">
+                <h3 class="viewEventSectionTitle">Event Images</h3>
+                <div id="imageSection"></div>
+                <div class="file-input">
+                    <label class="file-button" for="imageInput">Choose File</label>
+                    <span id="imageInput-name">No File Selected</span>
+                    <input type="file" id="imageInput" accept="image/*">
+                    <button type="button" id="addImageButton" class="addImagePlus" aria-label="Add image" hidden><i class="fa-solid fa-plus"></i></button>
                 </div>
-                <button id="viewImages">Event Images</button>
             </div>
-            <div id="participantList">
-                
-            </div>
-            <div id="image">
-                <img id="eventImage" src="img/anonymous pfp.webp" alt="image">
-            </div>
-        </div>
-        <div id="bottomRow">
-            <p id="desc">Description:</p>
-            <p id="description">description goes here...</p>
-        </div>
-        <div class="bottomButtons">
-            <button id="signUp" class="bottomButton">RSVP</button>
-            <button id="exit" class="bottomButton">Exit</button>
-        </div>
-    </section>
 
-    <!--Event Images pop up-->
-    <section id="eventImages">
-        <div id="title">
-            <h1>Event Images</h1>
-        </div>
-        <div id="imageSection">
+            <div class="viewEventSection">
+                <h3 class="viewEventSectionTitle">Participants</h3>
+                <div class="participantsRow">
+                    <div id="participantList"></div>
+                    <button id="signUp" class="rsvpButton">RSVP</button>
+                </div>
+            </div>
 
-        </div>
-        <div id="fileUpload">
-            <input type="file" id="imageInput">
-            <button id="addImageButton" class="bottomButton">Add Image</button>
-        </div>
-        <div class="bottomButtons">
-            <button id="exitImagesButton" class="bottomButton">Exit</button>
+            <div id="creatorRow">
+                <img id="creatorImage" src="img/anonymous pfp.webp" alt="creator profile picture">
+                <p id="eventCreator">creatorsName</p>
+                <button id="editEventButton" class="editEventButton" aria-label="Edit event" hidden><i class="fa-solid fa-pen-to-square"></i></button>
+            </div>
         </div>
     </section>
 
@@ -143,8 +86,7 @@
     </nav>
     <div id="darkener">
     </div>
-    <div id="darkener2">
-    </div>
+    <script src="js/image-utils.js"></script>
     <script src="js/index.js"></script>
     <script src="js/navbar.js"></script>
 </body>

@@ -37,7 +37,7 @@ body {
 #login {
     height: auto;
     margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-top: 8vh;
 }
 
 /* Signup */
@@ -91,6 +91,25 @@ body {
     border-color: var(--dark);
 }
 
+.accountInput select {
+    width: 100%;
+    padding: 8px;
+    height: auto;
+
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+
+    outline: none;
+    color: var(--pitch);
+    background: white;
+
+    font-size: 1rem;
+}
+
+.accountInput select:focus {
+    border-color: var(--dark);
+}
+
 
 
 #eye1,
@@ -130,7 +149,7 @@ body {
     width: 100%;
     height: auto;
 
-    padding: 10px;
+    padding: 8px;
 
     border: none;
     border-radius: 15px;
@@ -143,7 +162,7 @@ body {
     margin: 0;
 
     border: 2px solid var(--dark);
-    margin-top: 1rem;
+    margin-top: 0.75rem;
 }
 
 
@@ -153,7 +172,7 @@ nav {
     flex-direction: row;
     list-style: none;
 
-    height: 9vh;
+    height: calc(7vh + env(safe-area-inset-bottom, 0px));
 
     background-color: var(--dark);
 
@@ -164,6 +183,7 @@ nav {
     width: 100vw;
 
     border-radius: 20px 20px 0 0;
+    overflow: hidden;
 
     z-index: 1000;
 }
@@ -183,8 +203,10 @@ nav ul {
 
 nav ul li {
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
 
 nav ul a {
@@ -192,17 +214,14 @@ nav ul a {
     align-items: center;
     justify-content: center;
 
+    width: 100%;
+    height: 100%;
+
     text-decoration: none;
 }
 
 nav ul i {
     color: #90EE90;
-
-    background-color: var(--dark);
-
-    padding: 4.3vh 8vh 4.3vh 6vh;
-
-    width: 100%;
 }
 
 

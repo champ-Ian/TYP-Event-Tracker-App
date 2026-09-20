@@ -2,11 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <script src="js/image-utils.js" defer></script>
     <script src="js/create-event.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/create-event.css"> 
-    <script src="js/navbar.js" defer></script>   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/create-event.css">
+    <script src="js/navbar.js" defer></script>
 </head>
 
 <body>
@@ -20,40 +24,54 @@
         </ul>
     </nav>
 
+    <section class="create-event">
+        <h2 id="formHeading">Create Event</h2>
 
+        <div class="input-group">
+            <input type="text" id="title" placeholder="Event Name *">
 
+            <div class="date-time-field">
+                <input type="date" id="date" required>
+                <label for="date">Event Date *</label>
+            </div>
 
-<section class="create-event">
-    <h2>Create Event</h2>
+            <div class="date-time-field">
+                <input type="time" id="start-time" class="right-placeholder" placeholder="Start Time" required>
+                <label for="start-time">Start Time *</label>
+            </div>
 
-    <div class="input-group">
-        <input type="text" id="title" placeholder="Event Name">
+            <div class="date-time-field">
+                <input type="time" id="end-time" class="end-placeholder" placeholder="End Time" required>
+                <label for="end-time">End Time *</label>
+            </div>
 
-        <input type="date" id="date">
+            <input type="text" id="location" placeholder="Event Location *">
 
-        <input type="time" id="start-time"class="right-placeholder" placeholder="Start Time">
-        
-        <input type="time" id="end-time"class = "end-placeholder" placeholdder = "End Time">
-        <input type="text" id="location" placeholder="Event Location">
+            <textarea id="description" placeholder="Event Description"></textarea>
 
-        <textarea id="description" placeholder="Event Description"></textarea>
+            <div class="file-input">
+                <label class="file-button" for="image">Choose File</label>
+                <span id="image-name">No File Selected</span>
+                <input type="file" id="image" accept="image/*">
+                <button type="button" class="file-clear" id="image-clear" aria-label="Clear image"><i class="fa-solid fa-xmark"></i></button>
+            </div>
 
-        <input
-        type="file"
-        id="image"
-        accept="image/*">
+            <div class="file-input">
+                <label class="file-button" for="image2">Choose File</label>
+                <span id="image2-name">No File Selected</span>
+                <input type="file" id="image2" accept="image/*">
+                <button type="button" class="file-clear" id="image2-clear" aria-label="Clear second image"><i class="fa-solid fa-xmark"></i></button>
+            </div>
 
-        <input
-        type="file"
-        id="image2"
-        accept="image/*">
-    </div>
+        </div>
 
-    <button onclick="newEvent()">
-        Create Event
-    </button>
-</section>
-<script src="js/create-event.js" defer></script>
+        <p class="requiredNote">* Required</p>
+
+        <button id="submitEventButton" onclick="newEvent()">
+            Create Event
+        </button>
+
+    </section>
 
 </body>
 </html>

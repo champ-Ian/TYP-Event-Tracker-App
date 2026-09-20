@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Account Sign Out</title>
     <link rel="stylesheet" href="css/account-out.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,12 +25,12 @@
         <h1>Log In</h1>
         <div class="accountInput">
             <p>Username</p>
-            <input id=logInUsername type="text" >
+            <input id=logInUsername type="text" autocapitalize="off" autocorrect="off" spellcheck="false">
         </div>
 
         <div class="accountInput">
             <p>Password</p>
-            <input type="password" id="loginPassword">
+            <input type="password" id="loginPassword" autocapitalize="off" autocorrect="off" spellcheck="false">
             <i id="eye1" class="fa-solid fa-eye" onclick="togglePassword('loginPassword', 'eye1')"></i>
         </div>
 
@@ -44,28 +44,38 @@
         <h1>Sign Up</h1>
         <div class="accountInput">
             <p>Username</p>
-            <input id="newUsername" type="text" >
+            <input id="newUsername" type="text" autocapitalize="off" autocorrect="off" spellcheck="false">
         </div>
         <p id="noUsername">Username is not Available</p>
 
         <div class="accountInput">
             <p>Email</p>
-            <input id="newEmail" type="text">
+            <input id="newEmail" type="text" autocapitalize="off" autocorrect="off" spellcheck="false">
         </div>
         <p id="noEmail">Email address is already in use</p>
 
         <div class="accountInput">
             <p>Password</p>
-            <input type="password" id="signupPassword">
+            <input type="password" id="signupPassword" autocapitalize="off" autocorrect="off" spellcheck="false">
             <i id="eye2" class="fa-solid fa-eye" onclick="togglePassword('signupPassword', 'eye2')"></i>
         </div>
 
         <div class="accountInput">
             <p>Confirm Password</p>
-            <input type="password" id="confirmPassword">
+            <input type="password" id="confirmPassword" autocapitalize="off" autocorrect="off" spellcheck="false">
             <i id="eye3" class="fa-solid fa-eye" onclick="togglePassword('confirmPassword', 'eye3')"></i>
         </div>
-        
+
+        <div class="accountInput">
+            <p>Role</p>
+            <select id="newRole">
+                <option value="" disabled selected>Select your role</option>
+                <option value="Parent">Parent</option>
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+            </select>
+        </div>
+
         <input type="button" id="signUpButton" value="Sign up">
     </section>
 
