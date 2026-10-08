@@ -3,7 +3,7 @@
 
 //i is y dimension. each row is a new user
 //j is x dimension. column 0 = username, column 1 = password, column 2 = email, column 3 = phone number, column 4 = pfp, column 5 = school, column 6 = grade, column 7 = additional info, column 8 = role
-let accountNumber = 3
+let accountNumber = 4
 let accounts = [];
 
 for (let i = 0; i < accountNumber; i++) {
@@ -36,6 +36,17 @@ accounts[2][5] = "West High School";
 accounts[2][6] = "10th"
 accounts[2][7] = "I am a sophomore at a high school in the United States. I enjoy playing basketball and reading novels. In my free time, I like to explore new places and try different foods."
 accounts[2][8] = "Student"
+// Demo administrator. Administrators approve the events that students create
+// (see index.js). You can't pick this role when signing up.
+accounts[3][0] = "Director";
+accounts[3][1] = "directorpassword";
+accounts[3][2] = "director@example.com";
+accounts[3][3] = "555-0100";
+accounts[3][5] = "Total Youth Productions";
+accounts[3][6] = "Staff";
+accounts[3][7] = "I help run Total Youth Productions and approve the events our members create.";
+accounts[3][8] = "Administrator";
+const demoAdministrator = accounts[3]
 
 
 console.log(accounts);
@@ -47,6 +58,11 @@ const loadAccounts = () => {
     const parsed = s ? JSON.parse(s) : null
     if (Array.isArray(parsed) && parsed.length > 0) {
         accounts = parsed
+        // Accounts saved before administrators existed won't include one, so add the demo one
+        if (!accounts.some(acc => Array.isArray(acc) && acc[8] === 'Administrator')) {
+            accounts.push(demoAdministrator)
+            saveAccounts()
+        }
         accountNumber = accounts.length
     } else {
         // No stored accounts yet, or the stored list is empty (e.g. after

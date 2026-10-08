@@ -15,10 +15,35 @@ console.log('eventArray', eventArray)
 
 
 
+// Approval pipeline: a student creates an event, it waits as 'pending', and an
+// administrator approves it before everyone else can see it. The status is
+// stored at index 9 of the event record. Events saved before this existed
+// have no status, so they count as approved.
+function getEventStatus(event) {
+    return (event && event[9]) || 'approved'
+}
+
+// The logged-in user's account record, or null when nobody is logged in
+function getCurrentUser() {
+    if (sessionStorage.getItem('loggedIn') !== 'true') return null
+    try {
+        const info = JSON.parse(sessionStorage.getItem('userInformation') || 'null')
+        return Array.isArray(info) && info[0] ? info : null
+    } catch (e) {
+        return null
+    }
+}
+
+const currentUser = getCurrentUser()
+const currentUsername = currentUser ? currentUser[0] : null
+const userIsAdmin = !!currentUser && currentUser[8] === 'Administrator'
+
 // Select the sections in the page where upcoming and past events will be
 // appended. These match the markup in `index.html` (`.upcomingEvents`/`.pastEvents`).
 const currentEventSection = document.querySelector('.upcomingEvents')
 const pastEventSection = document.querySelector('.pastEvents')
+const pendingEventSection = document.querySelector('.pendingEvents')
+let pendingCount = 0
 
 // Number of stored events. Note: this code starts at index 1 because
 // index 0 is used for placeholder data in `create-event.js`.
@@ -52,10 +77,24 @@ if (currentEventSection && pastEventSection) {
         continue
     }
 
+    // Only approved events are public. A pending event is also shown to its
+    // creator and to administrators, and a rejected one only to its creator.
+    const status = getEventStatus(eventArray[i])
+    const isMine = !!currentUsername && eventArray[i][6] === currentUsername
+    if (status === 'pending' && !isMine && !userIsAdmin) continue
+    if (status === 'rejected' && !isMine) continue
+
     // Event title is stored at index 0 of the event array
     const eventName = document.createElement('h2');
     eventName.textContent = eventArray[i][0] || 'Untitled Event'
     eventName.className = 'eventTitle'
+
+    if (status !== 'approved') {
+        const badge = document.createElement('span')
+        badge.className = `statusBadge ${status}`
+        badge.textContent = status === 'pending' ? 'Pending approval' : 'Not approved'
+        eventName.appendChild(badge)
+    }
 
     // Format stored ISO date (YYYY-MM-DD) to MM/DD/YYYY for display
     const eventDate = document.createElement('h4');
@@ -128,7 +167,11 @@ if (currentEventSection && pastEventSection) {
         pastEvent = false
     }
 
-    if (pastEvent === false) {
+    if (status === 'pending' && userIsAdmin && pendingEventSection) {
+        // administrators review pending events on their own tab
+        pendingEventSection.appendChild(eventBlock)
+        pendingCount++
+    } else if (pastEvent === false) {
         currentEventSection.appendChild(eventBlock)
     } else {
         pastEventSection.appendChild(eventBlock)
@@ -147,28 +190,45 @@ if (currentEventSection && pastEventSection) {
 //opening past and current events on their respective tabs
 
 if (pastEventSection) pastEventSection.style.display = 'none'
+if (pendingEventSection) pendingEventSection.style.display = 'none'
 
 const toggleBarUpcoming = document.querySelector('#togglebar1')
 const toggleBarPast = document.querySelector('#togglebar2')
+const toggleBarPending = document.querySelector('#togglebar3')
 
-if (toggleBarUpcoming) toggleBarUpcoming.addEventListener('click', () => {
-    if (currentEventSection) currentEventSection.style.display = 'block'
-    if (pastEventSection) pastEventSection.style.display = 'none'
-    toggleBarUpcoming.style.backgroundColor = 'var(--light)'
-    toggleBarUpcoming.style.boxShadow = '5px 5px 8px #424242'
-    if (toggleBarPast) toggleBarPast.style.backgroundColor = 'white'
-    if (toggleBarPast) toggleBarPast.style.boxShadow = 'none'
+// Each tab paired with the section it shows
+const tabs = [
+    [toggleBarUpcoming, currentEventSection],
+    [toggleBarPast, pastEventSection],
+    [toggleBarPending, pendingEventSection]
+]
 
+function showTab(activeBar) {
+    tabs.forEach(([bar, section]) => {
+        const active = bar === activeBar
+        if (section) section.style.display = active ? 'block' : 'none'
+        if (bar) bar.style.backgroundColor = active ? 'var(--light)' : 'white'
+        if (bar) bar.style.boxShadow = active ? '5px 5px 8px #424242' : 'none'
+    })
+}
+
+tabs.forEach(([bar]) => {
+    if (bar) bar.addEventListener('click', () => showTab(bar))
 })
 
-if (toggleBarPast) toggleBarPast.addEventListener('click', () => {
-    if (currentEventSection) currentEventSection.style.display = 'none'
-    if (pastEventSection) pastEventSection.style.display = 'block'
-    toggleBarPast.style.backgroundColor = 'var(--light)'
-    toggleBarPast.style.boxShadow = '5px 5px 8px #424242'
-    if (toggleBarUpcoming) toggleBarUpcoming.style.backgroundColor = 'white'
-    if (toggleBarUpcoming) toggleBarUpcoming.style.boxShadow = 'none'
-})
+// The Pending tab only exists for administrators
+if (userIsAdmin && toggleBarPending && pendingEventSection) {
+    toggleBarPending.hidden = false
+    document.querySelector('#toggleBar')?.classList.add('hasPendingTab')
+    const pendingTabLabel = document.querySelector('#pendingTabLabel')
+    if (pendingTabLabel) pendingTabLabel.textContent = `Pending (${pendingCount})`
+    if (pendingCount === 0) {
+        const p = document.createElement('p')
+        p.className = 'pendingEmpty'
+        p.textContent = 'No events are waiting for approval.'
+        pendingEventSection.appendChild(p)
+    }
+}
 
 
 
@@ -267,6 +327,7 @@ if (viewEvent && darkener && eventName && eventDate && eventTime && creatorsName
 
             eventDescription.textContent = eventArray[idx][3] || ''
 
+            updateApprovalRow(idx)
             renderParticipants(idx)
             openImages()
 
@@ -279,6 +340,42 @@ if (viewEvent && darkener && eventName && eventDate && eventTime && creatorsName
 } else {
     console.warn('View event elements not found; skipping view handlers')
 }
+
+//approval status of the currently viewed event, plus the administrator's Approve/Reject buttons
+const approvalRow = document.querySelector('#approvalRow')
+const approvalStatus = document.querySelector('#approvalStatus')
+const approvalButtons = document.querySelector('#approvalButtons')
+const approveEventButton = document.querySelector('#approveEventButton')
+const rejectEventButton = document.querySelector('#rejectEventButton')
+
+function updateApprovalRow(idx) {
+    const status = getEventStatus(eventArray[idx])
+    // You can only RSVP to an event once it has been approved
+    const rsvp = document.querySelector('#signUp')
+    if (rsvp) rsvp.hidden = status !== 'approved'
+    if (!approvalRow || !approvalStatus) return
+
+    approvalRow.hidden = status === 'approved'
+    approvalRow.classList.toggle('rejected', status === 'rejected')
+    if (status === 'pending') {
+        approvalStatus.textContent = userIsAdmin ? 'This event is waiting for your approval.' : 'Waiting for an administrator to approve this event.'
+    } else if (status === 'rejected') {
+        approvalStatus.textContent = 'An administrator did not approve this event. Edit it to send it for approval again.'
+    }
+    if (approvalButtons) approvalButtons.hidden = !(userIsAdmin && status === 'pending')
+}
+
+function setEventStatus(idx, status) {
+    // Re-check here too, not just in the UI that shows the buttons
+    if (!userIsAdmin || !eventArray[idx]) return
+    eventArray[idx][9] = status
+    localStorage.setItem('eventStorage', JSON.stringify(eventArray))
+    alert(status === 'approved' ? 'Event approved. Everyone can see it now.' : 'Event was not approved.')
+    location.reload()
+}
+
+if (approveEventButton) approveEventButton.addEventListener('click', () => setEventStatus(globalThis.l, 'approved'))
+if (rejectEventButton) rejectEventButton.addEventListener('click', () => setEventStatus(globalThis.l, 'rejected'))
 
 //editing the currently viewed event (only shown for its creator)
 if (editEventButton) editEventButton.addEventListener('click', () => {

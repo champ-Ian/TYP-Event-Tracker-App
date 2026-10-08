@@ -21,6 +21,11 @@
             <p>Past Events</p>
             <div id="pastEventsHLine" class="hline"></div>
         </div>
+        <!--Only shown to administrators (see index.js)-->
+        <div id="togglebar3" class="aToggleBar" hidden>
+            <p id="pendingTabLabel">Pending</p>
+            <div id="pendingEventsHLine" class="hline"></div>
+        </div>
     </section>
 
     <!--Upcoming Events-->
@@ -31,12 +36,24 @@
     <section id="passEvents" class="pastEvents">
     </section>
 
+    <!--Events waiting for an administrator's approval-->
+    <section id="pendingEvents" class="pendingEvents">
+    </section>
+
     <!--view events pop up-->
     <section id="viewEvent">
         <button id="exit" class="popupCloseButton" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
 
         <div id="viewEventBody">
             <h1 id="eventName">Event Name</h1>
+
+            <div id="approvalRow" hidden>
+                <p id="approvalStatus"></p>
+                <div id="approvalButtons" hidden>
+                    <button id="approveEventButton" class="approveButton">Approve</button>
+                    <button id="rejectEventButton" class="rejectButton">Reject</button>
+                </div>
+            </div>
 
             <div id="viewEventInfo">
                 <div class="infoChip"><i class="fa-solid fa-calendar"></i><p id="viewEventDate">xx/xx/xxxx</p></div>

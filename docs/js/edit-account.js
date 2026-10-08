@@ -146,6 +146,12 @@ if (!userInfo[0]) {
     if (schoolInput) schoolInput.value = userInfo[5] || ''
     if (gradeInput) gradeInput.value = userInfo[6] || ''
     if (bioInput) bioInput.value = userInfo[7] || ''
+    // Administrator isn't one of the roles you can choose, so an administrator
+    // keeps theirs: add it as the only selectable option and lock the field.
+    if (roleInput && userInfo[8] === 'Administrator') {
+        roleInput.add(new Option('Administrator', 'Administrator'))
+        roleInput.disabled = true
+    }
     if (roleInput) roleInput.value = userInfo[8] || ''
 
     // Save original username so we can find the account record when username changes

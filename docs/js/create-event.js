@@ -63,6 +63,9 @@ function newEvent() {
     const image = document.getElementById('image')?.files[0];
     const image2 = document.getElementById('image2')?.files[0];
     const eventCreator = userInfo && userInfo[0] ? userInfo[0] : 'Anonymous'
+    // Administrators' events go live right away; everyone else's wait for approval
+    const isAdmin = !!userInfo && userInfo[8] === 'Administrator'
+    const status = isAdmin ? 'approved' : 'pending'
 
     if (!title || !date || !startTime || !endTime || !location) {
         alert('Please fill out all required fields.')
@@ -84,22 +87,23 @@ function newEvent() {
         image2 ? compressImage(image2) : Promise.resolve(existingImage2)
     ]).then(([b64image, b64image2]) => {
         const stored = JSON.parse(localStorage.getItem('eventStorage') || '[]')
-        // store as [title, date, startTime, description, image1, image2, eventCreator, endTime, location]
-        const record = [title, date, startTime, description, b64image, b64image2, eventCreator, endTime, location]
+        // store as [title, date, startTime, description, image1, image2, eventCreator, endTime, location, status]
+        // status is 'pending', 'approved' or 'rejected' (see the approval code in index.js)
+        const record = [title, date, startTime, description, b64image, b64image2, eventCreator, endTime, location, status]
 
         if (editIndex !== null && stored[editIndex]) {
             // Keep the original creator, regardless of who's currently logged in
             record[6] = stored[editIndex][6]
             stored[editIndex] = record
             localStorage.setItem('eventStorage', JSON.stringify(stored))
-            alert('Your event has been successfully updated')
+            alert(isAdmin ? 'Your event has been successfully updated' : 'Your changes were sent to an administrator for approval')
             window.location.href = 'index.html'
             return
         }
 
         stored.push(record)
         localStorage.setItem('eventStorage', JSON.stringify(stored))
-        alert('Your event has been successfully created')
+        alert(isAdmin ? 'Your event has been successfully created' : 'Your event was sent to an administrator for approval')
         // clear form
         document.getElementById('title').value = ''
         document.getElementById('date').value = ''
